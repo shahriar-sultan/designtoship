@@ -1,109 +1,75 @@
-import Link from "next/link";
+"use client";
 
-const navigation = {
-  product: [
-    { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Integrations", href: "#" },
-    { name: "API", href: "#" },
-  ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Contact", href: "#" },
-  ],
-  resources: [
-    { name: "Documentation", href: "#" },
-    { name: "Help Center", href: "#" },
-    { name: "Community", href: "#" },
-    { name: "Partners", href: "#" },
-  ],
-  legal: [
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
-    { name: "Cookie Policy", href: "#" },
-    { name: "Licenses", href: "#" },
-  ],
-};
+import { CTAButton } from "./CTAButton";
+import { Twitter, Facebook, Instagram } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Footer() {
+  const t = useTranslations("footer");
+
   return (
-    <footer className="bg-gray-900" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-6 lg:gap-12">
-          {/* Brand */}
-          <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600"></div>
-              <span className="text-xl font-bold text-white">LMS Platform</span>
+    <footer className="relative bg-[#FFF4EF] py-12 md:py-16">
+      {/* Top Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-[250px] md:h-[346px] bg-gradient-to-b from-[#FFF3ED] to-transparent pointer-events-none" />
+      
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-[1052px] mx-auto">
+          {/* Main Heading */}
+          <ScrollReveal>
+            <div className="text-center mb-10 md:mb-14 space-y-3 md:space-y-4 px-4">
+              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
+                {t("title")}
+              </h2>
+              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed max-w-[826px] mx-auto">
+                {t("subtitle")}
+              </p>
             </div>
-            <p className="text-sm text-gray-400 mb-4">
-              Transform your learning experience with our cutting-edge platform.
-            </p>
-            <p className="text-sm text-gray-400">
-              © 2024 LMS Platform. All rights reserved.
-            </p>
+          </ScrollReveal>
+
+          {/* CTA Button and Social */}
+          <div className="space-y-6 md:space-y-8">
+            {/* CTA Button */}
+            <ScrollReveal delay={100}>
+              <div className="flex justify-center">
+                <CTAButton paddingVariant="small">
+                  {t("cta")}
+                </CTAButton>
+              </div>
+            </ScrollReveal>
+
+            {/* Social Icons */}
+            <ScrollReveal delay={200}>
+              <div className="flex justify-center gap-3 md:gap-4">
+                {[
+                  { icon: Twitter, label: "Twitter" },
+                  { icon: Facebook, label: "Facebook" },
+                  { icon: Instagram, label: "Instagram" },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="w-10 h-10 md:w-12 md:h-12 bg-[#361F12] hover:bg-[#2A1810] rounded-full flex items-center justify-center transition-colors"
+                    aria-label={social.label}
+                    style={{
+                      boxShadow: '0 12px 30px rgba(77, 43, 23, 0.28)',
+                    }}
+                  >
+                    <social.icon className="w-5 h-5 md:w-6 md:h-6 text-white" strokeWidth={2} />
+                  </a>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
 
-          {/* Product */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Product</h3>
-            <ul className="space-y-3">
-              {navigation.product.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-white">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
-            <ul className="space-y-3">
-              {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-white">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Resources</h3>
-            <ul className="space-y-3">
-              {navigation.resources.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-white">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Legal</h3>
-            <ul className="space-y-3">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-white">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Copyright */}
+          <ScrollReveal delay={300}>
+            <div className="text-center mt-8 md:mt-12 px-4">
+              <p className="text-[#65605B] text-base md:text-[18px]">
+                {t("copyright")}
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </footer>

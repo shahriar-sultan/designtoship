@@ -1,94 +1,91 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Zap, 
-  Shield, 
-  Users, 
-  BarChart3, 
-  Globe, 
-  Sparkles,
-  Clock,
-  Award
-} from "lucide-react";
+"use client";
 
-const features = [
-  {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Experience blazing-fast performance with our optimized platform. Load courses instantly and enjoy seamless navigation."
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Security",
-    description: "Bank-level encryption and security protocols keep your data safe. SOC 2 compliant and GDPR ready."
-  },
-  {
-    icon: Users,
-    title: "Team Collaboration",
-    description: "Built-in collaboration tools let your team work together seamlessly. Share resources, discuss, and learn as one."
-  },
-  {
-    icon: BarChart3,
-    title: "Advanced Analytics",
-    description: "Track learner progress with detailed analytics. Get insights into engagement, completion rates, and performance."
-  },
-  {
-    icon: Globe,
-    title: "Multi-Language Support",
-    description: "Reach a global audience with built-in translation support. Create courses in multiple languages effortlessly."
-  },
-  {
-    icon: Sparkles,
-    title: "AI-Powered Insights",
-    description: "Leverage AI to personalize learning paths, recommend content, and identify knowledge gaps automatically."
-  },
-  {
-    icon: Clock,
-    title: "24/7 Availability",
-    description: "Access your courses anytime, anywhere. Our platform is always available, ensuring uninterrupted learning."
-  },
-  {
-    icon: Award,
-    title: "Certification System",
-    description: "Issue certificates automatically upon course completion. Build credibility and recognize achievements."
-  }
-];
+import { Card } from "@/components/ui/card";
+import { GraduationCap, Laptop, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Features() {
-  return (
-    <section id="features" className="py-20 lg:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
-            Everything You Need to Succeed
-          </h2>
-          <p className="text-lg text-gray-600">
-            Powerful features designed to make learning management simple, effective, and enjoyable.
-          </p>
-        </div>
+  const t = useTranslations("features");
 
-        {/* Features Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <Card key={index} className="border-gray-200 hover:border-blue-300 transition-colors hover:shadow-lg">
-                <CardHeader>
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
-                    <Icon className="h-6 w-6" />
+  const features = [
+    {
+      icon: GraduationCap,
+      title: t("items.startup.title"),
+      description: t("items.startup.description"),
+    },
+    {
+      icon: Laptop,
+      title: t("items.income.title"),
+      description: t("items.income.description"),
+    },
+    {
+      icon: Sparkles,
+      title: t("items.ai.title"),
+      description: t("items.ai.description"),
+    },
+  ];
+
+  return (
+    <section className="relative bg-[#FFF4EF] py-12 md:py-16">
+      {/* Gradient Background */}
+      <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-gradient-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
+      
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto">
+          {/* Section Badge */}
+          <ScrollReveal>
+            <div className="flex justify-center mb-6 md:mb-8">
+              <div 
+                className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
+              >
+                <span className="text-[#977259] text-base md:text-[18px] font-medium">
+                  {t("badge")}
+                </span>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Main Heading */}
+          <ScrollReveal delay={100}>
+            <div className="max-w-[800px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
+              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
+                {t("title")}
+              </h2>
+              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
+                {t("subtitle")}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Feature Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+            {features.map((feature, index) => (
+              <ScrollReveal key={index} delay={index * 100 + 200}>
+                <Card 
+                key={index}
+                className="bg-white border-2 border-[#EADED7] rounded-2xl md:rounded-[20px] p-5 md:p-7 hover:shadow-[0_4px_24px_rgba(110,95,87,0.1)] transition-shadow"
+              >
+                <div className="space-y-4 md:space-y-6">
+                  {/* Icon */}
+                  <div className="w-7 h-7 md:w-8 md:h-8 text-[#6D6059]">
+                    <feature.icon className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base text-gray-600">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
+                  
+                  {/* Content */}
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-[#402617] text-lg md:text-[20px] font-bold leading-tight">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[#6A615C] text-sm md:text-[15px] leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
               </Card>
-            );
-          })}
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

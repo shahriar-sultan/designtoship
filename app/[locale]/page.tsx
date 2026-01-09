@@ -1,5 +1,5 @@
 import {
-  Header,
+  Reviews,
   Hero,
   Features,
   Benefits,
@@ -9,12 +9,14 @@ import {
   Footer,
 } from "@/components/landing";
 
+export const dynamicParams = true;
+
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
       <main>
         <Hero />
+        <Reviews />
         <Features />
         <Benefits />
         <Testimonials />

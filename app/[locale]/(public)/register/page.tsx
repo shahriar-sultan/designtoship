@@ -1,12 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { register } from '@/lib/api';
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const t = useTranslations('auth.register');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -26,15 +30,15 @@ export default function RegisterPage() {
         setEmail('');
         setPassword('');
       } else if (response.status === 429) {
-        setError('Too many requests. Please try again later.');
+        setError(t('errors.tooMany'));
       } else if (response.status === 400) {
         const data = await response.json().catch(() => ({}));
-        setError(data.message || 'Invalid input. Please check your email and password.');
+        setError(data.message || t('errors.invalid'));
       } else {
-        setError('An error occurred. Please try again.');
+        setError(t('errors.generic'));
       }
     } catch (err) {
-      setError('Network error. Please check your connection and try again.');
+      setError(t('errors.network'));
     } finally {
       setIsLoading(false);
     }
@@ -45,9 +49,9 @@ export default function RegisterPage() {
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>Check your email</CardTitle>
+            <CardTitle>{t('success.title')}</CardTitle>
             <CardDescription>
-              We've sent you a verification link. Please check your email to complete registration.
+              {t('success.description')}
             </CardDescription>
           </CardHeader>
         </Card>
@@ -59,16 +63,16 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Create an account</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
-            Enter your email and password to register
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
-                Email
+                {t('email')}
               </label>
               <Input
                 id="email"
@@ -82,7 +86,7 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">
-                Password
+                {t('password')}
               </label>
               <Input
                 id="password"
@@ -100,7 +104,7 @@ export default function RegisterPage() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Registering...' : 'Register'}
+              {isLoading ? t('loading') : t('submit')}
             </Button>
           </form>
         </CardContent>
@@ -108,4 +112,3 @@ export default function RegisterPage() {
     </div>
   );
 }
-

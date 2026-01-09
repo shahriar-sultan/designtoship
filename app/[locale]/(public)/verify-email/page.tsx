@@ -1,15 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { verifyEmail } from '@/lib/api';
 import Loading from '@/components/Loading';
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations('auth.verifyEmail');
   const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying');
   const [error, setError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(3);
@@ -19,7 +22,7 @@ export default function VerifyEmailPage() {
     
     if (!token) {
       setStatus('error');
-      setError('Verification token is missing.');
+      setError(t('error.missingToken'));
       return;
     }
 
@@ -50,16 +53,16 @@ export default function VerifyEmailPage() {
         } else if (response.status === 400 || response.status === 401) {
           setStatus('error');
           const data = await response.json().catch(() => ({}));
-          setError(data.message || 'This verification link is invalid or has expired.');
+          setError(data.message || t('error.description'));
           router.replace('/verify-email');
         } else {
           setStatus('error');
-          setError('An error occurred. Please try again.');
+          setError(t('error.description'));
           router.replace('/verify-email');
         }
       } catch (err) {
         setStatus('error');
-        setError('Network error. Please check your connection and try again.');
+        setError(t('error.description'));
         router.replace('/verify-email');
       }
     };
@@ -71,16 +74,16 @@ export default function VerifyEmailPage() {
         clearInterval(countdownInterval);
       }
     };
-  }, [searchParams, router]);
+  }, [searchParams, router, t]);
 
   if (status === 'verifying') {
     return (
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>Verifying your email</CardTitle>
+            <CardTitle>{t('verifying.title')}</CardTitle>
             <CardDescription>
-              Please wait while we verify your email address...
+              {t('verifying.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -96,9 +99,9 @@ export default function VerifyEmailPage() {
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>Email verified successfully!</CardTitle>
+            <CardTitle>{t('success.title')}</CardTitle>
             <CardDescription>
-              Your email has been verified. Redirecting to login in {countdown} seconds...
+              {t('success.description', { countdown })}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -106,7 +109,7 @@ export default function VerifyEmailPage() {
               onClick={() => router.push('/login')} 
               className="w-full"
             >
-              Go to Login
+              {t('success.button')}
             </Button>
           </CardContent>
         </Card>
@@ -118,20 +121,20 @@ export default function VerifyEmailPage() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Verification failed</CardTitle>
+          <CardTitle>{t('error.title')}</CardTitle>
           <CardDescription>
-            {error || 'Unable to verify your email address.'}
+            {error || t('error.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            The verification link may have expired or already been used. Please request a new verification email.
+            {t('error.message')}
           </p>
           <Button 
             onClick={() => router.push('/register')} 
             className="w-full"
           >
-            Back to Registration
+            {t('error.button')}
           </Button>
         </CardContent>
       </Card>
@@ -139,3 +142,26 @@ export default function VerifyEmailPage() {
   );
 }
 
+export default function VerifyEmailPage() {
+  const t = useTranslations('auth.verifyEmail');
+
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Loading...</CardTitle>
+            <CardDescription>
+              Please wait...
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Loading />
+          </CardContent>
+        </Card>
+      </div>
+    }>
+      <VerifyEmailContent />
+    </Suspense>
+  );
+}

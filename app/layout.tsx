@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,9 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoSansBengali = Noto_Sans_Bengali({
+  variable: "--font-bengali",
+  subsets: ["bengali", "latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "LMS Platform - Transform Your Learning Experience",
-  description: "Empower your team with cutting-edge learning management. Create, deliver, and track courses that drive real results.",
+  title: "AI-Augmented UI/UX Design Free Webinar | Shahriar Sultan",
+  description:
+    "Your design career's new beginning! Learn a clear roadmap for smart work in UI/UX design with AI.",
 };
 
 export default function RootLayout({
@@ -23,9 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="bn" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} antialiased font-sans`}
+        style={{
+          fontFamily: "var(--font-bengali), var(--font-geist-sans), sans-serif",
+        }}
       >
         {children}
       </body>

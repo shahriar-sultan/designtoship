@@ -1,130 +1,92 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check } from "lucide-react";
+"use client";
 
-const plans = [
-  {
-    name: "Starter",
-    price: "$29",
-    period: "per month",
-    description: "Perfect for small teams getting started",
-    features: [
-      "Up to 50 learners",
-      "10 courses",
-      "Basic analytics",
-      "Email support",
-      "Mobile app access",
-      "Certificate generation"
-    ],
-    cta: "Start Free Trial",
-    popular: false
-  },
-  {
-    name: "Professional",
-    price: "$99",
-    period: "per month",
-    description: "Ideal for growing businesses",
-    features: [
-      "Up to 500 learners",
-      "Unlimited courses",
-      "Advanced analytics",
-      "Priority support",
-      "Mobile app access",
-      "Certificate generation",
-      "API access",
-      "Custom branding"
-    ],
-    cta: "Start Free Trial",
-    popular: true
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "pricing",
-    description: "For large organizations with specific needs",
-    features: [
-      "Unlimited learners",
-      "Unlimited courses",
-      "Advanced analytics & AI insights",
-      "24/7 dedicated support",
-      "Mobile app access",
-      "Certificate generation",
-      "Full API access",
-      "Custom branding",
-      "SSO integration",
-      "Custom integrations",
-      "Dedicated account manager"
-    ],
-    cta: "Contact Sales",
-    popular: false
-  }
-];
+import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Pricing() {
-  return (
-    <section id="pricing" className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-lg text-gray-600">
-            Choose the plan that fits your needs. All plans include a 14-day free trial.
-          </p>
-        </div>
+  const t = useTranslations("pricing");
 
-        {/* Pricing Cards */}
-        <div className="grid gap-8 lg:grid-cols-3">
-          {plans.map((plan, index) => (
-            <Card 
-              key={index} 
-              className={`relative border-2 transition-all hover:shadow-xl ${
-                plan.popular 
-                  ? "border-blue-500 shadow-lg scale-105" 
-                  : "border-gray-200"
-              }`}
+  const credentials = t.raw("credentials") as string[];
+
+  return (
+    <section className="relative bg-[#FFF4EF] py-12 md:py-16">
+      {/* Gradient Background */}
+      <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-gradient-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
+      
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto">
+          {/* Section Badge */}
+          <ScrollReveal>
+            <div className="flex justify-center mb-6 md:mb-8">
+              <div 
+                className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
+              >
+                <span className="text-[#977259] text-base md:text-[18px] font-medium">
+                  {t("badge")}
+                </span>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Main Heading */}
+          <ScrollReveal delay={100}>
+            <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
+              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
+                {t("title")}
+              </h2>
+              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px]">
+                {t("subtitle")}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Content Grid */}
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center mt-8 md:mt-12">
+            {/* Left: Illustration Card */}
+            <ScrollReveal delay={200} direction="right">
+              <div 
+              className="bg-[#FFF4D4] border-4 md:border-[8px] border-[#FFFCFB] rounded-3xl md:rounded-[40px] h-[400px] md:h-[534px] flex items-center justify-center order-2 lg:order-1"
+              style={{
+                boxShadow: `
+                  2px -3px 8px rgba(228, 220, 216, 0.64),
+                  8px -12px 14px rgba(228, 220, 216, 0.55),
+                  18px -27px 19px rgba(228, 220, 216, 0.33),
+                  32px -48px 23px rgba(228, 220, 216, 0.1),
+                  50px -75px 25px rgba(228, 220, 216, 0.01)
+                `,
+              }}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-sm font-semibold text-white">
-                  Most Popular
-                </div>
-              )}
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900">
-                  {plan.name}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {plan.description}
-                </CardDescription>
-                <div className="mt-4">
-                  <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
-                  {plan.period !== "pricing" && (
-                    <span className="text-gray-600 ml-2">/{plan.period}</span>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button 
-                  className="w-full" 
-                  variant={plan.popular ? "default" : "outline"}
-                  size="lg"
-                >
-                  {plan.cta}
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+              {/* Placeholder for author image */}
+              <div className="text-[#402617]/20 text-center">
+                <div className="w-32 h-32 md:w-48 md:h-48 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-200 to-gray-400" />
+                <p className="text-xs md:text-sm">Shahriar Sultan Photo</p>
+              </div>
+            </div>
+            </ScrollReveal>
+
+            {/* Right: Credentials List */}
+            <ScrollReveal delay={300} direction="left">
+              <div className="space-y-6 md:space-y-8 order-1 lg:order-2">
+              <h3 className="text-[#8F5C3F] text-xl md:text-[24px] font-semibold">
+                {t("heading")}
+              </h3>
+              
+              <div className="space-y-4 md:space-y-[18px]">
+                {credentials.map((credential, index) => (
+                  <div key={index} className="flex items-start gap-3 md:gap-4">
+                    <div className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 text-[#7E7068] mt-1">
+                      <ArrowRight className="w-full h-full" strokeWidth={1.5} />
+                    </div>
+                    <p className="text-[#402617] text-base md:text-lg lg:text-[18px] leading-[1.8]">
+                      {credential}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

@@ -1,74 +1,148 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
+"use client";
 
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "Head of Learning & Development",
-    company: "TechCorp Inc.",
-    content: "This platform has completely transformed how we deliver training. Our team engagement has skyrocketed, and the analytics help us make data-driven decisions.",
-    rating: 5,
-    avatar: "SJ"
-  },
-  {
-    name: "Michael Chen",
-    role: "CEO",
-    company: "StartupXYZ",
-    content: "The ease of use is incredible. We went from concept to live courses in just a few days. The ROI has been outstanding.",
-    rating: 5,
-    avatar: "MC"
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Training Manager",
-    company: "Global Solutions",
-    content: "Best investment we've made in our L&D program. The AI-powered insights have helped us personalize learning like never before.",
-    rating: 5,
-    avatar: "ER"
-  }
-];
+import { CTAButton } from "./CTAButton";
+import { Card } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Testimonials() {
-  return (
-    <section id="testimonials" className="py-20 lg:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
-            Loved by Teams Worldwide
-          </h2>
-          <p className="text-lg text-gray-600">
-            See what our customers are saying about their experience.
-          </p>
-        </div>
+  const t = useTranslations("testimonials");
 
-        {/* Testimonials Grid */}
-        <div className="grid gap-6 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-gray-200 hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="mb-4 flex gap-1">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                  ))}
+  const testimonials = [
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+    {
+      quote: t("quote"),
+      name: "Marvin McKinney",
+      role: "Senior UI/UX Designer at Google",
+    },
+  ];
+
+  return (
+    <section className="relative bg-[#FFF4EF] py-12 md:py-16">
+      {/* Gradient Background */}
+      <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-gradient-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
+      
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="max-w-[1224px] mx-auto">
+          {/* Section Badge */}
+          <ScrollReveal>
+            <div className="flex justify-center mb-6 md:mb-8">
+              <div 
+                className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
+              >
+                <span className="text-[#977259] text-base md:text-[18px] font-medium">
+                  {t("badge")}
+                </span>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Main Heading */}
+          <ScrollReveal delay={100}>
+            <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
+              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
+                {t("title")}
+              </h2>
+              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
+                {t("subtitle")}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Testimonial Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+            {testimonials.map((testimonial, index) => (
+              <ScrollReveal key={index} delay={index * 100 + 200}>
+                <Card 
+                key={index}
+                className="bg-[#FFFEFB] border-2 border-[#EDDAD0] rounded-2xl p-5 md:p-6 space-y-6 md:space-y-8"
+              >
+                {/* Quote Decoration */}
+                <div className="flex gap-1">
+                  <svg className="w-20 md:w-[98px] h-14 md:h-[70px]" viewBox="0 0 98 70" fill="none">
+                    <path 
+                      d="M0 0V70L45.44 0H0Z" 
+                      stroke="#EDDAD0" 
+                      strokeWidth="1.5" 
+                      fill="none"
+                    />
+                    <path 
+                      d="M51.91 0V70L97.53 0H51.91Z" 
+                      stroke="#EDDAD0" 
+                      strokeWidth="1.5" 
+                      fill="none"
+                    />
+                  </svg>
                 </div>
-                <Quote className="mb-4 h-8 w-8 text-blue-600 opacity-50" />
-                <p className="mb-6 text-gray-700 text-lg leading-relaxed">
-                  "{testimonial.content}"
+
+                {/* Quote Text */}
+                <p className="text-[#402617] text-sm md:text-[16px] leading-relaxed">
+                  {testimonial.quote}
                 </p>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-semibold">
-                    {testimonial.avatar}
+
+                {/* Divider Line */}
+                <div 
+                  className="h-[1px] w-full"
+                  style={{
+                    background: 'linear-gradient(90deg, rgba(237, 218, 208, 0) 0%, rgba(210, 186, 173, 1) 50%, rgba(237, 218, 208, 0) 100%)',
+                  }}
+                />
+
+                {/* Author Info */}
+                <div className="flex items-center gap-3 md:gap-4">
+                  {/* Avatar Placeholder */}
+                  <div className="w-14 h-14 md:w-[70px] md:h-[70px] rounded-full bg-gray-300 overflow-hidden flex-shrink-0">
+                    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-400" />
                   </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                    <div className="text-sm text-gray-500">{testimonial.company}</div>
+                  
+                  <div className="space-y-1 flex-1 min-w-0">
+                    <div className="text-[#65605B] text-base md:text-[18px] leading-tight">
+                      {testimonial.name}
+                    </div>
+                    <div className="border border-[#BDB0A3] rounded-full px-[10px] py-[1px] inline-block">
+                      <span className="text-[#402617] text-xs md:text-[13px]">
+                        {testimonial.role}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <ScrollReveal delay={800}>
+            <div className="flex justify-center mt-10 md:mt-14">
+              <CTAButton paddingVariant="large">
+                {t("cta")}
+              </CTAButton>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

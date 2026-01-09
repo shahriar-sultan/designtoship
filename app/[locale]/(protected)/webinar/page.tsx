@@ -1,7 +1,13 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
-export default async function WebinarPage() {
+export default async function WebinarPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const apiUrl = process.env.API_URL;
   if (!apiUrl) {
     throw new Error('API_URL is not configured');
@@ -20,9 +26,9 @@ export default async function WebinarPage() {
 
   if (!response.ok) {
     if (response.status === 403) {
-      redirect('/login');
+      redirect(`/${locale}/login`);
     }
-    redirect('/login');
+    redirect(`/${locale}/login`);
   }
 
   const youtubeVideoId = process.env.NEXT_PUBLIC_YOUTUBE_VIDEO_ID || '';
@@ -71,4 +77,3 @@ export default async function WebinarPage() {
     </div>
   );
 }
-

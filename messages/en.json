@@ -1,0 +1,184 @@
+{
+  "common": {
+    "register": "Register!",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "navbar": {
+    "brand": "Shahriar Sultan",
+    "registerButton": "Register!",
+    "languages": {
+      "bn": "বাংলা",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "badge": "FREE live webinar with Shahriar Sultan",
+    "title": "AI-Augmented UI/UX Design Free Webinar - Your Design Career's New Beginning!",
+    "subtitle": "The skill that can transform your career and future, let its journey begin today.",
+    "cta": "Let your career's turning point begin now - Book your seat in the webinar!"
+  },
+  "reviews": {
+    "badge": "My Students' Feelings",
+    "title": "Those who were once in doubt are now leading their careers!",
+    "cta": "Let your career's turning point begin now - Register for the webinar now!",
+    "studentRoles": {
+      "1": "Sr. UX Designer at Google",
+      "2": "Sr. UX Designer at Google",
+      "3": "Jr. UX Designer at Lamosa",
+      "4": "Student at DIU"
+    }
+  },
+  "features": {
+    "badge": "Who should attend this webinar?",
+    "title": "Not lost, now it's time to find the path with AI!",
+    "subtitle": "Awaken the designer within you, who can smile confidently at AI, not despair.",
+    "items": {
+      "startup": {
+        "title": "Want your own startup or high salary?",
+        "description": "Want to build your own startup or get a high-paying tech job—but don't know where to start? Learn how to build professional apps without a computer science degree."
+      },
+      "income": {
+        "title": "Income not increasing?",
+        "description": "Working hour after hour but income not increasing? Want to provide design and development services that will bring 5 times more value? Discover how to run a full agency alone using AI."
+      },
+      "ai": {
+        "title": "Will AI replace you?",
+        "description": "Love creative work, but afraid AI will replace you? Want to learn UI/UX but it seems difficult? Master those specific tools and skills that will make you truly invincible and irreplaceable."
+      }
+    }
+  },
+  "benefits": {
+    "badge": "Why should you attend this webinar?",
+    "title": "Because your dream also needs to be smart like AI now!",
+    "subtitle": "AI is not scaring you, you haven't lost your way either, you just haven't gotten the right guide yet.",
+    "heading": "This webinar will show you",
+    "items": [
+      "A clear roadmap for smart work in UI/UX design with AI.",
+      "Real and simple strategies to make design 2x faster.",
+      "Standing out in the job and freelancing market by building a portfolio."
+    ],
+    "cta": "Let your career's turning point begin now - Join the webinar and prove yourself!"
+  },
+  "testimonials": {
+    "badge": "Their success is not a story... it's proof",
+    "title": "They dreamed... just like you are now!",
+    "subtitle": "Where you stand today, they were once there too. The only difference was one thing—they started learning, following the right guidelines, with AI by their side.",
+    "quote": "UIMC showed me the AI-driven design aspect so simply that I got clarity at every step from building a portfolio to getting a job.",
+    "cta": "Let the next name in the success story be yours! Book your seat in the webinar now!"
+  },
+  "pricing": {
+    "badge": "Where am I now?",
+    "title": "Where I stand... its beginning was from exactly your place!",
+    "subtitle": "I am Shahriar Sultan, I design, I teach, and I guide the way.",
+    "heading": "My brief introduction",
+    "credentials": [
+      "Head of Design at Niyyah (London-based EdTech platform)",
+      "Senior Product Designer at Karaz Care (Saudi Arabia's Largest HealthTech platform)",
+      "Founder & CEO at LumixelStudio, a digital design and no-code development agency.",
+      "Founder & Mentor at UI Design Marathon Course (UIMC) my very success course ever!",
+      "300+ Designer Trained in Bangladesh",
+      "50+ Designer Mentored Worldwide"
+    ]
+  },
+  "cta": {
+    "investment": {
+      "title": "Investment in yourself is the most profitable investment",
+      "subtitle": "Now is the time to invest in yourself, to take your skills several steps forward. So what's the delay?"
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Where are the biggest fears when learning design with AI?",
+      "subtitle": "Every day countless students get stuck in the same thoughts. Questions in mind, doubts in heart, no courage to start... Are you also getting lost in this crowd of questions?",
+      "categories": {
+        "aiFear": {
+          "title": "Fear about AI",
+          "questions": [
+            "Will I fall behind as a designer if I use AI?",
+            "Does design with AI really look professional?"
+          ]
+        },
+        "design": {
+          "title": "Questions about design",
+          "questions": [
+            "Which projects work best for building a portfolio?",
+            "What is the roadmap to getting a job after learning design?"
+          ]
+        },
+        "career": {
+          "title": "Doubts about career",
+          "questions": [
+            "What do clients or companies actually want from UI/UX designers?",
+            "Is it really possible to get remote jobs from Bangladesh?",
+            "How long does it take to go from Junior designer to Senior?",
+            "Is it possible to scale income with AI without skills?"
+          ]
+        }
+      },
+      "cta": "Don't keep questions in your mind, register for the webinar now to find answers!"
+    }
+  },
+  "footer": {
+    "title": "Talk, ask questions, or get the next guidelines, we are here for you.",
+    "subtitle": "No one can move forward alone in the journey of learning design or AI. Contact us for any questions, advice, or course-related support.",
+    "cta": "Don't keep questions in your mind, register for the webinar now to find answers!",
+    "copyright": "Copyright © 2026 Shahriar Sultan. All rights reserved."
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "description": "Enter your email and password to access the webinar",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "loading": "Logging in...",
+      "errors": {
+        "invalid": "Invalid email or password.",
+        "tooMany": "Too many requests. Please try again later.",
+        "generic": "An error occurred. Please try again.",
+        "network": "Network error. Please check your connection and try again."
+      }
+    },
+    "register": {
+      "title": "Create an account",
+      "description": "Enter your email and password to register",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Register",
+      "loading": "Registering...",
+      "success": {
+        "title": "Check your email",
+        "description": "We've sent you a verification link. Please check your email to complete registration."
+      },
+      "errors": {
+        "tooMany": "Too many requests. Please try again later.",
+        "invalid": "Invalid input. Please check your email and password.",
+        "generic": "An error occurred. Please try again.",
+        "network": "Network error. Please check your connection and try again."
+      }
+    },
+    "verifyEmail": {
+      "verifying": {
+        "title": "Verifying your email",
+        "description": "Please wait while we verify your email address..."
+      },
+      "success": {
+        "title": "Email verified successfully!",
+        "description": "Your email has been verified. Redirecting to login in {countdown} seconds...",
+        "button": "Go to Login"
+      },
+      "error": {
+        "title": "Verification failed",
+        "description": "Unable to verify your email address.",
+        "message": "The verification link may have expired or already been used. Please request a new verification email.",
+        "button": "Back to Registration",
+        "missingToken": "Verification token is missing."
+      }
+    }
+  }
+}

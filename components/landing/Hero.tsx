@@ -1,73 +1,108 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+"use client";
+
+import { CTAButton } from "./CTAButton";
+import { useTranslations } from "next-intl";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Hero() {
+  const t = useTranslations("hero");
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/50 px-4 py-2 text-sm font-medium text-blue-700">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600"></span>
-            New: AI-Powered Learning Analytics
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
-            Transform Your Learning Experience with{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Smart LMS Platform
-            </span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="mb-10 text-xl text-gray-600 sm:text-2xl">
-            Empower your team with cutting-edge learning management. 
-            Create, deliver, and track courses that drive real results.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button 
-              size="lg" 
-              className="group h-14 px-8 text-base font-semibold shadow-lg transition-all hover:shadow-xl"
-            >
-              Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="h-14 px-8 text-base font-semibold"
-            >
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
-            </Button>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">10K+</div>
-              <div className="text-sm text-gray-600">Active Users</div>
-            </div>
-            <div className="hidden h-12 w-px bg-gray-300 sm:block"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">500+</div>
-              <div className="text-sm text-gray-600">Companies</div>
-            </div>
-            <div className="hidden h-12 w-px bg-gray-300 sm:block"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">99.9%</div>
-              <div className="text-sm text-gray-600">Uptime</div>
-            </div>
-          </div>
-        </div>
+    <section className="relative bg-[#FFF4EF] overflow-hidden">
+      {/* Background Shapes */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Left Vector */}
+        <svg
+          className="absolute left-0 top-0 h-[1152px] w-[528px]"
+          viewBox="0 0 528 1152"
+          fill="none"
+        >
+          <path d="M0 0H528V829L0 1152V0Z" fill="#FFF4EF" />
+        </svg>
+        {/* Right Vector */}
+        <svg
+          className="absolute right-0 top-0 h-[1105px] w-[672px]"
+          viewBox="0 0 672 1105"
+          fill="none"
+        >
+          <path d="M0 0H672V1105H0V0Z" fill="#FFF4EF" />
+        </svg>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute left-1/4 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-400/20 blur-3xl"></div>
-      <div className="absolute right-1/4 top-40 h-96 w-96 translate-x-1/2 rounded-full bg-purple-400/20 blur-3xl"></div>
+      {/* Gradient Overlay */}
+      <div className="absolute bottom-0 left-0 right-0 h-[651px] bg-linear-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
+
+      {/* Navbar */}
+      {/* Hero Content */}
+      <div className="relative z-10 container mx-auto px-4 pt-16 md:pt-24 lg:pt-[140px] pb-12 md:pb-20">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="flex flex-col items-center text-center space-y-10 md:space-y-14">
+            {/* Top Section with Badge and Heading */}
+            <ScrollReveal>
+              <div className="max-w-[953px] space-y-6 md:space-y-8">
+                {/* Badge */}
+                <div className="flex justify-center">
+                  <div className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-1 md:py-[6px] inline-flex items-center">
+                    <span className="text-[#402617] text-sm md:text-[16px] font-medium">
+                      {t("badge")}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Main Heading and Subheading */}
+                <div className="space-y-3 md:space-y-4">
+                  <h1 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight px-4">
+                    {t("title")}
+                  </h1>
+                  <p className="text-[#595756] text-base md:text-xl lg:text-[24px] leading-[1.75] px-4">
+                    {t("subtitle")}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Hero Card with CTA */}
+            <ScrollReveal delay={200} className="w-full">
+              <div
+                className="bg-[#FFF4D4] border-4 md:border-8 border-[#FFFCFB] rounded-3xl md:rounded-[40px] p-8 md:p-12 lg:p-16 max-w-[1100px] w-full md:h-[534px] flex items-center justify-center"
+                style={{
+                  boxShadow: `
+                  2px -3px 8px rgba(228, 220, 216, 0.64),
+                  8px -12px 14px rgba(228, 220, 216, 0.55),
+                  18px -27px 19px rgba(228, 220, 216, 0.33),
+                  32px -48px 23px rgba(228, 220, 216, 0.1),
+                  50px -75px 25px rgba(228, 220, 216, 0.01)
+                `,
+                }}
+              >
+                {/* Play Icon */}
+                <div className="flex justify-center mb-8 md:mb-14">
+                  <div
+                    className="w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                    style={{
+                      boxShadow: "0 9px 33px rgba(151, 114, 93, 0.1)",
+                    }}
+                  >
+                    <svg
+                      className="w-6 h-7 md:w-[26px] md:h-[28px]"
+                      viewBox="0 0 26 28"
+                      fill="none"
+                    >
+                      <path d="M2 2L24 14L2 26V2Z" fill="#403B2E" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+          {/* CTA Button */}
+          <ScrollReveal delay={400}>
+            <div className="flex justify-center mt-14">
+              <CTAButton paddingVariant="medium">{t("cta")}</CTAButton>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
     </section>
   );
 }
