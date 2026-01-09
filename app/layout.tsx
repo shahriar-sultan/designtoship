@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LMS Platform - Webinar",
-  description: "Secure webinar access platform",
+  title: "LMS Platform - Transform Your Learning Experience",
+  description: "Empower your team with cutting-edge learning management. Create, deliver, and track courses that drive real results.",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
