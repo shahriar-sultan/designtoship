@@ -31,7 +31,9 @@
       "1": "Sr. UX Designer at Google",
       "2": "Sr. UX Designer at Google",
       "3": "Jr. UX Designer at Lamosa",
-      "4": "Student at DIU"
+      "4": "Student at DIU",
+      "5": "Product Designer at TechCorp",
+      "6": "UI/UX Designer at StartupX"
     }
   },
   "features": {
@@ -137,6 +139,8 @@
       "password": "Password",
       "submit": "Login",
       "loading": "Logging in...",
+      "notRegistered": "Not registered?",
+      "goToRegister": "Register",
       "errors": {
         "invalid": "Invalid email or password.",
         "tooMany": "Too many requests. Please try again later.",
@@ -151,6 +155,8 @@
       "password": "Password",
       "submit": "Register",
       "loading": "Registering...",
+      "alreadyRegistered": "Already registered?",
+      "goToLogin": "Login",
       "success": {
         "title": "Check your email",
         "description": "We've sent you a verification link. Please check your email to complete registration."

@@ -83,7 +83,7 @@ export function Navbar({
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="hidden sm:flex items-center gap-3 bg-transparent rounded-full px-3 md:px-6 py-2 md:py-3 hover:bg-[#FEFCFB]/60 transition-colors"
+                  className="hidden sm:flex items-center gap-3 bg-transparent rounded-full px-3 md:px-6 py-2 md:py-3 hover:bg-[#FEFCFB]/60 transition-colors cursor-pointer h-10"
                 >
                   {/* <div className="w-9 h-6 bg-[#006A4D] rounded-sm flex items-center justify-center relative overflow-hidden">
                     <div className="w-3 h-3 bg-[#D70726] rounded-full" />
@@ -114,7 +114,7 @@ export function Navbar({
                       <button
                         key={lang.code}
                         onClick={() => handleLanguageChange(lang.code)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#FFF4EF] transition-colors ${
+                        className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#FFF4EF] transition-colors cursor-pointer h-10 ${
                           locale === lang.code ? "bg-[#FFF4EF]" : ""
                         }`}
                       >
@@ -145,7 +145,7 @@ export function Navbar({
             )}
 
             <Button
-              className="bg-[#361F12] hover:bg-[#2A1810] text-white rounded-full px-4 md:px-6 h-10 md:h-12 text-sm md:text-base font-semibold shadow-none"
+              className="bg-[#361F12] hover:bg-[#4A2F1A] text-white rounded-full px-4 md:px-6 text-sm md:text-base font-semibold shadow-none"
               onClick={handleRegisterClick}
             >
               {t("registerButton")}

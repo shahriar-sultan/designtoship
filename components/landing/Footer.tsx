@@ -49,7 +49,7 @@ export function Footer() {
                   <a
                     key={index}
                     href="#"
-                    className="w-10 h-10 md:w-12 md:h-12 bg-[#361F12] hover:bg-[#2A1810] rounded-full flex items-center justify-center transition-colors"
+                    className="w-10 h-10 md:w-12 md:h-12 bg-[#361F12] hover:bg-[#4A2F1A] rounded-full flex items-center justify-center transition-colors cursor-pointer"
                     aria-label={social.label}
                     style={{
                       boxShadow: '0 12px 30px rgba(77, 43, 23, 0.28)',

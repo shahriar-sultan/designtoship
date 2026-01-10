@@ -76,15 +76,19 @@ export function Hero() {
                 }}
               >
                 {/* Play Icon */}
-                <div className="flex justify-center mb-8 md:mb-14">
+                <div className="flex justify-center mb-8 md:mb-14 overflow-visible">
                   <div
-                    className="w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                    className="relative w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
                     style={{
                       boxShadow: "0 9px 33px rgba(151, 114, 93, 0.1)",
                     }}
                   >
+                    {/* Floating waves */}
+                    <span className="play-button-wave" />
+                    <span className="play-button-wave" />
+                    <span className="play-button-wave" />
                     <svg
-                      className="w-6 h-7 md:w-[26px] md:h-[28px]"
+                      className="relative z-10 w-6 h-7 md:w-[26px] md:h-[28px]"
                       viewBox="0 0 26 28"
                       fill="none"
                     >

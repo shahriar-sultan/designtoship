@@ -31,7 +31,9 @@
       "1": "Sr. UX Designer at Google",
       "2": "Sr. UX Designer at Google",
       "3": "Jr. UX Designer at Lamosa",
-      "4": "Student at DIU"
+      "4": "Student at DIU",
+      "5": "Product Designer at TechCorp",
+      "6": "UI/UX Designer at StartupX"
     }
   },
   "features": {
@@ -137,6 +139,8 @@
       "password": "পাসওয়ার্ড",
       "submit": "লগইন",
       "loading": "লগইন হচ্ছে...",
+      "notRegistered": "রেজিস্ট্রেশন করেননি?",
+      "goToRegister": "রেজিস্ট্রেশন",
       "errors": {
         "invalid": "ইমেইল বা পাসওয়ার্ড ভুল।",
         "tooMany": "অনেক বেশি অনুরোধ। পরে আবার চেষ্টা করুন।",
@@ -151,6 +155,8 @@
       "password": "পাসওয়ার্ড",
       "submit": "রেজিস্ট্রার",
       "loading": "রেজিস্ট্রেশন হচ্ছে...",
+      "alreadyRegistered": "ইতিমধ্যে রেজিস্ট্রেশন করেছেন?",
+      "goToLogin": "লগইন",
       "success": {
         "title": "আপনার ইমেইল চেক করুন",
         "description": "আমরা আপনাকে একটি যাচাইকরণ লিঙ্ক পাঠিয়েছি। রেজিস্ট্রেশন সম্পূর্ণ করতে আপনার ইমেইল চেক করুন।"

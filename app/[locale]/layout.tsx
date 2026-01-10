@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/routing';
-import { Navbar } from "@/components/Navbar";
+import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import { LocaleHtml } from "@/components/LocaleHtml";
 
 // Allow dynamic params for development
@@ -35,7 +35,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       <LocaleHtml />
-      <Navbar />
+      <ConditionalNavbar />
       {children}
     </NextIntlClientProvider>
   );
