@@ -1,11 +1,9 @@
 "use client";
 
 import { CTAButton } from "./CTAButton";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Hero() {
-  const t = useTranslations("hero");
 
   return (
     <section className="relative bg-[#FFF4EF] overflow-hidden">
@@ -44,7 +42,7 @@ export function Hero() {
                 <div className="flex justify-center">
                   <div className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-1 md:py-[6px] inline-flex items-center">
                     <span className="text-[#402617] text-sm md:text-[16px] font-medium">
-                      {t("badge")}
+                      ফ্রি ওয়েবিনার
                     </span>
                   </div>
                 </div>
@@ -52,10 +50,10 @@ export function Hero() {
                 {/* Main Heading and Subheading */}
                 <div className="space-y-3 md:space-y-4">
                   <h1 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight px-4">
-                    {t("title")}
+                    AI-Augmented UI/UX Design
                   </h1>
                   <p className="text-[#595756] text-base md:text-xl lg:text-[24px] leading-[1.75] px-4">
-                    {t("subtitle")}
+                    AI দিয়ে ডিজাইনের ভবিষ্যত আয়ত্ত করুন - স্মার্ট ওয়ার্কফ্লো এবং কৌশলগুলো শিখুন
                   </p>
                 </div>
               </div>
@@ -102,7 +100,7 @@ export function Hero() {
           {/* CTA Button */}
           <ScrollReveal delay={400}>
             <div className="flex justify-center mt-14">
-              <CTAButton paddingVariant="medium">{t("cta")}</CTAButton>
+              <CTAButton paddingVariant="medium">এখনই রেজিস্টার করুন</CTAButton>
             </div>
           </ScrollReveal>
         </div>

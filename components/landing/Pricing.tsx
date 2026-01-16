@@ -1,13 +1,17 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Pricing() {
-  const t = useTranslations("pricing");
-
-  const credentials = t.raw("credentials") as string[];
+  const credentials = [
+    "10+ years of industry experience",
+    "Former Design Lead at Google",
+    "Published author on design systems",
+    "AI innovation consultant",
+    "Mentored 500+ designers",
+    "Featured in TechCrunch, Forbes, and Fast Company"
+  ];
 
   return (
     <section className="relative bg-[#FFF4EF] py-12 md:py-16">
@@ -23,7 +27,7 @@ export function Pricing() {
                 className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
               >
                 <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  {t("badge")}
+                  ABOUT THE SPEAKER
                 </span>
               </div>
             </div>
@@ -33,10 +37,10 @@ export function Pricing() {
           <ScrollReveal delay={100}>
             <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
               <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                {t("title")}
+                Shahriar Sultan
               </h2>
               <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px]">
-                {t("subtitle")}
+                Industry expert and AI innovation leader in UI/UX design
               </p>
             </div>
           </ScrollReveal>
@@ -69,7 +73,7 @@ export function Pricing() {
             <ScrollReveal delay={300} direction="left">
               <div className="space-y-6 md:space-y-8 order-1 lg:order-2">
               <h3 className="text-[#8F5C3F] text-xl md:text-[24px] font-semibold">
-                {t("heading")}
+                Credentials & Experience:
               </h3>
               
               <div className="space-y-4 md:space-y-[18px]">

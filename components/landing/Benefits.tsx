@@ -2,13 +2,17 @@
 
 import { CTAButton } from "./CTAButton";
 import { Lightbulb } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Benefits() {
-  const t = useTranslations("benefits");
-
-  const benefits = t.raw("items") as string[];
+  const benefits = [
+    "UI/UX ডিজাইনে প্রবেশের জন্য ধাপে ধাপে রোডম্যাপ",
+    "আপনার লার্নিং কার্ভ ত্বরান্বিত করবে এমন AI টুলস",
+    "আপনার পোর্টফোলিও তৈরি করার জন্য রিয়েল-ওয়ার্ল্ড প্রজেক্টস",
+    "ইন্ডাস্ট্রি প্রফেশনালদের সাথে কানেক্ট করার নেটওয়ার্কিং কৌশল",
+    "শিখতে শিখতে আয় শুরু করার ফ্রিল্যান্সিং টিপস",
+    "টপ ডিজাইন এজেন্সিগুলো যে অ্যাডভান্সড টেকনিক ব্যবহার করে"
+  ];
 
   return (
     <section className="relative bg-[#FFF4EF] py-12 md:py-16">
@@ -21,7 +25,7 @@ export function Benefits() {
                 className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
               >
                 <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  {t("badge")}
+                  কেন যোগ দেবেন
                 </span>
               </div>
             </div>
@@ -31,10 +35,10 @@ export function Benefits() {
           <ScrollReveal delay={100}>
             <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
               <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                {t("title")}
+                আপনার যা যা জানা দরকার
               </h2>
               <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px]">
-                {t("subtitle")}
+                আপনার ডিজাইন যাত্রা শুরু করার জন্য ইন্ডাস্ট্রি এক্সপার্টদের থেকে বিস্তারিত ইনসাইটস
               </p>
             </div>
           </ScrollReveal>
@@ -45,7 +49,7 @@ export function Benefits() {
             <ScrollReveal delay={200} direction="right">
               <div className="space-y-6 md:space-y-8">
               <h3 className="text-[#8F5C3F] text-xl md:text-[24px] font-semibold">
-                {t("heading")}
+                আপনি যা পাবেন:
               </h3>
               
               <div className="space-y-4 md:space-y-5">
@@ -92,7 +96,7 @@ export function Benefits() {
           <ScrollReveal delay={400}>
             <div className="flex justify-center mt-10 md:mt-14">
               <CTAButton>
-                {t("cta")}
+                আপনার জায়গা রিজার্ভ করুন
               </CTAButton>
             </div>
           </ScrollReveal>

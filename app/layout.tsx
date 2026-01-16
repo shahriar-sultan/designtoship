@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
+import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ const notoSansBengali = Noto_Sans_Bengali({
 export const metadata: Metadata = {
   title: "AI-Augmented UI/UX Design Free Webinar | Shahriar Sultan",
   description:
-    "Your design career's new beginning! Learn a clear roadmap for smart work in UI/UX design with AI.",
+    "আপনার ডিজাইন ক্যারিয়ারের নতুন শুরু! AI দিয়ে UI/UX ডিজাইনে স্মার্ট কাজের একটি স্পষ্ট রোডম্যাপ শিখুন।",
 };
 
 export default function RootLayout({
@@ -37,6 +38,7 @@ export default function RootLayout({
           fontFamily: "var(--font-bengali), var(--font-geist-sans), sans-serif",
         }}
       >
+        <ConditionalNavbar />
         {children}
       </body>
     </html>

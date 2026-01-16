@@ -1,3 +1,4 @@
+import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import {
   Reviews,
   Hero,
@@ -9,12 +10,10 @@ import {
   Footer,
 } from "@/components/landing";
 
-export const dynamicParams = true;
-
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <main>
+      <main className="pt-8 bg-[#fff4ef]">
         <Hero />
         <Reviews />
         <Features />
@@ -22,8 +21,8 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <CTA />
+        <Footer />
       </main>
-      <Footer />
     </div>
   );
 }

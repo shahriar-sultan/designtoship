@@ -2,24 +2,33 @@
 
 import { Lightbulb } from "lucide-react";
 import { CTAButton } from "./CTAButton";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function CTA() {
-  const t = useTranslations("cta");
-
   const faqCategories = [
     {
-      title: t("faq.categories.aiFear.title"),
-      questions: t.raw("faq.categories.aiFear.questions") as string[],
+      title: "AI এবং প্রযুক্তি উদ্বেগ",
+      questions: [
+        "AI কি সম্পূর্ণরূপে ডিজাইনারদের প্রতিস্থাপন করবে?",
+        "AI-চালিত ইন্ডাস্ট্রিতে আমি কীভাবে প্রাসঙ্গিক থাকব?",
+        "প্রথমে কোন AI টুলস শিখব?"
+      ],
     },
     {
-      title: t("faq.categories.design.title"),
-      questions: t.raw("faq.categories.design.questions") as string[],
+      title: "ডিজাইন ক্যারিয়ার প্রশ্ন",
+      questions: [
+        "শুরু করার জন্য কি ডিজাইন ডিগ্রি দরকার?",
+        "প্রফেশনাল ডিজাইনার হতে কত সময় লাগে?",
+        "বিগিনার হিসেবে কত স্যালারি আশা করতে পারি?"
+      ],
     },
     {
-      title: t("faq.categories.career.title"),
-      questions: t.raw("faq.categories.career.questions") as string[],
+      title: "প্র্যাকটিক্যাল লার্নিং",
+      questions: [
+        "আমার পোর্টফোলিওতে কোন প্রজেক্টস ইনক্লুড করব?",
+        "প্রথম ডিজাইন জব কীভাবে খুঁজব?",
+        "ডিজাইন স্কিলস প্র্যাকটিস করার সেরা উপায় কী?"
+      ],
     },
   ];
 
@@ -36,10 +45,10 @@ export function CTA() {
             <ScrollReveal>
               <div className="max-w-[1052px] mx-auto text-center mb-10 md:mb-14 space-y-3 md:space-y-4 px-4">
                 <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                  {t("investment.title")}
+                  কোনো ইনভেস্টমেন্ট লাগবে না
                 </h2>
                 <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
-                  {t("investment.subtitle")}
+                  এই বিস্তারিত ওয়েবিনার সম্পূর্ণ ফ্রি - শুধু আপনার সময় এবং মনোযোগ ইনভেস্ট করুন
                 </p>
               </div>
             </ScrollReveal>
@@ -86,7 +95,7 @@ export function CTA() {
                   className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
                 >
                   <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                    {t("faq.badge")}
+                    সচরাচর জিজ্ঞাসিত প্রশ্ন
                   </span>
                 </div>
               </div>
@@ -96,10 +105,10 @@ export function CTA() {
             <ScrollReveal delay={100}>
               <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
                 <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                  {t("faq.title")}
+                  প্রশ্ন আছে? আমাদের কাছে উত্তর আছে
                 </h2>
                 <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
-                  {t("faq.subtitle")}
+                  আমাদের AI-augmented UI/UX design webinar-এ যোগ দেওয়ার আগে যা যা জানা দরকার
                 </p>
               </div>
             </ScrollReveal>
@@ -134,7 +143,7 @@ export function CTA() {
             <ScrollReveal delay={650}>
               <div className="flex justify-center mt-12 md:mt-16">
                 <CTAButton paddingVariant="small">
-                  {t("faq.cta")}
+                  এখনই রেজিস্টার করুন - এটা ফ্রি!
                 </CTAButton>
               </div>
             </ScrollReveal>

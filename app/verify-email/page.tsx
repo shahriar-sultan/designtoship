@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter } from '@/i18n/navigation';
+import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { verifyEmail } from '@/lib/api';
@@ -12,17 +11,16 @@ import Loading from '@/components/Loading';
 function VerifyEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const t = useTranslations('auth.verifyEmail');
   const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying');
   const [error, setError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
     const token = searchParams.get('token');
-    
+
     if (!token) {
       setStatus('error');
-      setError(t('error.missingToken'));
+      setError('Verification token is missing from the URL.');
       return;
     }
 
@@ -31,12 +29,12 @@ function VerifyEmailContent() {
     const verify = async () => {
       try {
         const response = await verifyEmail(token);
-        
+
         if (response.ok) {
           setStatus('success');
           // Remove token from URL immediately
           router.replace('/verify-email');
-          
+
           // Start countdown
           countdownInterval = setInterval(() => {
             setCountdown((prev) => {
@@ -53,16 +51,16 @@ function VerifyEmailContent() {
         } else if (response.status === 400 || response.status === 401) {
           setStatus('error');
           const data = await response.json().catch(() => ({}));
-          setError(data.message || t('error.description'));
+          setError(data.message || 'Verification failed. The token may be invalid or expired.');
           router.replace('/verify-email');
         } else {
           setStatus('error');
-          setError(t('error.description'));
+          setError('Verification failed. Please try again.');
           router.replace('/verify-email');
         }
       } catch (err) {
         setStatus('error');
-        setError(t('error.description'));
+        setError('Verification failed. Please check your internet connection.');
         router.replace('/verify-email');
       }
     };
@@ -74,16 +72,16 @@ function VerifyEmailContent() {
         clearInterval(countdownInterval);
       }
     };
-  }, [searchParams, router, t]);
+  }, [searchParams, router]);
 
   if (status === 'verifying') {
     return (
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>{t('verifying.title')}</CardTitle>
+            <CardTitle>Verifying Email</CardTitle>
             <CardDescription>
-              {t('verifying.description')}
+              Please wait while we verify your email address...
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -99,17 +97,17 @@ function VerifyEmailContent() {
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>{t('success.title')}</CardTitle>
+            <CardTitle>Email Verified!</CardTitle>
             <CardDescription>
-              {t('success.description', { countdown })}
+              Your email has been successfully verified. Redirecting to login in {countdown} seconds...
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button 
-              onClick={() => router.push('/login')} 
+            <Button
+              onClick={() => router.push('/login')}
               className="w-full"
             >
-              {t('success.button')}
+              Go to Login
             </Button>
           </CardContent>
         </Card>
@@ -121,20 +119,20 @@ function VerifyEmailContent() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>{t('error.title')}</CardTitle>
+          <CardTitle>Verification Failed</CardTitle>
           <CardDescription>
-            {error || t('error.description')}
+            {error || 'An error occurred during verification.'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            {t('error.message')}
+            Please try registering again or contact support if the problem persists.
           </p>
-          <Button 
-            onClick={() => router.push('/register')} 
+          <Button
+            onClick={() => router.push('/register')}
             className="w-full"
           >
-            {t('error.button')}
+            Register Again
           </Button>
         </CardContent>
       </Card>
@@ -143,8 +141,6 @@ function VerifyEmailContent() {
 }
 
 export default function VerifyEmailPage() {
-  const t = useTranslations('auth.verifyEmail');
-
   return (
     <Suspense fallback={
       <div className="flex items-center justify-center min-h-screen p-4">

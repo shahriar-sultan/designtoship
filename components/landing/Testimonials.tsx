@@ -2,42 +2,39 @@
 
 import { CTAButton } from "./CTAButton";
 import { Card } from "@/components/ui/card";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Testimonials() {
-  const t = useTranslations("testimonials");
-
   const testimonials = [
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "এই ওয়েবিনার আমার ডিজাইন ক্যারিয়ারের ধারণা সম্পূর্ণ পরিবর্তন করে দিয়েছে। AI ইন্টিগ্রেশন কৌশলগুলো ছিল গেম-চেঞ্জিং।",
+      name: "সারা চেন",
+      role: "Spotify-তে UX ডিজাইনার",
     },
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "সাস্টেনেবল ডিজাইন ক্যারিয়ার গড়ার অসাধারণ ইনসাইটস। প্র্যাকটিক্যাল অ্যাডভাইসগুলো ছিল ঠিক যা আমার দরকার ছিল।",
+      name: "আলেক্স রদ্রিগেজ",
+      role: "Airbnb-তে প্রোডাক্ট ডিজাইনার",
     },
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "এখানে দেওয়া রোডম্যাপটি বিস্তারিত এবং কার্যকর। আমি ইতিমধ্যেই কৌশলগুলো ইমপ্লিমেন্ট করা শুরু করেছি।",
+      name: "মায়া প্যাটেল",
+      role: "Netflix-তে সিনিয়র UI ডিজাইনার",
     },
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "অবশেষে ডিজাইনে এগিয়ে যাওয়ার একটি স্পষ্ট পথ। AI টুলস ওভারভিউ আমাকে মাসের গবেষণা বাঁচিয়েছে।",
+      name: "জেমস উইলসন",
+      role: "Microsoft-তে ডিজাইন লিড",
     },
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "ট্রান্সফরমেটিভ কনটেন্ট যা ট্র্যাডিশনাল ডিজাইনকে মডার্ন AI ক্যাপাবিলিটিসের সাথে কানেক্ট করে।",
+      name: "লিসা থম্পসন",
+      role: "Adobe-তে ক্রিয়েটিভ ডিরেক্টর",
     },
     {
-      quote: t("quote"),
-      name: "Marvin McKinney",
-      role: "Senior UI/UX Designer at Google",
+      quote: "ক্যারিয়ার ট্রানজিশন গাইডেন্স ছিল পারফেক্ট। আমি এখন কনফিডেন্টলি ডিজাইনকে ক্যারিয়ার হিসেবে অনুসরণ করছি।",
+      name: "ডেভিড কিম",
+      role: "Meta-তে UI/UX ডিজাইনার",
     },
   ];
 
@@ -55,7 +52,7 @@ export function Testimonials() {
                 className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
               >
                 <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  {t("badge")}
+                  সাফল্যের গল্প
                 </span>
               </div>
             </div>
@@ -65,10 +62,10 @@ export function Testimonials() {
           <ScrollReveal delay={100}>
             <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
               <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                {t("title")}
+                হাজারো সফল ডিজাইনারদের সাথে যোগ দিন
               </h2>
               <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
-                {t("subtitle")}
+                আমাদের প্রমাণিত কৌশল ব্যবহার করে যারা তাদের ক্যারিয়ার পরিবর্তন করেছেন তাদের রিয়েল গল্প
               </p>
             </div>
           </ScrollReveal>
@@ -139,7 +136,7 @@ export function Testimonials() {
           <ScrollReveal delay={800}>
             <div className="flex justify-center mt-10 md:mt-14">
               <CTAButton paddingVariant="large">
-                {t("cta")}
+                Join the Webinar
               </CTAButton>
             </div>
           </ScrollReveal>

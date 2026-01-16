@@ -2,27 +2,24 @@
 
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Laptop, Sparkles } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Features() {
-  const t = useTranslations("features");
-
   const features = [
     {
       icon: GraduationCap,
-      title: t("items.startup.title"),
-      description: t("items.startup.description"),
+      title: "ক্যারিয়ার পরিবর্তন",
+      description: "যেকোনো ব্যাকগ্রাউন্ড থেকে UI/UX ডিজাইনে কীভাবে আসবেন তা প্রমাণিত কৌশল দিয়ে শিখুন",
     },
     {
       icon: Laptop,
-      title: t("items.income.title"),
-      description: t("items.income.description"),
+      title: "আয়ের উৎস",
+      description: "ফ্রিল্যান্সিং, ফুল-টাইম রোল এবং প্যাসিভ ইনকাম সহ ডিজাইনে একাধিক আয়ের উৎস আবিষ্কার করুন",
     },
     {
       icon: Sparkles,
-      title: t("items.ai.title"),
-      description: t("items.ai.description"),
+      title: "AI ইন্টিগ্রেশন",
+      description: "আপনার প্রোডাক্টিভিটি এবং ক্রিয়েটিভিটি বাড়াতে কাটিং-এজ AI টুলস এবং টেকনিক মাস্টার করুন",
     },
   ];
 
@@ -38,7 +35,7 @@ export function Features() {
             <div className="flex justify-center mb-6 md:mb-8">
               <div className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center">
                 <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  {t("badge")}
+                  আপনি কী শিখবেন
                 </span>
               </div>
             </div>
@@ -48,10 +45,10 @@ export function Features() {
           <ScrollReveal delay={100}>
             <div className="max-w-[800px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
               <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                {t("title")}
+                আপনার ডিজাইন ক্যারিয়ার পরিবর্তন করুন
               </h2>
               <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
-                {t("subtitle")}
+                সফল ক্যারিয়ার গড়ার জন্য টপ ডিজাইনাররা যে স্কিলস এবং কৌশল ব্যবহার করে তা আয়ত্ত করুন
               </p>
             </div>
           </ScrollReveal>

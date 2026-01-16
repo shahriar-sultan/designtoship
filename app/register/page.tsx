@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,7 +15,6 @@ import { register } from "@/lib/api";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const t = useTranslations("auth.register");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -36,15 +34,15 @@ export default function RegisterPage() {
         setEmail("");
         setPassword("");
       } else if (response.status === 429) {
-        setError(t("errors.tooMany"));
+        setError("Too many attempts. Please try again later.");
       } else if (response.status === 400) {
         const data = await response.json().catch(() => ({}));
-        setError(data.message || t("errors.invalid"));
+        setError(data.message || "Invalid email or password format.");
       } else {
-        setError(t("errors.generic"));
+        setError("An error occurred. Please try again.");
       }
     } catch (err) {
-      setError(t("errors.network"));
+      setError("Network error. Please check your connection.");
     } finally {
       setIsLoading(false);
     }
@@ -55,8 +53,8 @@ export default function RegisterPage() {
       <div className="flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>{t("success.title")}</CardTitle>
-            <CardDescription>{t("success.description")}</CardDescription>
+            <CardTitle>Registration Successful!</CardTitle>
+            <CardDescription>Please check your email to verify your account.</CardDescription>
           </CardHeader>
         </Card>
       </div>
@@ -67,14 +65,14 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>{t("title")}</CardTitle>
-          <CardDescription>{t("description")}</CardDescription>
+          <CardTitle>Register</CardTitle>
+          <CardDescription>Create an account to access the webinar</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
-                {t("email")}
+                Email
               </label>
               <Input
                 id="email"
@@ -88,7 +86,7 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">
-                {t("password")}
+                Password
               </label>
               <Input
                 id="password"
@@ -110,12 +108,12 @@ export default function RegisterPage() {
               className="w-full bg-[#361F12] hover:bg-[#4A2F1A] text-white"
               disabled={isLoading}
             >
-              {isLoading ? t("loading") : t("submit")}
+              {isLoading ? "Loading..." : "Register"}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <p className="text-sm text-muted-foreground mb-2">
-              {t("alreadyRegistered")}
+              Already have an account?
             </p>
             <Button
               type="button"
@@ -123,7 +121,7 @@ export default function RegisterPage() {
               className="w-full bg-[#361F12] hover:bg-[#4A2F1A] hover:text-white text-white border-[#361F12]"
               onClick={() => router.push("/login")}
             >
-              {t("goToLogin")}
+              Login
             </Button>
           </div>
         </CardContent>

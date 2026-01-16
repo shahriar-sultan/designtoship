@@ -1,14 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { useLocale } from "next-intl";
 
-export default async function WebinarPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-
+export default async function WebinarPage() {
   // TODO: Re-enable protected logic when ready
   // const apiUrl = process.env.API_URL;
   // if (!apiUrl) {
@@ -29,15 +22,15 @@ export default async function WebinarPage({
 
   //   if (!response.ok) {
   //     if (response.status === 403) {
-  //       redirect(`/${locale}/login`);
+  //       redirect(`/login`);
   //     }
-  //     redirect(`/${locale}/login`);
+  //     redirect(`/login`);
   //   }
   // } catch (error) {
   //   // If API is unavailable (e.g., in development), redirect to login for security
   //   // In production, you may want to handle this differently
   //   console.error("Failed to check webinar access:", error);
-  //   redirect(`/${locale}/login`);
+  //   redirect(`/login`);
   // }
 
   const youtubeVideoId =

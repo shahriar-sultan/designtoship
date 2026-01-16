@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter } from "next/navigation";
 import { ReactNode, CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 

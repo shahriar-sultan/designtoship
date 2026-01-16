@@ -1,14 +1,12 @@
 "use client";
 
 import { CTAButton } from "./CTAButton";
-import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Reviews() {
-  const t = useTranslations("reviews");
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
@@ -53,7 +51,7 @@ export function Reviews() {
             <div className="flex justify-center mb-8 md:mb-14">
               <div className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center">
                 <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  {t("badge")}
+                  স্টুডেন্ট রিভিউস
                 </span>
               </div>
             </div>
@@ -63,7 +61,7 @@ export function Reviews() {
           <ScrollReveal delay={100}>
             <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-14 px-4">
               <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                {t("title")}
+                আমাদের স্টুডেন্টরা কী বলে
               </h2>
             </div>
           </ScrollReveal>
@@ -95,7 +93,7 @@ export function Reviews() {
                               Student Name {i}
                             </div>
                             <div className="text-white/90 text-xs md:text-sm lg:text-base">
-                              {t(`studentRoles.${i}`)}
+                              {["UI Designer", "UX Researcher", "Product Designer", "Design Student", "Freelancer"][i % 5]}
                             </div>
                           </div>
                         </div>
@@ -166,7 +164,7 @@ export function Reviews() {
           {/* Bottom CTA */}
           <ScrollReveal delay={300}>
             <div className="flex justify-center mt-8 md:mt-12">
-              <CTAButton>{t("cta")}</CTAButton>
+              <CTAButton>এখনই যোগ দিন</CTAButton>
             </div>
           </ScrollReveal>
         </div>
