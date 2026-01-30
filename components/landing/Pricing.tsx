@@ -1,57 +1,48 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Pricing() {
-  const credentials = [
-    "10+ years of industry experience",
-    "Former Design Lead at Google",
-    "Published author on design systems",
-    "AI innovation consultant",
-    "Mentored 500+ designers",
-    "Featured in TechCrunch, Forbes, and Fast Company"
-  ];
-
   return (
-    <section className="relative bg-[#FFF4EF] py-12 md:py-16">
-      {/* Gradient Background */}
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-gradient-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
-      
+    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+      {/* Bottom Gradient - exact Figma */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[346px] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(255, 244, 237, 1) 0%, rgba(255, 255, 255, 0) 100%)",
+        }}
+      />
+
       <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-[1200px] mx-auto">
-          {/* Section Badge */}
+        <div className="max-w-[1092px] mx-auto">
+          {/* Main Heading - gradient */}
           <ScrollReveal>
-            <div className="flex justify-center mb-6 md:mb-8">
-              <div 
-                className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center"
-              >
-                <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  ABOUT THE SPEAKER
-                </span>
-              </div>
-            </div>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-center mb-6 max-w-[692px] mx-auto bg-linear-to-br from-[#1F1A17] to-[#D7540D] bg-clip-text text-transparent"
+            >
+              নিজের উপর Investment সবচেয়ে লাভজনক Investment
+            </h2>
           </ScrollReveal>
 
-          {/* Main Heading */}
+          {/* Description */}
           <ScrollReveal delay={100}>
-            <div className="max-w-[1052px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
-              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                Shahriar Sultan
-              </h2>
-              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px]">
-                Industry expert and AI innovation leader in UI/UX design
-              </p>
-            </div>
+            <p
+              className="text-center mb-12 max-w-[734px] mx-auto text-lg leading-relaxed"
+              style={{ color: "#64605D" }}
+            >
+              এখন সময় এসেছে নিজের উপর invest করার, আপনার দক্ষতাকে কয়েক ধাপ এগিয়ে
+              নেওয়ার। তাহলে আর দেরি কিসে?
+            </p>
           </ScrollReveal>
 
-          {/* Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center mt-8 md:mt-12">
-            {/* Left: Illustration Card */}
-            <ScrollReveal delay={200} direction="right">
-              <div 
-              className="bg-[#FFF4D4] border-4 md:border-[8px] border-[#FFFCFB] rounded-3xl md:rounded-[40px] h-[400px] md:h-[534px] flex items-center justify-center order-2 lg:order-1"
+          {/* Large Card */}
+          <ScrollReveal delay={200}>
+            <div
+              className="rounded-[40px] h-[516px] flex items-center justify-center"
               style={{
+                backgroundColor: "#FFF4D4",
+                border: "8px solid #FFFCFB",
                 boxShadow: `
                   2px -3px 8px rgba(228, 220, 216, 0.64),
                   8px -12px 14px rgba(228, 220, 216, 0.55),
@@ -61,36 +52,14 @@ export function Pricing() {
                 `,
               }}
             >
-              {/* Placeholder for author image */}
-              <div className="text-[#402617]/20 text-center">
-                <div className="w-32 h-32 md:w-48 md:h-48 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-200 to-gray-400" />
-                <p className="text-xs md:text-sm">Shahriar Sultan Photo</p>
-              </div>
+              <p
+                className="text-xl font-medium"
+                style={{ color: "#402617" }}
+              >
+                Illustration here
+              </p>
             </div>
-            </ScrollReveal>
-
-            {/* Right: Credentials List */}
-            <ScrollReveal delay={300} direction="left">
-              <div className="space-y-6 md:space-y-8 order-1 lg:order-2">
-              <h3 className="text-[#8F5C3F] text-xl md:text-[24px] font-semibold">
-                Credentials & Experience:
-              </h3>
-              
-              <div className="space-y-4 md:space-y-[18px]">
-                {credentials.map((credential, index) => (
-                  <div key={index} className="flex items-start gap-3 md:gap-4">
-                    <div className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 text-[#7E7068] mt-1">
-                      <ArrowRight className="w-full h-full" strokeWidth={1.5} />
-                    </div>
-                    <p className="text-[#402617] text-base md:text-lg lg:text-[18px] leading-[1.8]">
-                      {credential}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            </ScrollReveal>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

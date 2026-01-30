@@ -271,3 +271,28 @@
 .play-button-wave-small:nth-of-type(3) {
   animation-delay: 1.33s;
 }
+
+.play-button-wave-alt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 150, 0, 0.6);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  animation: wave-float 2s ease-out infinite;
+}
+
+.play-button-wave-alt:nth-of-type(2) {
+  animation-delay: 0.66s;
+  border-color: rgba(190, 0, 100, 0.5);
+}
+
+.play-button-wave-alt:nth-of-type(3) {
+  animation-delay: 1.33s;
+  border-color: rgba(255, 107, 53, 0.4);
+}

@@ -1,26 +1,25 @@
-import { ConditionalNavbar } from "@/components/ConditionalNavbar";
-import {
-  Reviews,
-  Hero,
-  Features,
-  Benefits,
-  Testimonials,
-  Pricing,
-  CTA,
-  Footer,
-} from "@/components/landing";
+import { Hero } from "@/components/landing/Hero";
+import { Benefits } from "@/components/landing/Benefits";
+import { Features } from "@/components/landing/Features";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { MyIntro } from "@/components/landing/MyIntro";
+import { Reviews } from "@/components/landing/Reviews";
+import { Pricing } from "@/components/landing/Pricing";
+import { FAQ } from "@/components/landing/FAQ";
+import { Footer } from "@/components/landing/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <main className="pt-8 bg-[#fff4ef]">
+      <main>
         <Hero />
-        <Reviews />
-        <Features />
         <Benefits />
+        <Features />
         <Testimonials />
+        <MyIntro />
+        <Reviews />
         <Pricing />
-        <CTA />
+        <FAQ />
         <Footer />
       </main>
     </div>

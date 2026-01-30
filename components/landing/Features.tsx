@@ -1,41 +1,38 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { GraduationCap, Laptop, Sparkles } from "lucide-react";
+import { CTAButton } from "./CTAButton";
+import { Lightbulb } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+const benefits = [
+  "UI/UX ডিজাইনে প্রবেশের জন্য ধাপে ধাপে রোডম্যাপ",
+  "আপনার লার্নিং কার্ভ ত্বরান্বিত করবে এমন AI টুলস",
+  "আপনার পোর্টফোলিও তৈরি করার জন্য রিয়েল-ওয়ার্ল্ড প্রজেক্টস",
+  "ইন্ডাস্ট্রি প্রফেশনালদের সাথে কানেক্ট করার নেটওয়ার্কিং কৌশল",
+  "শিখতে শিখতে আয় শুরু করার ফ্রিল্যান্সিং টিপস",
+  "টপ ডিজাইন এজেন্সিগুলো যে অ্যাডভান্সড টেকনিক ব্যবহার করে",
+];
+
 export function Features() {
-  const features = [
-    {
-      icon: GraduationCap,
-      title: "ক্যারিয়ার পরিবর্তন",
-      description: "যেকোনো ব্যাকগ্রাউন্ড থেকে UI/UX ডিজাইনে কীভাবে আসবেন তা প্রমাণিত কৌশল দিয়ে শিখুন",
-    },
-    {
-      icon: Laptop,
-      title: "আয়ের উৎস",
-      description: "ফ্রিল্যান্সিং, ফুল-টাইম রোল এবং প্যাসিভ ইনকাম সহ ডিজাইনে একাধিক আয়ের উৎস আবিষ্কার করুন",
-    },
-    {
-      icon: Sparkles,
-      title: "AI ইন্টিগ্রেশন",
-      description: "আপনার প্রোডাক্টিভিটি এবং ক্রিয়েটিভিটি বাড়াতে কাটিং-এজ AI টুলস এবং টেকনিক মাস্টার করুন",
-    },
-  ];
-
   return (
-    <section className="relative bg-[#FFF4EF] py-12 md:py-16">
-      {/* Gradient Background */}
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-gradient-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
-
-      <div className="relative z-10 container mx-auto px-4">
+    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+      <div className="container mx-auto px-4">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
           <ScrollReveal>
-            <div className="flex justify-center mb-6 md:mb-8">
-              <div className="bg-[#FFF4ED]/50 border border-[#977259]/60 rounded-full px-4 md:px-6 py-[6px] inline-flex items-center">
-                <span className="text-[#977259] text-base md:text-[18px] font-medium">
-                  আপনি কী শিখবেন
+            <div className="flex justify-center mb-8">
+              <div
+                className="rounded-full px-6 py-2 inline-flex items-center"
+                style={{
+                  backgroundColor: "rgba(255, 244, 237, 0.5)",
+                  border: "1px solid rgba(151, 114, 89, 0.59)",
+                }}
+              >
+                <span
+                  className="text-base font-medium"
+                  style={{ color: "#AA5B2F" }}
+                >
+                  এই ওয়েবিনার কেন করবেন ?
                 </span>
               </div>
             </div>
@@ -43,47 +40,104 @@ export function Features() {
 
           {/* Main Heading */}
           <ScrollReveal delay={100}>
-            <div className="max-w-[800px] mx-auto text-center mb-8 md:mb-12 space-y-3 md:space-y-4 px-4">
-              <h2 className="text-[#402617] text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.2]">
-                আপনার ডিজাইন ক্যারিয়ার পরিবর্তন করুন
-              </h2>
-              <p className="text-[#64605D] text-lg md:text-xl lg:text-[22px] leading-relaxed">
-                সফল ক্যারিয়ার গড়ার জন্য টপ ডিজাইনাররা যে স্কিলস এবং কৌশল ব্যবহার করে তা আয়ত্ত করুন
-              </p>
-            </div>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-center mb-16 max-w-[504px] mx-auto bg-linear-to-br from-[#1F1A17] to-[#D7540D] bg-clip-text text-transparent"
+            >
+              কিভাবে বুঝবেন এই Webiner আপনার জন্য কিনা?
+            </h2>
           </ScrollReveal>
 
-          {/* Feature Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
-            {features.map((feature, index) => (
-              <ScrollReveal key={index} delay={index * 100 + 200}>
-                <Card
-                  key={index}
-                  className="bg-white border-2 border-[#EADED7] rounded-2xl md:rounded-[20px] p-5 md:p-7 hover:shadow-[0_4px_24px_rgba(110,95,87,0.1)] transition-shadow h-full"
+          {/* Content Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 items-start">
+            {/* Left: Benefits List */}
+            <ScrollReveal delay={200} direction="right">
+              <div className="space-y-5">
+                <h3
+                  className="text-xl font-semibold mb-6"
+                  style={{ color: "#AE4407" }}
                 >
-                  <div className="space-y-4 md:space-y-6">
-                    {/* Icon */}
-                    <div className="w-7 h-7 md:w-8 md:h-8 text-[#6D6059]">
-                      <feature.icon
-                        className="w-full h-full"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div className="space-y-2 md:space-y-3">
-                      <h3 className="text-[#402617] text-lg md:text-[20px] font-bold leading-tight">
-                        {feature.title}
-                      </h3>
-                      <p className="text-[#6A615C] text-sm md:text-[15px] leading-relaxed">
-                        {feature.description}
+                  এই ওয়েবিনার আপনাকে দেখাবে
+                </h3>
+                <div className="space-y-5">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div
+                        className="w-8 h-8 flex-shrink-0 mt-0.5"
+                        style={{ color: "#7E7068" }}
+                      >
+                        <Lightbulb
+                          className="w-full h-full"
+                          strokeWidth={1.5}
+                          fill="currentColor"
+                        />
+                      </div>
+                      <p
+                        className="text-base md:text-lg leading-relaxed"
+                        style={{ color: "#402617" }}
+                      >
+                        {benefit}
                       </p>
                     </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
-            ))}
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Right: Decorative Card */}
+            <ScrollReveal delay={300} direction="left">
+              <div
+                className="rounded-[40px] h-[534px] flex items-center justify-center"
+                style={{
+                  backgroundColor: "#FFF4D4",
+                  border: "8px solid #FFFCFB",
+                  boxShadow: `
+                    2px -3px 8px rgba(228, 220, 216, 0.64),
+                    8px -12px 14px rgba(228, 220, 216, 0.55),
+                    18px -27px 19px rgba(228, 220, 216, 0.33),
+                    32px -48px 23px rgba(228, 220, 216, 0.1),
+                    50px -75px 25px rgba(228, 220, 216, 0.01)
+                  `,
+                }}
+              >
+                <div
+                  className="text-center opacity-20"
+                  style={{ color: "#402617" }}
+                >
+                  <svg
+                    className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  </svg>
+                  <p className="text-sm">Illustration</p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
+
+          {/* Bottom Text - exact Figma */}
+          <ScrollReveal delay={400}>
+            <p
+              className="text-center mt-16 max-w-[869px] mx-auto text-lg md:text-xl leading-relaxed bg-linear-to-br from-[#1F1A17] to-[#D7540D] bg-clip-text text-transparent font-medium"
+            >
+              এর একটিও যদি আপনার নাগালের বাইরে থাকে, আপনি যে কোন মুহুর্তে খেই হারাবেন
+              এই AI Dominated Ui/UX Design World-এ! আর এই Webiner ঠিক এগুলোই পৌঁছে
+              দেবে আপনার হাতের কাছে!
+            </p>
+          </ScrollReveal>
+
+          {/* Bottom CTA */}
+          <ScrollReveal delay={500}>
+            <div className="flex justify-center mt-10">
+              <CTAButton>রেজিস্ট্রেশন করুন (It&apos;s Free)</CTAButton>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

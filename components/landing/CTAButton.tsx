@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ReactNode, CSSProperties } from "react";
 import { cn } from "@/lib/utils";
@@ -51,14 +50,15 @@ export function CTAButton({
   };
 
   const defaultStyle: CSSProperties = {
+    background: "linear-gradient(135deg, #FF9600 0%, #BE0064 100%)",
     boxShadow: "0 12px 30px rgba(77, 43, 23, 0.28)",
     ...style,
   };
 
   return (
-    <Button
+    <button
       className={cn(
-        "bg-[#361F12] hover:bg-[#4A2F1A] text-white rounded-full font-semibold leading-[1.6] text-center",
+        "text-white rounded-full font-semibold leading-[1.6] text-center hover:opacity-95 transition-opacity cursor-pointer",
         paddingClass,
         sizeClass,
         className
@@ -67,6 +67,6 @@ export function CTAButton({
       onClick={handleClick}
     >
       <span className="block">{children}</span>
-    </Button>
+    </button>
   );
 }
