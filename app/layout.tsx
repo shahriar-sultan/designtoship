@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Bengali } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Bengali, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 
@@ -19,6 +19,12 @@ const notoSansBengali = Noto_Sans_Bengali({
   weight: ["400", "500", "600", "700"],
 });
 
+const hindSiliguri = Hind_Siliguri({
+  variable: "--font-hind-siliguri",
+  subsets: ["bengali", "latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "AI-Augmented UI/UX Design Free Webinar | Shahriar Sultan",
   description:
@@ -33,9 +39,9 @@ export default function RootLayout({
   return (
     <html lang="bn" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} antialiased font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} ${hindSiliguri.variable} antialiased font-sans`}
         style={{
-          fontFamily: "var(--font-bengali), var(--font-geist-sans), sans-serif",
+          fontFamily: "var(--font-hind-siliguri), var(--font-bengali), var(--font-geist-sans), sans-serif",
         }}
       >
         <ConditionalNavbar />

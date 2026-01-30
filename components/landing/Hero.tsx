@@ -16,8 +16,9 @@ export function Hero() {
       }}
     >
       {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-40 pb-20 md:pb-24">
-        <div className="max-w-[1209px] mx-auto">
+      <div className="relative z-10 container mx-auto pt-32 md:pt-40 pb-20 md:pb-24 px-30">
+        <div className=" mx-auto">
+          {/* max-w-[1209px] */}
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-8 items-center">
             {/* Left Column - Content */}
             <ScrollReveal direction="right">
@@ -25,45 +26,67 @@ export function Hero() {
                 {/* Badge */}
                 <div className="inline-flex">
                   <div
-                    className="rounded-full px-6 py-2 inline-flex items-center"
+                    className="rounded-full px-6 py-1.5 inline-flex items-center"
                     style={{
                       backgroundColor: "rgba(25, 23, 21, 0.5)",
-                      border: "1px solid rgba(151, 114, 89, 0.59)",
+                      border: "1px solid rgba(151, 114, 93, 0.59)",
                     }}
                   >
-                    <span className="text-[#FCFBF9] text-sm md:text-base font-medium">
+                    <span className="text-[#FFFBF9] text-sm md:text-base font-medium">
                       FREE live webinar with Shahriar Sultan
                     </span>
                   </div>
                 </div>
 
-                {/* Main Heading */}
-                <div className="space-y-4">
+                {/* Heading + Description (Frame 1000003277: vertical, 16px spacing) */}
+                <div className="flex flex-col gap-4 max-w-[593px]">
                   <h1
-                    className="text-4xl sm:text-5xl md:text-[56px] font-bold leading-[1.15] tracking-tight max-w-[525px] bg-linear-to-br from-[#1F1A17] via-[#D7540D] to-[#D7540D] bg-clip-text text-transparent"
+                    className="text-4xl sm:text-5xl md:text-[48px] font-medium leading-
+                  [62px] tracking-[3%] max-w-[525px]"
                     style={{
                       filter:
                         "drop-shadow(0 -1px 40px rgba(135, 82, 52, 0.61))",
                     }}
                   >
-                    AI-পাড় কহে ছাড়িয়া নিঃশ্বাস, এই Webiner আপনার লাগি, আমার
-                    বিশ্বাস
+                    <span className="text-[#D7540D] font-bold">AI-</span>
+                    <span className="text-white">
+                      পাড় কহে ছাড়িয়া নিঃশ্বাস, এই{" "}
+                    </span>
+                    <span className="text-gradient-custom font-bold">
+                      Webiner
+                    </span>
+                    <span className="text-white">
+                      {" "}
+                      আপনার লাগি, আমার বিশ্বাস
+                    </span>
                   </h1>
+                  <p
+                    className="text-[#CCCCCC] text-base md:text-[26px] leading-[39px] 
+                  w-full font-hindSiliguri tracking-tight"
+                  >
+                    UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial
+                    Intelligence has entered the game! তাহলে কি আপনার ছিটকে পড়া
+                    নিশ্চিত? না! সময়ের এক ফোঁড়, অসময়ের দশ ফোঁড়! আর এই Webiner-ই
+                    হবে আপনার সেই ফোঁড়ের প্রথম সুচ!
+                  </p>
                 </div>
-
-                {/* Description */}
-                <p className="text-[#CCCCCC] text-base md:text-lg leading-relaxed">
-                  UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial
-                  Intelligence has entered the game! তাহলে কি আপনার ছিটকে পড়া
-                  নিশ্চিত? না! সময়ের এক ফোঁড়, অসময়ের দশ ফোঁড়! আর এই Webiner-ই
-                  হবে আপনার সেই ফোঁড়ের প্রথম সুচ!
-                </p>
 
                 {/* CTA Button */}
                 <div className="pt-2">
-                  <CTAButton paddingVariant="medium">
-                    আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন ওয়েবিনারে
-                    আপনার সিট বুক করুন!
+                  <CTAButton
+                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-lg md:text-xl font-hindSiliguri leading-[150%]"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgb(255, 150, 0) 0%, rgb(190, 0, 100) 100%)",
+                      boxShadow: "0 -1px 40px rgba(135, 82, 52, 0.61)",
+                    }}
+                  >
+                    <div className="font-semibold text-lg">
+                      আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন
+                    </div>
+                    <div className="font-bold text-[22px]">
+                      ওয়েবিনারে আপনার সিট বুক করুন!
+                    </div>
                   </CTAButton>
                 </div>
               </div>

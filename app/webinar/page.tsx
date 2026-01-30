@@ -42,7 +42,7 @@ export default async function WebinarPage() {
       <div className="absolute bottom-0 left-0 right-0 h-[400px] md:h-[651px] bg-linear-to-t from-[#FFF3ED] to-transparent pointer-events-none" />
 
       {/* Webinar Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-24 md:pt-28 lg:pt-32 pb-12 md:pb-20">
+      <div className="relative z-10 container mx-auto pt-24 md:pt-28 lg:pt-32 pb-12 md:pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* YouTube Live - Left side, takes 2 columns on large screens */}

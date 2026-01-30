@@ -54,7 +54,7 @@ export function Reviews() {
         background: "linear-gradient(to bottom, #FFF4ED 0%, #FFFFFF 100%)",
       }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
           <ScrollReveal>

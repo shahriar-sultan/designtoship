@@ -18,7 +18,7 @@ export function MyIntro() {
       className="relative py-16 md:py-20 lg:py-24"
       style={{ backgroundColor: "#FFD5D6" }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
           <ScrollReveal>

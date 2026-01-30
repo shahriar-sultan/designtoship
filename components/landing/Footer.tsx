@@ -15,7 +15,7 @@ export function Footer() {
       className="relative py-16 md:py-20 lg:py-24"
       style={{ backgroundColor: "#1A110C" }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1052px] mx-auto">
           {/* Main Heading */}
           <ScrollReveal>

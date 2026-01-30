@@ -16,7 +16,7 @@ const benefits = [
 export function Features() {
   return (
     <section className="relative bg-white py-16 md:py-20 lg:py-24">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
           <ScrollReveal>

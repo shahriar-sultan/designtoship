@@ -14,7 +14,7 @@ export function Pricing() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto">
         <div className="max-w-[1092px] mx-auto">
           {/* Main Heading - gradient */}
           <ScrollReveal>

@@ -13,7 +13,7 @@ export function Benefits() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto">
         <div className="max-w-[832px] mx-auto py-12 md:py-16">
           {/* Section Badge */}
           <ScrollReveal>

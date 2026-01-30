@@ -20,7 +20,7 @@ export function Testimonials() {
         background: "linear-gradient(to bottom, #FFFFFF 0%, #FFF4D4 100%)",
       }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1224px] mx-auto">
           {/* Dark rounded card container */}
           <div

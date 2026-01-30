@@ -43,7 +43,7 @@ export function FAQ() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
           <ScrollReveal>

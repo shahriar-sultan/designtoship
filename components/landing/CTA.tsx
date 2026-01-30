@@ -9,7 +9,7 @@ export function CTA() {
       {/* Top Gradient */}
       <div className="absolute top-0 left-0 right-0 h-[300px] bg-linear-to-b from-[#FFF4ED] to-transparent pointer-events-none" />
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="max-w-[1052px] mx-auto">
           {/* Main Heading */}
           <ScrollReveal>
