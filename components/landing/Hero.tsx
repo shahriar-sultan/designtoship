@@ -2,21 +2,19 @@
 
 import { CTAButton } from "./CTAButton";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { GridPattern } from "@/components/GridPattern";
-import { NoiseTexture } from "@/components/NoiseTexture";
-import { AnimatedBlobs } from "@/components/AnimatedBlobs";
 import { DecorativeCard } from "@/components/DecorativeCard";
 
 export function Hero() {
   return (
-    <section className="relative bg-[#1A110C] overflow-hidden min-h-[832px]">
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <GridPattern />
-        <NoiseTexture />
-        <AnimatedBlobs />
-      </div>
-
+    <section
+      className="relative overflow-hidden min-h-[832px]"
+      style={{
+        backgroundImage: "url('/svgs/heroBg.svg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-40 pb-20 md:pb-24">
         <div className="max-w-[1209px] mx-auto">
@@ -39,30 +37,33 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Main Heading - exact Figma text with gradient */}
+                {/* Main Heading */}
                 <div className="space-y-4">
                   <h1
                     className="text-4xl sm:text-5xl md:text-[56px] font-bold leading-[1.15] tracking-tight max-w-[525px] bg-linear-to-br from-[#1F1A17] via-[#D7540D] to-[#D7540D] bg-clip-text text-transparent"
                     style={{
-                      filter: "drop-shadow(0 -1px 40px rgba(135, 82, 52, 0.61))",
+                      filter:
+                        "drop-shadow(0 -1px 40px rgba(135, 82, 52, 0.61))",
                     }}
                   >
-                    AI-পাড় কহে ছাড়িয়া নিঃশ্বাস, এই Webiner আপনার লাগি, আমার বিশ্বাস
+                    AI-পাড় কহে ছাড়িয়া নিঃশ্বাস, এই Webiner আপনার লাগি, আমার
+                    বিশ্বাস
                   </h1>
                 </div>
 
-                {/* Description - exact Figma text */}
+                {/* Description */}
                 <p className="text-[#CCCCCC] text-base md:text-lg leading-relaxed">
-                  UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial Intelligence
-                  has entered the game! তাহলে কি আপনার ছিটকে পড়া নিশ্চিত? না! সময়ের
-                  এক ফোঁড়, অসময়ের দশ ফোঁড়! আর এই Webiner-ই হবে আপনার সেই ফোঁড়ের প্রথম
-                  সুচ!
+                  UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial
+                  Intelligence has entered the game! তাহলে কি আপনার ছিটকে পড়া
+                  নিশ্চিত? না! সময়ের এক ফোঁড়, অসময়ের দশ ফোঁড়! আর এই Webiner-ই
+                  হবে আপনার সেই ফোঁড়ের প্রথম সুচ!
                 </p>
 
-                {/* CTA Button - exact Figma text */}
+                {/* CTA Button */}
                 <div className="pt-2">
                   <CTAButton paddingVariant="medium">
-                    আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন ওয়েবিনারে আপনার সিট বুক করুন!
+                    আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন ওয়েবিনারে
+                    আপনার সিট বুক করুন!
                   </CTAButton>
                 </div>
               </div>
