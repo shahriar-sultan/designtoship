@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import Image from "next/image";
 
 const credentials = [
   "Head of Design at Niyyah (London-based EdTech platform)",
@@ -14,10 +15,7 @@ const credentials = [
 
 export function MyIntro() {
   return (
-    <section
-      className="relative py-16 md:py-20 lg:py-24"
-      style={{ backgroundColor: "#FFD5D6" }}
-    >
+    <section className="relative py-16 md:py-20 lg:py-24 bg-white-gradient">
       <div className="container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
@@ -49,10 +47,7 @@ export function MyIntro() {
               >
                 আমি যেখানে দাঁড়িয়ে… তার শুরুটা ছিল ঠিক আপনার জায়গা থেকেই!
               </h2>
-              <p
-                className="text-lg md:text-xl"
-                style={{ color: "#635F5E" }}
-              >
+              <p className="text-lg md:text-xl" style={{ color: "#635F5E" }}>
                 আমি শাহরিয়ার সুলতান ডিজাইন করি, শেখাই, আর পথ দেখাই।
               </p>
             </div>
@@ -77,18 +72,22 @@ export function MyIntro() {
                 }}
               >
                 <div className="w-full h-full bg-[#FFF4D4] flex items-center justify-center">
-                  <div
-                    className="text-center opacity-30"
-                    style={{ color: "#402617" }}
-                  >
-                    <svg
+                  <div className="text-center" style={{ color: "#402617" }}>
+                    <Image
+                      src="/svgs/profile-image.svg"
+                      alt="my-intro"
+                      width={1000}
+                      height={1000}
+                      className="w-full h-full"
+                    />
+                    {/* <svg
                       className="w-32 h-32 mx-auto mb-4"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
-                    <p className="text-sm font-medium">Profile Image</p>
+                    <p className="text-sm font-medium">Profile Image</p> */}
                   </div>
                 </div>
               </div>
@@ -110,10 +109,7 @@ export function MyIntro() {
                         className="w-8 h-8 flex-shrink-0 mt-0.5"
                         style={{ color: "#7E7068" }}
                       >
-                        <ArrowRight
-                          className="w-full h-full"
-                          strokeWidth={2}
-                        />
+                        <ArrowRight className="w-full h-full" strokeWidth={2} />
                       </div>
                       <p
                         className="text-base md:text-lg leading-relaxed"

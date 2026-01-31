@@ -15,7 +15,7 @@ const benefits = [
 
 export function Features() {
   return (
-    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+    <section className="relative bg-white-gradient py-16 md:py-20 lg:py-24">
       <div className="container mx-auto">
         <div className="max-w-[1200px] mx-auto">
           {/* Section Badge */}
@@ -135,7 +135,7 @@ export function Features() {
           {/* Bottom CTA */}
           <ScrollReveal delay={500}>
             <div className="flex justify-center mt-10">
-              <CTAButton>রেজিস্ট্রেশন করুন (It&apos;s Free)</CTAButton>
+              <CTAButton title="রেজিস্ট্রেশন করুন (It's Free)" href="/register" />
             </div>
           </ScrollReveal>
         </div>

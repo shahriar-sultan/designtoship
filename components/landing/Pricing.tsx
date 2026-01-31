@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Pricing() {
   return (
-    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+    <section className="relative bg-white-gradient py-16 md:py-20 lg:py-24">
       {/* Bottom Gradient - exact Figma */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[346px] pointer-events-none"

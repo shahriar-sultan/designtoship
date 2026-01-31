@@ -230,6 +230,11 @@
   }
 }
 
+/* White-to-warm gradient for sections and white backgrounds */
+.bg-white-gradient {
+  background: linear-gradient(to bottom, #fff3ed 0%, #ffffff 100%);
+}
+
 @keyframes wave-float {
   0% {
     transform: translate(-50%, -50%) scale(1);

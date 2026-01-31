@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Reviews() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
+    align: "center",
     loop: true,
     skipSnaps: false,
     containScroll: "trimSnaps",
@@ -25,11 +25,18 @@ export function Reviews() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback((api: { selectedScrollSnap: () => number; canScrollPrev: () => boolean; canScrollNext: () => boolean }) => {
-    setSelectedIndex(api.selectedScrollSnap());
-    setPrevBtnDisabled(!api.canScrollPrev());
-    setNextBtnDisabled(!api.canScrollNext());
-  }, []);
+  const onSelect = useCallback(
+    (api: {
+      selectedScrollSnap: () => number;
+      canScrollPrev: () => boolean;
+      canScrollNext: () => boolean;
+    }) => {
+      setSelectedIndex(api.selectedScrollSnap());
+      setPrevBtnDisabled(!api.canScrollPrev());
+      setNextBtnDisabled(!api.canScrollNext());
+    },
+    []
+  );
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -90,50 +97,66 @@ export function Reviews() {
           <ScrollReveal delay={200}>
             <div className="relative">
               <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex gap-5">
-                  {reviews.map((review, i) => (
-                    <div
-                      key={i}
-                      className="flex-shrink-0 w-[300px] sm:w-[356px]"
-                    >
-                      <div className="relative bg-white rounded-xl overflow-hidden h-[424px] md:h-[500px] shadow-lg">
-                        <div className="w-full h-full bg-[#D9D9D9]" />
+                <div className="flex items-center gap-5">
+                  {reviews.map((review, i) => {
+                    const isActive = i === selectedIndex;
+                    return (
+                      <div
+                        key={i}
+                        className="shrink-0 w-[320px] sm:w-[380px] flex justify-center items-center"
+                      >
                         <div
-                          className="absolute bottom-3 left-3 right-3 bg-black/35 backdrop-blur-[10px] rounded-2xl p-3 z-20"
-                          style={{ backdropFilter: "blur(10px)" }}
+                          className={`relative bg-white-gradient rounded-xl overflow-hidden w-[300px] sm:w-[356px] h-[424px] md:h-[500px] transition-all duration-300 ease-out origin-center ${
+                            isActive
+                              ? "scale-100 grayscale-0 shadow-xl"
+                              : "scale-[0.8] grayscale"
+                          }`}
+                          style={
+                            isActive
+                              ? {
+                                  boxShadow:
+                                    "0 25px 50px -12px rgba(54, 31, 18, 0.25)",
+                                }
+                              : undefined
+                          }
                         >
-                          <div className="text-white font-medium">
-                            {review.name}
-                          </div>
-                          <div className="text-white/90 text-sm">
-                            {review.role}
-                          </div>
-                        </div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+                          <div className="w-full h-full bg-[#D9D9D9]" />
                           <div
-                            className="w-[60px] h-[60px] bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
-                            style={{
-                              boxShadow: "0 7px 25px rgba(151, 114, 93, 0.1)",
-                            }}
+                            className="absolute bottom-3 left-3 right-3 bg-black/35 backdrop-blur-[10px] rounded-2xl p-3 z-20"
+                            style={{ backdropFilter: "blur(10px)" }}
                           >
-                            <span className="play-button-wave-small" />
-                            <span className="play-button-wave-small" />
-                            <span className="play-button-wave-small" />
-                            <svg
-                              className="relative z-10 w-5 h-6"
-                              viewBox="0 0 19 21"
-                              fill="none"
+                            <div className="text-white font-medium">
+                              {review.name}
+                            </div>
+                            <div className="text-white/90 text-sm">
+                              {review.role}
+                            </div>
+                          </div>
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+                            <div
+                              className={`w-[60px] h-[60px] bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer transition-transform ${
+                                isActive ? "hover:scale-110" : ""
+                              }`}
+                              style={{
+                                boxShadow: "0 7px 25px rgba(151, 114, 93, 0.1)",
+                              }}
                             >
-                              <path
-                                d="M2 2L17 10.5L2 19V2Z"
-                                fill="#000000"
-                              />
-                            </svg>
+                              <span className="play-button-wave-small" />
+                              <span className="play-button-wave-small" />
+                              <span className="play-button-wave-small" />
+                              <svg
+                                className="relative z-10 w-5 h-6"
+                                viewBox="0 0 19 21"
+                                fill="none"
+                              >
+                                <path d="M2 2L17 10.5L2 19V2Z" fill="#000000" />
+                              </svg>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -174,9 +197,17 @@ export function Reviews() {
           {/* CTA */}
           <ScrollReveal delay={300}>
             <div className="flex justify-center mt-10">
-              <CTAButton paddingVariant="large">
-                আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন এখনই ওয়েবিনারে রেজিস্ট্রেশন করুন!
-              </CTAButton>
+              <CTAButton
+                title="ওয়েবিনারে আপনার সিট বুক করুন!"
+                subtitle="আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন"
+                href="/register"
+                className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-lg md:text-xl font-siliguri leading-[150%]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgb(255, 150, 0) 0%, rgb(190, 0, 100) 100%)",
+                  boxShadow: "0 -1px 40px rgba(135, 82, 52, 0.61)",
+                }}
+              />
             </div>
           </ScrollReveal>
         </div>

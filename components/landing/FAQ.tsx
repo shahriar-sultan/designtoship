@@ -33,7 +33,7 @@ const faqCategories = [
 
 export function FAQ() {
   return (
-    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+    <section className="relative bg-white-gradient py-16 md:py-20 lg:py-24">
       {/* Top Gradient */}
       <div
         className="absolute top-0 left-0 right-0 h-[341px] pointer-events-none"
@@ -115,7 +115,7 @@ export function FAQ() {
           {/* Bottom CTA */}
           <ScrollReveal delay={500}>
             <div className="flex justify-center mt-10">
-              <CTAButton>রেজিস্ট্রেশন করুন (It&apos;s Free)</CTAButton>
+              <CTAButton title="রেজিস্ট্রেশন করুন (It's Free)" href="/register" />
             </div>
           </ScrollReveal>
         </div>

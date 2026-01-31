@@ -1,32 +1,67 @@
 "use client";
 
+import Image from "next/image";
 import { CTAButton } from "./CTAButton";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 const testimonials = [
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
-  { quote: "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।", name: "Marvin McKinney", role: "Senior UI/UX Designer at Google" },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
+  {
+    quote:
+      "UIMC আমাকে AI-চালিত ডিজাইনের দিকটা এত সহজ করে দেখিয়েছে যে, portfolio বানানো থেকে job পাওয়া সব ধাপেই clarity পেয়েছি।",
+    name: "Marvin McKinney",
+    role: "Senior UI/UX Designer at Google",
+  },
 ];
 
 export function Testimonials() {
   return (
-    <section
-      className="relative py-16 md:py-20 lg:py-24 overflow-hidden"
-      style={{
-        background: "linear-gradient(to bottom, #FFFFFF 0%, #FFF4D4 100%)",
-      }}
-    >
+    <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden bg-white-gradient">
       <div className="container mx-auto">
-        <div className="max-w-[1224px] mx-auto">
+        <div
+          className="max-w-[1224px] mx-auto  rounded-[80px] relative pb-20"
+          style={{ backgroundColor: "#1A110C" }}
+        >
+          <div className="absolute left-0 right-0 bottom-0 w-full">
+            <Image
+              src="/svgs/testimonial-mask.svg"
+              alt="testimonialsBg"
+              width={1000}
+              height={1000}
+              className="w-full h-full"
+            />
+          </div>
           {/* Dark rounded card container */}
-          <div
-            className="relative rounded-[80px] p-8 md:p-12 lg:p-16 overflow-hidden"
-            style={{ backgroundColor: "#1A110C" }}
-          >
+          <div className="relative p-8 md:p-12 lg:p-16 overflow-hidden">
             {/* Grid pattern */}
             <div className="absolute inset-0 opacity-20 pointer-events-none">
               <svg width="100%" height="100%">
@@ -45,7 +80,11 @@ export function Testimonials() {
                     />
                   </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#testimonial-grid)" />
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="url(#testimonial-grid)"
+                />
               </svg>
             </div>
 
@@ -69,9 +108,7 @@ export function Testimonials() {
 
               {/* Main Heading - gradient */}
               <ScrollReveal delay={100}>
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-center mb-12 max-w-[692px] mx-auto bg-linear-to-br from-[#F6F0EF] via-[#F9E19A] to-[#F9E19A] bg-clip-text text-transparent"
-                >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-center mb-12 max-w-[692px] mx-auto bg-linear-to-br from-[#F6F0EF] via-[#F9E19A] to-[#F9E19A] bg-clip-text text-transparent">
                   এগিয়ে যাওয়া কিছু মানুষের কথা!
                 </h2>
               </ScrollReveal>
@@ -151,16 +188,17 @@ export function Testimonials() {
               className="text-center mt-12 max-w-[1050px] mx-auto text-base md:text-lg leading-relaxed"
               style={{ color: "#FBE1C1" }}
             >
-              Once The Joker Said - &quot;If you&apos;re good at something, never
-              do it for free!&quot; But what he didn&apos;t say is - &quot;Sometimes
-              the best return comes from giving, not charging.&quot;
+              Once The Joker Said - &quot;If you&apos;re good at something,
+              never do it for free!&quot; But what he didn&apos;t say is -
+              &quot;Sometimes the best return comes from giving, not
+              charging.&quot;
             </p>
           </ScrollReveal>
 
           {/* CTA */}
           <ScrollReveal delay={700}>
             <div className="flex justify-center mt-10">
-              <CTAButton>রেজিস্ট্রেশন করুন (It&apos;s Free)</CTAButton>
+              <CTAButton title="রেজিস্ট্রেশন করুন (It's Free)" href="/register" />
             </div>
           </ScrollReveal>
         </div>

@@ -5,12 +5,18 @@ import { ReactNode, CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 interface CTAButtonProps {
-  children: ReactNode;
+  /** Main button text (bold, prominent). When set, used with subtitle instead of children. */
+  title?: string;
+  /** Optional line above the title (subtitle). */
+  subtitle?: string;
+  /** Redirect URL. Default: "/register" */
+  href?: string;
+  /** Legacy: pass content as children when title/subtitle not used. */
+  children?: ReactNode;
   className?: string;
   onClick?: () => void;
   paddingVariant?: "default" | "small" | "medium" | "large";
   sizeVariant?: "default" | "small" | "medium" | "large";
-  href?: string;
   style?: CSSProperties;
 }
 
@@ -29,12 +35,14 @@ const sizeVariants = {
 };
 
 export function CTAButton({
+  title,
+  subtitle,
+  href = "/register",
   children,
   className = "",
   onClick,
   paddingVariant = "default",
   sizeVariant = "medium",
-  href = "/register",
   style,
 }: CTAButtonProps) {
   const router = useRouter();
@@ -55,6 +63,8 @@ export function CTAButton({
     ...style,
   };
 
+  const hasTitleSubtitle = title != null;
+
   return (
     <button
       className={cn(
@@ -66,7 +76,16 @@ export function CTAButton({
       style={defaultStyle}
       onClick={handleClick}
     >
-      <span className="block">{children}</span>
+      {hasTitleSubtitle ? (
+        <span className="block">
+          {subtitle != null && subtitle !== "" && (
+            <span className="block font-semibold text-lg">{subtitle}</span>
+          )}
+          <span className="block font-bold text-[22px]">{title}</span>
+        </span>
+      ) : (
+        <span className="block">{children}</span>
+      )}
     </button>
   );
 }

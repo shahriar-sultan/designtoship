@@ -74,20 +74,16 @@ export function Hero() {
                 {/* CTA Button */}
                 <div className="pt-2">
                   <CTAButton
-                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-lg md:text-xl font-hindSiliguri leading-[150%]"
+                    title="ওয়েবিনারে আপনার সিট বুক করুন!"
+                    subtitle="আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন"
+                    href="/register"
+                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-lg md:text-xl font-siliguri leading-[150%]"
                     style={{
                       background:
                         "linear-gradient(135deg, rgb(255, 150, 0) 0%, rgb(190, 0, 100) 100%)",
                       boxShadow: "0 -1px 40px rgba(135, 82, 52, 0.61)",
                     }}
-                  >
-                    <div className="font-semibold text-lg">
-                      আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন
-                    </div>
-                    <div className="font-bold text-[22px]">
-                      ওয়েবিনারে আপনার সিট বুক করুন!
-                    </div>
-                  </CTAButton>
+                  />
                 </div>
               </div>
             </ScrollReveal>

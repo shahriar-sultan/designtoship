@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function CTA() {
   return (
-    <section className="relative bg-white py-16 md:py-20 lg:py-24">
+    <section className="relative bg-white-gradient py-16 md:py-20 lg:py-24">
       {/* Top Gradient */}
       <div className="absolute top-0 left-0 right-0 h-[300px] bg-linear-to-b from-[#FFF4ED] to-transparent pointer-events-none" />
       
@@ -26,9 +26,11 @@ export function CTA() {
           {/* CTA Button */}
           <ScrollReveal delay={100}>
             <div className="flex justify-center">
-              <CTAButton paddingVariant="small">
-                ফ্রি ওয়েবিনারের জন্য রেজিস্টার করুন
-              </CTAButton>
+              <CTAButton
+                title="ফ্রি ওয়েবিনারের জন্য রেজিস্টার করুন"
+                href="/register"
+                paddingVariant="small"
+              />
             </div>
           </ScrollReveal>
 
