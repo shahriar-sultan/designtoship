@@ -79,3 +79,30 @@ alwaysApply: true
   - Frontend decides **presentation** only.
   - Webhooks or payment processors decide **money**.
   - Database is the single source of **truth**.
+
+## Design & Theme Adherence
+
+- **Use existing theme**
+
+  - Always use the project's existing design tokens and utilities (e.g. Tailwind config, `design-system.json`, shared UI components).
+  - **Do not introduce new colors** (hex, rgb, hsl, tailwind classes) unless explicitly provided by the user or the design system.
+  - **Do not change** global typography scale, spacing scale, or border-radius system unless the user clearly asks for it.
+  - Prefer existing shared components (buttons, inputs, cards, etc.) over creating new visual variants.
+
+- **When fixing or polishing a component**
+
+  - Preserve **all existing functionality and behavior**; adjust only styling, layout, and classes unless explicitly told otherwise.
+  - Keep the component's public API (props, events) and behavior stable unless the user explicitly allows changes.
+  - Align visuals with the current project theme (colors, spacing, radii, shadows, typography) instead of inventing new styles.
+
+- **Using Figma → code (JSON or spec)**
+
+  - Treat the provided Figma design (JSON, spec, or description) as the **single source of truth** for layout, spacing, colors, typography, and states.
+  - **Do not extend or modify the design** beyond what is specified in Figma (no "extra" animations, states, or variants) unless the user explicitly asks.
+  - Map Figma tokens to the existing theme tokens where possible (e.g. use the closest existing color/spacing token instead of raw values).
+  - If an exact 1:1 mapping is impossible, choose the **closest existing token** and clearly explain the trade-off in the response.
+
+- **General constraints**
+  - Keep responsiveness and accessibility consistent with the current project patterns; do not introduce conflicting patterns.
+  - When there is a conflict between the existing theme and a new design, **follow the user’s explicit instruction**; otherwise, default to the existing theme.
+  - Always explain any unavoidable visual deviation from the given Figma spec or from the current theme.
