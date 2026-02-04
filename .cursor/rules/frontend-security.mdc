@@ -1,0 +1,81 @@
+---
+description: Frontend security model and responsibilities for Next.js App Router
+alwaysApply: true
+---
+
+## Frontend Security Model
+
+- **Trust model**
+
+  - Frontend may _trust_ backend; backend must **never trust** frontend.
+  - UI state is **cosmetic only**, never authoritative.
+  - If backend rejects something, frontend must **accept and reflect** that decision.
+
+- **API access**
+
+  - Frontend **never** calls internal services directly; **all** calls go through the public API layer.
+  - **Never** embed secrets, tokens, or private keys in frontend code or config.
+  - **Never** encode role/permission logic into API request shapes (e.g. `isAdmin: true`).
+  - Frontend asks; backend decides and enforces.
+
+- **RBAC on frontend (UX only)**
+
+  - RBAC in the UI is for **user experience only**, not security.
+  - Allowed: hide buttons, disable actions, adjust navigation.
+  - Forbidden: protecting routes **only** via role checks on the client, or assuming permission because UI allows an action.
+  - Backend is the **final authority** for access control.
+
+- **Role & permission handling**
+
+  - Frontend receives objects like:
+
+    ```ts
+    {
+      permissions: string[];
+      role: string;
+      subRole: string | null;
+    }
+    ```
+
+  - Use **permissions**, not raw `role` names, for UI decisions:
+
+    ```ts
+    if (permissions.includes("COURSE_WRITE")) {
+      showCreateButton();
+    }
+    ```
+
+  - **Never** infer permissions from role names or naming conventions.
+
+- **Forms & inputs**
+
+  - Add client-side validation **only for UX**; treat it as non-security.
+  - Send **only** fields defined in the API contract; do not include extra/ speculative fields.
+  - Expect backend to reject unknown or unexpected fields.
+
+- **State management**
+
+  - **Never** store auth state (tokens, sessions, refresh tokens) in `localStorage`.
+  - **Never** store sensitive data (PII, secrets, raw JWTs) in global state (e.g. Redux, query cache).
+  - Clear all relevant state on logout.
+  - Treat page refresh as hostile: do not assume any unstored in-memory state is still valid.
+
+- **Network & MITM reality**
+
+  - Assume requests can be modified, responses inspected, and calls replayed.
+  - Important responses should be signed/validated and always checked server-side.
+  - Use nonces or similar mechanisms for critical actions; backend must validate them.
+  - Never trust client-side timing or ordering of operations for security decisions.
+
+- **Error handling**
+
+  - Frontend shows **generic** error messages.
+  - Do **not** expose raw backend error messages, stack traces, or detailed permission structures.
+  - Backend should keep detailed logs but return minimal, non-sensitive responses.
+
+- **Final hard rules**
+  - Backend decides **access**.
+  - Prisma (or ORM/backend data layer) decides **visibility**.
+  - Frontend decides **presentation** only.
+  - Webhooks or payment processors decide **money**.
+  - Database is the single source of **truth**.
