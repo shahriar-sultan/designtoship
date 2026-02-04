@@ -46,9 +46,9 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden bg-white-gradient">
-      <div className="container mx-auto">
+      <div className="w-full md:container mx-auto">
         <div
-          className="max-w-[1224px] mx-auto  rounded-[80px] relative pb-20"
+          className="max-w-[1224px] mx-auto  rounded-[30px] md:rounded-[80px] relative pb-20"
           style={{ backgroundColor: "#1A110C" }}
         >
           <div className="absolute left-0 right-0 bottom-0 w-full">
@@ -198,7 +198,10 @@ export function Testimonials() {
           {/* CTA */}
           <ScrollReveal delay={700}>
             <div className="flex justify-center mt-10">
-              <CTAButton title="রেজিস্ট্রেশন করুন (It's Free)" href="/register" />
+              <CTAButton
+                title="রেজিস্ট্রেশন করুন (It's Free)"
+                href="/register"
+              />
             </div>
           </ScrollReveal>
         </div>

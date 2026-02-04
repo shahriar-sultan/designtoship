@@ -16,7 +16,7 @@ export function Hero() {
       }}
     >
       {/* Hero Content */}
-      <div className="relative z-10 container mx-auto pt-32 md:pt-40 pb-20 md:pb-24 px-30">
+      <div className="relative z-10 container mx-auto pt-32 md:pt-40 pb-20 md:pb-24 md:px-30 px-4">
         <div className=" mx-auto">
           {/* max-w-[1209px] */}
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-8 items-center">
@@ -41,8 +41,8 @@ export function Hero() {
                 {/* Heading + Description (Frame 1000003277: vertical, 16px spacing) */}
                 <div className="flex flex-col gap-4 max-w-[593px]">
                   <h1
-                    className="text-4xl sm:text-5xl md:text-[48px] font-medium leading-
-                  [62px] tracking-[3%] max-w-[525px]"
+                    className="text-[32px] sm:text-5xl md:text-[48px] font-medium leading-[41px] md:leading-
+                  [62px] tracking-[-3%] md:tracking-[3%] max-w-[525px] text-center md:text-left"
                     style={{
                       filter:
                         "drop-shadow(0 -1px 40px rgba(135, 82, 52, 0.61))",
@@ -61,8 +61,8 @@ export function Hero() {
                     </span>
                   </h1>
                   <p
-                    className="text-[#CCCCCC] text-base md:text-[26px] leading-[39px] 
-                  w-full font-hindSiliguri tracking-tight"
+                    className="text-[#CCCCCC] text-base md:text-[26px] leading-normal md:leading-[39px] 
+                  w-full font-hindSiliguri md:tracking-tight tracking-[-1%] text-center md:text-left"
                   >
                     UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial
                     Intelligence has entered the game! তাহলে কি আপনার ছিটকে পড়া
@@ -77,7 +77,7 @@ export function Hero() {
                     title="ওয়েবিনারে আপনার সিট বুক করুন!"
                     subtitle="আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন"
                     href="/register"
-                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-lg md:text-xl font-siliguri leading-[150%]"
+                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-base md:text-xl font-siliguri leading-[150%]"
                     style={{
                       background:
                         "linear-gradient(135deg, rgb(255, 150, 0) 0%, rgb(190, 0, 100) 100%)",

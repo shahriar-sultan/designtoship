@@ -2,7 +2,7 @@
 
 export function DecorativeCard() {
   return (
-    <div className="relative w-full max-w-[584px] aspect-584/543 min-h-[400px]">
+    <div className="relative w-full md:max-w-[584px] aspect-584/543 md:min-h-[400px]">
       {/* Blurred angular gradient (Rectangle 7) - behind card */}
       <div
         className="absolute rounded-[20px] opacity-80"

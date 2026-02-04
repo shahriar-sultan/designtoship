@@ -79,9 +79,13 @@ export function CTAButton({
       {hasTitleSubtitle ? (
         <span className="block">
           {subtitle != null && subtitle !== "" && (
-            <span className="block font-semibold text-lg">{subtitle}</span>
+            <span className="block font-semibold text-base md:text-lg">
+              {subtitle}
+            </span>
           )}
-          <span className="block font-bold text-[22px]">{title}</span>
+          <span className="block font-bold text-[20px] md:text-[22px]">
+            {title}
+          </span>
         </span>
       ) : (
         <span className="block">{children}</span>
