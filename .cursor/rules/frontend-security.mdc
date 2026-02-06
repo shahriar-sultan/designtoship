@@ -6,27 +6,34 @@ alwaysApply: true
 ## Frontend Security Model
 
 - **Trust model**
-
   - Frontend may _trust_ backend; backend must **never trust** frontend.
   - UI state is **cosmetic only**, never authoritative.
   - If backend rejects something, frontend must **accept and reflect** that decision.
 
 - **API access**
-
   - Frontend **never** calls internal services directly; **all** calls go through the public API layer.
   - **Never** embed secrets, tokens, or private keys in frontend code or config.
   - **Never** encode role/permission logic into API request shapes (e.g. `isAdmin: true`).
   - Frontend asks; backend decides and enforces.
 
 - **RBAC on frontend (UX only)**
-
   - RBAC in the UI is for **user experience only**, not security.
   - Allowed: hide buttons, disable actions, adjust navigation.
   - Forbidden: protecting routes **only** via role checks on the client, or assuming permission because UI allows an action.
   - Backend is the **final authority** for access control.
 
-- **Role & permission handling**
+- **Route Protection & Middleware**
+  - **All protected routes must be secured through middleware only**; component-level security checks are **not viable** and **forbidden**.
+  - Use Next.js middleware for authentication and authorization checks before rendering any protected pages.
+  - **Never** implement route protection through:
+    - React components (e.g., `AuthGuard`, `ProtectedRoute` wrappers)
+    - Client-side hooks (e.g., `useAuth`, `useProtectedRoute`)
+    - Conditional rendering based on auth state in page components
+  - **Always** redirect unauthorized users at the middleware level before the page loads.
+  - Middleware must validate authentication tokens and permissions server-side before allowing access to protected routes.
+  - Treat any client-side route protection as purely cosmetic UX enhancement, never as security.
 
+- **Role & permission handling**
   - Frontend receives objects like:
 
     ```ts
@@ -48,27 +55,23 @@ alwaysApply: true
   - **Never** infer permissions from role names or naming conventions.
 
 - **Forms & inputs**
-
   - Add client-side validation **only for UX**; treat it as non-security.
   - Send **only** fields defined in the API contract; do not include extra/ speculative fields.
   - Expect backend to reject unknown or unexpected fields.
 
 - **State management**
-
   - **Never** store auth state (tokens, sessions, refresh tokens) in `localStorage`.
   - **Never** store sensitive data (PII, secrets, raw JWTs) in global state (e.g. Redux, query cache).
   - Clear all relevant state on logout.
   - Treat page refresh as hostile: do not assume any unstored in-memory state is still valid.
 
 - **Network & MITM reality**
-
   - Assume requests can be modified, responses inspected, and calls replayed.
   - Important responses should be signed/validated and always checked server-side.
   - Use nonces or similar mechanisms for critical actions; backend must validate them.
   - Never trust client-side timing or ordering of operations for security decisions.
 
 - **Error handling**
-
   - Frontend shows **generic** error messages.
   - Do **not** expose raw backend error messages, stack traces, or detailed permission structures.
   - Backend should keep detailed logs but return minimal, non-sensitive responses.
@@ -83,20 +86,17 @@ alwaysApply: true
 ## Design & Theme Adherence
 
 - **Use existing theme**
-
   - Always use the project's existing design tokens and utilities (e.g. Tailwind config, `design-system.json`, shared UI components).
   - **Do not introduce new colors** (hex, rgb, hsl, tailwind classes) unless explicitly provided by the user or the design system.
   - **Do not change** global typography scale, spacing scale, or border-radius system unless the user clearly asks for it.
   - Prefer existing shared components (buttons, inputs, cards, etc.) over creating new visual variants.
 
 - **When fixing or polishing a component**
-
   - Preserve **all existing functionality and behavior**; adjust only styling, layout, and classes unless explicitly told otherwise.
   - Keep the component's public API (props, events) and behavior stable unless the user explicitly allows changes.
   - Align visuals with the current project theme (colors, spacing, radii, shadows, typography) instead of inventing new styles.
 
 - **Using Figma → code (JSON or spec)**
-
   - Treat the provided Figma design (JSON, spec, or description) as the **single source of truth** for layout, spacing, colors, typography, and states.
   - **Do not extend or modify the design** beyond what is specified in Figma (no "extra" animations, states, or variants) unless the user explicitly asks.
   - Map Figma tokens to the existing theme tokens where possible (e.g. use the closest existing color/spacing token instead of raw values).

@@ -6,11 +6,10 @@ import { Navbar } from "./Navbar";
 export function ConditionalNavbar() {
   const pathname = usePathname();
   
-  // Hide navbar on login, register, and verify-email pages
-  const hideNavbar = 
-    pathname === "/login" || 
-    pathname === "/register" || 
-    pathname === "/verify-email";
+  // Hide navbar on auth pages and dashboard
+  const hideNavbar =
+    pathname.startsWith("/auth/") ||
+    pathname.startsWith("/dashboard");
   
   if (hideNavbar) {
     return null;

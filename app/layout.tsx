@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Bengali, Hind_Siliguri } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Noto_Sans_Bengali,
+  Hind_Siliguri,
+} from "next/font/google";
 import "./globals.css";
 import { ConditionalNavbar } from "@/components/ConditionalNavbar";
+import { SessionProvider } from "@/components/providers/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,11 +47,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} ${hindSiliguri.variable} antialiased font-sans`}
         style={{
-          fontFamily: "var(--font-hind-siliguri), var(--font-bengali), var(--font-geist-sans), sans-serif",
+          fontFamily:
+            "var(--font-hind-siliguri), var(--font-bengali), var(--font-geist-sans), sans-serif",
         }}
       >
-        <ConditionalNavbar />
-        {children}
+        <SessionProvider>
+          <ConditionalNavbar />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

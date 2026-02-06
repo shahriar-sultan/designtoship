@@ -1,0 +1,60 @@
+---
+description: All API calls must go through BFF, never direct backend calls from frontend
+alwaysApply: true
+---
+
+# BFF-Only API Calls
+
+All API calls must be executed through the Backend for Frontend (BFF) layer. Direct calls to backend API URLs from components or frontend code are strictly forbidden.
+
+## Architecture Requirements
+
+- ✅ All API calls must go through the BFF layer
+- ✅ Frontend components call BFF endpoints only
+- ✅ BFF handles authentication, data transformation, and aggregation
+- ✅ Direct backend API calls are not allowed from frontend
+
+## Forbidden Practices
+
+- ❌ Direct `fetch()` or `axios` calls to backend URLs in components
+- ❌ API calls in React components, hooks, or utility functions
+- ❌ Hardcoded backend API URLs in frontend code
+- ❌ Direct database queries from frontend
+
+## Required Practices
+
+- ✅ All data fetching through BFF endpoints
+- ✅ Use proper BFF routing and middleware
+- ✅ Frontend receives pre-processed data from BFF
+- ✅ Authentication and authorization handled at BFF level
+
+## Examples
+
+```typescript
+// ❌ BAD - Direct backend call from component
+const fetchCourses = async () => {
+  const response = await fetch('https://api.backend.com/courses');
+  return response.json();
+};
+
+// ❌ BAD - Direct backend call in custom hook
+export const useCourses = () => {
+  return useQuery({
+    queryKey: ['courses'],
+    queryFn: () => fetch('https://api.backend.com/courses')
+  });
+};
+
+// ✅ GOOD - Call through BFF
+const fetchCourses = async () => {
+  const response = await fetch('/api/courses'); // BFF endpoint
+  return response.json();
+};
+
+// ✅ GOOD - BFF route handles backend communication
+// In BFF: app/api/courses/route.ts
+export async function GET() {
+  const backendData = await fetchBackendAPI('/courses');
+  return NextResponse.json(transformData(backendData));
+}
+```

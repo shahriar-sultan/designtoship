@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { login } from "@/lib/api";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,16 +26,16 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await login(email, password);
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-      if (response.ok) {
-        router.push("/webinar");
-      } else if (response.status === 401) {
+      if (result?.error) {
         setError("Invalid email or password");
-      } else if (response.status === 429) {
-        setError("Too many attempts. Please try again later.");
-      } else {
-        setError("An error occurred. Please try again.");
+      } else if (result?.ok) {
+        router.push("/dashboard");
       }
     } catch (err) {
       setError("Network error. Please check your connection.");
@@ -49,7 +49,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription>Enter your credentials to access the webinar</CardDescription>
+          <CardDescription>Enter your credentials to access the admin dashboard</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

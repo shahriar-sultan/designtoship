@@ -1,0 +1,39 @@
+---
+description: Prohibits mock data implementation - use only real data
+alwaysApply: true
+---
+
+# No Mock Data Implementation
+
+This project strictly prohibits the use of mock data, dummy data, or hardcoded test data in any form. All data must come from real backend sources.
+
+## Forbidden Practices
+
+- ❌ Creating mock objects or fake API responses
+- ❌ Hardcoded test data in components
+- ❌ Fake user objects, courses, or any domain data
+- ❌ Mock services or repositories
+- ❌ Static JSON files with sample data
+
+## Required Practices
+
+- ✅ All data must come from actual backend APIs
+- ✅ Use real database connections and queries
+- ✅ Implement proper error handling for API failures
+- ✅ Use loading states while fetching real data
+
+## Examples
+
+```typescript
+// ❌ BAD - Mock data
+const mockCourses = [
+  { id: 1, title: "React Basics", instructor: "John Doe" },
+  { id: 2, title: "Advanced TypeScript", instructor: "Jane Smith" }
+];
+
+// ✅ GOOD - Real data from API
+const { data: courses, isLoading } = useQuery({
+  queryKey: ['courses'],
+  queryFn: () => apiClient.get('/courses')
+});
+```
