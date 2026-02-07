@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { verifyEmail } from '@/lib/api';
 import Loading from '@/components/Loading';
 
 function VerifyEmailContent() {
@@ -28,7 +27,13 @@ function VerifyEmailContent() {
 
     const verify = async () => {
       try {
-        const response = await verifyEmail(token);
+        const response = await fetch('/api/auth/verify-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token }),
+        });
 
         if (response.ok) {
           setStatus('success');
@@ -51,11 +56,12 @@ function VerifyEmailContent() {
         } else if (response.status === 400 || response.status === 401) {
           setStatus('error');
           const data = await response.json().catch(() => ({}));
-          setError(data.message || 'Verification failed. The token may be invalid or expired.');
+          setError(data.error || 'Verification failed. The token may be invalid or expired.');
           router.replace('/verify-email');
         } else {
           setStatus('error');
-          setError('Verification failed. Please try again.');
+          const data = await response.json().catch(() => ({}));
+          setError(data.error || 'Verification failed. Please try again.');
           router.replace('/verify-email');
         }
       } catch (err) {

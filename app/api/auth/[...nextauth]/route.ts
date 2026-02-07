@@ -1,32 +1,13 @@
 import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
+import CredentialsProvider from "next-auth/providers/credentials"
 
-declare module "next-auth" {
-  interface User {
-    role?: string;
-  }
-  interface Session {
-    user: {
-      id: string;
-      email: string;
-      name?: string;
-      role?: string;
-    };
-  }
-}
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    role?: string;
-  }
-}
-
-const authConfig = {
+export const authOptions = {
   providers: [
-    Credentials({
+    CredentialsProvider({
+      name: "credentials",
       credentials: {
-        email: { type: "email" },
-        password: { type: "password" }
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
         try {
@@ -34,8 +15,8 @@ const authConfig = {
             return null;
           }
 
-          // Call local BFF route instead of direct external API
-          const response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/auth/login`, {
+          // Call external BFF API directly
+          const response = await fetch(`${process.env.NEXT_PUBLIC_BFF_API_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -45,25 +26,26 @@ const authConfig = {
           });
 
           if (!response.ok) {
-            console.error('Auth BFF route failed:', response.status, response.statusText);
+            console.error('Auth BFF API failed:', response.status, response.statusText);
             return null;
           }
 
           const user = await response.json();
 
-          // Validate user data structure
-          if (!user || !user.id || !user.email) {
-            console.error('Invalid user data from BFF route:', user);
+          // Validate user data structure - adjust based on actual BFF response format
+          if (!user || !user.data?.user?.id || !user.data?.user?.email) {
+            console.error('Invalid user data from BFF API:', user);
             return null;
           }
 
+          const userData = user.data.user;
+
           // Return user object for NextAuth
           return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role || 'user',
-            ...user
+            id: userData.id,
+            email: userData.email,
+            name: userData.name || `${userData.firstName} ${userData.lastName}`,
+            role: userData.role || 'user',
           };
         }
         catch (error) {
@@ -73,29 +55,30 @@ const authConfig = {
       }
     })
   ],
+  session: {
+    strategy: 'jwt' as const
+  },
   pages: {
     signIn: '/auth/login',
   },
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    jwt: async ({ token, user }: { token: any; user: any }) => {
       if (user) {
         token.role = user.role;
       }
       return token;
     },
-    async session({ session, token }: { session: any; token: any }) {
+    session: async ({ session, token }: { session: any; token: any }) => {
       if (token) {
-        session.user.id = token.sub!;
-        session.user.role = token.role as string;
+        session.user.id = token.sub;
+        session.user.role = token.role;
       }
       return session;
     }
-  },
-  session: {
-    strategy: 'jwt' as const
   }
 }
 
-const handler = NextAuth(authConfig)
+const handler = NextAuth(authOptions)
 
-export { handler as GET, handler as POST }
+export const GET = handler
+export const POST = handler
