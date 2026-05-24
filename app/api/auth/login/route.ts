@@ -1,70 +1,72 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import { loginWithBackend } from "@/lib/auth-options";
+import { extractEnvelopeData as extractData } from "@/lib/backend";
+
+type LoginData = {
+  user?: {
+    id: string;
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    role?: string;
+  };
+  accessToken?: string;
+  refreshToken?: string;
+};
 
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
-    // Validate input
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
-        { status: 400 }
+        { error: "Email and password are required" },
+        { status: 400 },
       );
     }
 
-    const apiUrl = process.env.NEXT_PUBLIC_BFF_API_URL;
-    if (!apiUrl) {
-      console.error('NEXT_PUBLIC_BFF_API_URL is not configured');
-      return NextResponse.json(
-        { error: 'Server configuration error' },
-        { status: 500 }
-      );
-    }
-
-    // Call external BFF API
-    const response = await fetch(`${apiUrl}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'LMS-Platform-Frontend/1.0',
-      },
-      body: JSON.stringify({ email, password }),
-      credentials: 'include'
-    });
+    const { response, json } = await loginWithBackend(email, password);
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      const message =
+        (json as { message?: string })?.message ?? "Authentication failed";
+      return NextResponse.json({ error: message }, { status: response.status });
+    }
+
+    const data = extractData<LoginData>(json);
+    const user = data?.user;
+
+    if (!user?.id || !user?.email || !data?.accessToken) {
       return NextResponse.json(
-        { error: errorData.message || 'Authentication failed' },
-        { status: response.status }
+        { error: "Invalid response from authentication service" },
+        { status: 500 },
       );
     }
 
-    const userData = await response.json();
-
-    // Validate response structure
-    if (!userData || !userData.id || !userData.email) {
-      console.error('Invalid user data structure from BFF API');
-      return NextResponse.json(
-        { error: 'Invalid response from authentication service' },
-        { status: 500 }
-      );
-    }
-
-    // Return user data for NextAuth
-    return NextResponse.json({
-      id: userData.id,
-      email: userData.email,
-      name: userData.name,
-      role: userData.role || 'user',
-      ...userData
+    const res = NextResponse.json({
+      id: user.id,
+      email: user.email,
+      name: [user.firstName, user.lastName].filter(Boolean).join(" "),
+      role: user.role ?? "STUDENT",
+      accessToken: data.accessToken,
     });
 
+    if (data.refreshToken) {
+      res.cookies.set("refreshToken", data.refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        maxAge: 7 * 24 * 60 * 60,
+      });
+    }
+
+    return res;
   } catch (error) {
-    console.error('Auth BFF route error:', error);
+    console.error("Auth BFF route error:", error);
     return NextResponse.json(
-      { error: 'Internal server error during authentication' },
-      { status: 500 }
+      { error: "Internal server error during authentication" },
+      { status: 500 },
     );
   }
 }

@@ -47,7 +47,7 @@ function VerifyEmailContent() {
                 if (countdownInterval) {
                   clearInterval(countdownInterval);
                 }
-                router.push('/login');
+                router.push('/login?verified=1');
                 return 0;
               }
               return prev - 1;

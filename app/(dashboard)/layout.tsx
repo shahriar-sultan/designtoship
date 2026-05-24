@@ -4,18 +4,26 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ClientRoot } from "@/components/dashboard/ClientRoot";
-import { SessionProvider } from "next-auth/react";
 import Loading from "@/components/Loading";
 
-function DashboardContent({ children, defaultOpen }: { children: React.ReactNode; defaultOpen: boolean }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [defaultOpen, setDefaultOpen] = useState(false);
 
   useEffect(() => {
-    if (status === "loading") return; // Still loading
+    const sidebarState = localStorage.getItem("sidebar_state");
+    setDefaultOpen(sidebarState === "true");
+  }, []);
 
+  useEffect(() => {
+    if (status === "loading") return;
     if (!session) {
-      router.push("/auth/login");
+      router.push("/login");
     }
   }, [session, status, router]);
 
@@ -28,35 +36,8 @@ function DashboardContent({ children, defaultOpen }: { children: React.ReactNode
   }
 
   if (!session) {
-    return (
-      <div className="p-8 text-center">
-        <h2 className="text-xl font-semibold mb-2">Access Denied</h2>
-        <p className="text-muted-foreground">Please log in to access the dashboard.</p>
-      </div>
-    );
+    return null;
   }
 
   return <ClientRoot defaultOpen={defaultOpen}>{children}</ClientRoot>;
-}
-
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [defaultOpen, setDefaultOpen] = useState(false);
-
-  useEffect(() => {
-    // Get sidebar state from localStorage
-    const sidebarState = localStorage.getItem("sidebar_state");
-    setDefaultOpen(sidebarState === "true");
-  }, []);
-
-  return (
-    <SessionProvider>
-      <DashboardContent defaultOpen={defaultOpen}>
-        {children}
-      </DashboardContent>
-    </SessionProvider>
-  );
 }

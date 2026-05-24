@@ -3,18 +3,15 @@ import { extractEnvelopeData, fetchBackend } from "@/lib/backend";
 
 export async function POST(request: NextRequest) {
   try {
-    const { token } = await request.json();
+    const { email } = await request.json();
 
-    if (!token) {
-      return NextResponse.json(
-        { error: "Verification token is required" },
-        { status: 400 },
-      );
+    if (!email) {
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const response = await fetchBackend("/auth/verify-email", {
+    const response = await fetchBackend("/auth/resend-verification", {
       method: "POST",
-      body: JSON.stringify({ token }),
+      body: JSON.stringify({ email }),
     });
 
     const json = await response.json().catch(() => ({}));
@@ -24,22 +21,23 @@ export async function POST(request: NextRequest) {
         {
           error:
             (json as { message?: string }).message ??
-            "Email verification failed",
+            "Failed to resend verification",
         },
         { status: response.status },
       );
     }
 
-    const data = extractEnvelopeData(json);
     return NextResponse.json({
       success: true,
-      message: (json as { message?: string }).message ?? "Email verified",
-      ...((data as object) ?? {}),
+      message:
+        (json as { message?: string }).message ??
+        "Verification email sent if the account exists.",
+      data: extractEnvelopeData(json),
     });
   } catch (error) {
-    console.error("Email verification BFF route error:", error);
+    console.error("Resend verification BFF error:", error);
     return NextResponse.json(
-      { error: "Internal server error during email verification" },
+      { error: "Internal server error" },
       { status: 500 },
     );
   }

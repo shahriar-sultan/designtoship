@@ -9,7 +9,11 @@ export function ConditionalNavbar() {
   // Hide navbar on auth pages and dashboard
   const hideNavbar =
     pathname.startsWith("/auth/") ||
-    pathname.startsWith("/dashboard");
+    pathname.startsWith("/dashboard") ||
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/verify-email" ||
+    pathname === "/";
   
   if (hideNavbar) {
     return null;

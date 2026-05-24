@@ -1,70 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
+import { extractEnvelopeData, fetchBackend } from "@/lib/backend";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, firstName, lastName, profession } =
-      await request.json();
+    const body = await request.json();
+    const { email, password, firstName, lastName, name, phone, profession } =
+      body;
 
-    // Validate input
-    if (!email || !password || !firstName || !lastName) {
+    let resolvedFirst = firstName;
+    let resolvedLast = lastName;
+    if (name && (!resolvedFirst || !resolvedLast)) {
+      const parts = String(name).trim().split(/\s+/);
+      resolvedFirst = resolvedFirst ?? parts[0] ?? "";
+      resolvedLast = resolvedLast ?? parts.slice(1).join(" ") ?? "";
+    }
+
+    if (!email || !password || !resolvedFirst) {
       return NextResponse.json(
-        { error: "Email, password, first name, and last name are required" },
+        { error: "Email, password, and name are required" },
         { status: 400 },
       );
     }
 
-    const apiUrl = process.env.NEXT_PUBLIC_BFF_API_URL;
-    if (!apiUrl) {
-      console.error("NEXT_PUBLIC_BFF_API_URL is not configured");
-      return NextResponse.json(
-        { error: "Server configuration error" },
-        { status: 500 },
-      );
-    }
-
-    // Call external BFF API
-    const response = await fetch(`${apiUrl}/auth/register`, {
+    const response = await fetchBackend("/auth/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "User-Agent": "LMS-Platform-Frontend/1.0",
-      },
       body: JSON.stringify({
         email,
         password,
-        firstName,
-        lastName,
-        profession,
+        firstName: resolvedFirst,
+        lastName: resolvedLast || resolvedFirst,
+        phone: phone || undefined,
+        profession: profession || undefined,
       }),
-      credentials: "include",
     });
 
+    const json = await response.json().catch(() => ({}));
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
       return NextResponse.json(
-        { error: errorData.message || "Registration failed" },
+        {
+          error:
+            (json as { message?: string }).message ?? "Registration failed",
+        },
         { status: response.status },
       );
     }
 
-    const registrationData = await response.json();
-
-    // Validate response structure
-    if (!registrationData || !registrationData.success) {
-      console.error("Invalid registration response structure from BFF API");
-      return NextResponse.json(
-        { error: "Invalid response from registration service" },
-        { status: 500 },
-      );
-    }
-
-    // Return registration data including any verification token
+    const data = extractEnvelopeData(json);
     return NextResponse.json({
       success: true,
-      message: registrationData.message,
-      user: registrationData.data?.user,
-      verificationToken: registrationData.data?.verificationToken,
-      ...registrationData.data,
+      message:
+        (json as { message?: string }).message ??
+        "Registration successful. Please check your email to verify your account.",
+      data,
     });
   } catch (error) {
     console.error("Registration BFF route error:", error);
