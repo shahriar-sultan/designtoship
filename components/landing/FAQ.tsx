@@ -1,122 +1,102 @@
 "use client";
 
-import { CTAButton } from "./CTAButton";
-import { Lightbulb } from "lucide-react";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDown } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { cn } from "@/lib/utils";
+import {
+  EYEBROW,
+  ZIGZAG_SECTION_ROOT,
+  SECTION_INNER,
+  CONTENT_COLUMN_RIGHT,
+  PARTICLE_COLUMN_LEFT,
+} from "./constants";
 
-const faqCategories = [
+const faqs = [
   {
-    title: "AI Vs. You",
-    questions: [
-      "AI কি সম্পূর্ণরূপে ডিজাইনারদের Replace করবে?",
-      "AI-Dominated ইন্ডাস্ট্রিতে কীভাবে প্রাসঙ্গিক থাকবো?",
-      "প্রথমে কোন AI টুলস শিখবেন?",
-    ],
+    id: "faq-1",
+    question: "Do I need to know design or coding before joining?",
+    answer:
+      "No. This course starts from zero. The only thing you need is a computer, an internet connection, and the willingness to show up and do the work.",
   },
   {
-    title: "Designing Career",
-    questions: [
-      "শুরু করার জন্য কি ডিজাইন ডিগ্রি দরকার?",
-      "প্রফেশনাল ডিজাইনার হতে কত সময় লাগে?",
-      "বিগিনার হিসেবে কত স্যালারি আশা করতে পারি?",
-    ],
+    id: "faq-2",
+    question: "Will I really not write any code?",
+    answer:
+      "Correct. You will learn to give very precise instructions to AI, and the AI will write the code. Your job is to design well and direct the AI clearly. That is the skill.",
   },
   {
-    title: "Practical Learning",
-    questions: [
-      "আমার পোর্টফোলিওতে কোন প্রজেক্টস ইনক্লুড করব?",
-      "প্রথম ডিজাইন জব কীভাবে খুঁজব?",
-      "ডিজাইন স্কিলস প্র্যাকটিস করার সেরা উপায় কী?",
-    ],
+    id: "faq-3",
+    question: "What if I miss a class?",
+    answer:
+      "Every class is recorded. You will have lifetime access to all recordings. But showing up live is how you get the most out of the Build Labs and the feedback.",
+  },
+  {
+    id: "faq-4",
+    question: "What is a product track?",
+    answer:
+      "Everyone in the batch works on a different version of the same product type. You will be assigned a track before the batch starts. This way you have peers to compare with, and a senior designer can give you focused feedback.",
+  },
+  {
+    id: "faq-5",
+    question: "When does Batch 4 start?",
+    answer:
+      "The start date will be announced once the pre-sale closes. You will be the first to know after you apply.",
   },
 ];
 
 export function FAQ() {
   return (
-    <section className="relative bg-white-gradient py-16 md:py-20 lg:py-24">
-      {/* Top Gradient */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[341px] pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 244, 237, 1) 100%)",
-        }}
-      />
-
-      <div className="relative z-10 container mx-auto">
-        <div className="max-w-[1200px] mx-auto">
-          {/* Section Badge */}
+    <section
+      id="faq"
+      data-particle-shape="speech-bubble"
+      data-particle-side="left"
+      className={ZIGZAG_SECTION_ROOT}
+      style={{ background: "transparent" }}
+    >
+      <div className={PARTICLE_COLUMN_LEFT} aria-hidden="true" />
+      <div className={CONTENT_COLUMN_RIGHT}>
+        <div className={SECTION_INNER}>
           <ScrollReveal>
-            <div className="flex justify-center mb-8">
-              <div
-                className="rounded-full px-6 py-2 inline-flex items-center"
-                style={{
-                  backgroundColor: "rgba(255, 244, 237, 0.5)",
-                  border: "1px solid rgba(151, 114, 89, 0.59)",
-                }}
-              >
-                <span
-                  className="text-base font-medium"
-                  style={{ color: "#AA5B2F" }}
-                >
-                  FAQ
-                </span>
-              </div>
-            </div>
+            <p className={`${EYEBROW} mb-4`}>COMMON QUESTIONS</p>
           </ScrollReveal>
-
-          {/* Main Heading */}
           <ScrollReveal delay={100}>
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-center mb-12 max-w-[622px] mx-auto bg-linear-to-br from-[#1F1A17] to-[#D7540D] bg-clip-text text-transparent"
-            >
-              যে প্রশ্নের উত্তর আপনার জন্য অপেক্ষা করছে এই Webiner-এ!
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-10 md:mb-14">
+              Questions people ask before joining.
             </h2>
           </ScrollReveal>
 
-          {/* FAQ Categories */}
-          <div className="space-y-14 max-w-[632px] mx-auto">
-            {faqCategories.map((category, categoryIndex) => (
-              <ScrollReveal key={categoryIndex} delay={200 + categoryIndex * 100}>
-                <div className="space-y-4">
-                  <h3
-                    className="text-xl font-semibold"
-                    style={{ color: "#AE4407" }}
-                  >
-                    {category.title}
-                  </h3>
-                  <div className="space-y-5">
-                    {category.questions.map((question, questionIndex) => (
-                      <div key={questionIndex} className="flex items-start gap-4">
-                        <div
-                          className="w-8 h-8 flex-shrink-0 mt-0.5"
-                          style={{ color: "#7E7068" }}
-                        >
-                          <Lightbulb
-                            className="w-full h-full"
-                            strokeWidth={1.5}
-                            fill="currentColor"
-                          />
-                        </div>
-                        <p
-                          className="text-base md:text-lg leading-relaxed"
-                          style={{ color: "#402617" }}
-                        >
-                          {question}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <ScrollReveal delay={500}>
-            <div className="flex justify-center mt-10">
-              <CTAButton title="রেজিস্ট্রেশন করুন (It's Free)" href="/register" />
-            </div>
+          <ScrollReveal delay={200}>
+            <Accordion.Root type="single" collapsible className="space-y-3">
+              {faqs.map((faq) => (
+                <Accordion.Item
+                  key={faq.id}
+                  value={faq.id}
+                  className="rounded-2xl border border-[#1C2740] bg-[#0F1520] overflow-hidden"
+                >
+                  <Accordion.Header>
+                    <Accordion.Trigger
+                      className={cn(
+                        "flex w-full items-center justify-between gap-4 px-6 py-5 text-left",
+                        "text-[#F1F5F9] font-medium text-base md:text-lg",
+                        "hover:bg-[#0F1520]/80 transition-colors group cursor-pointer",
+                      )}
+                    >
+                      {faq.question}
+                      <ChevronDown
+                        className="w-5 h-5 text-[#94A3B8] shrink-0 transition-transform group-data-[state=open]:rotate-180"
+                        strokeWidth={1.5}
+                      />
+                    </Accordion.Trigger>
+                  </Accordion.Header>
+                  <Accordion.Content className="overflow-hidden">
+                    <p className="px-6 pb-5 text-[#94A3B8] text-base leading-relaxed border-t border-[#1C2740] pt-4">
+                      {faq.answer}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
           </ScrollReveal>
         </div>
       </div>

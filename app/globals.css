@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080C14;
+  min-height: 100vh;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

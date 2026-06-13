@@ -12,8 +12,7 @@ export function ConditionalNavbar() {
     pathname.startsWith("/dashboard") ||
     pathname === "/login" ||
     pathname === "/register" ||
-    pathname === "/verify-email" ||
-    pathname === "/";
+    pathname === "/verify-email";
   
   if (hideNavbar) {
     return null;

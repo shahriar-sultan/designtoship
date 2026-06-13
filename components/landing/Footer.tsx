@@ -1,82 +1,61 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { Twitter, Youtube, Linkedin } from "lucide-react";
-
-const socials = [
-  { icon: Twitter, label: "Twitter", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-];
+import { GRADIENT_TEXT } from "./constants";
 
 export function Footer() {
+  const router = useRouter();
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <footer
-      className="relative py-16 md:py-20 lg:py-24"
-      style={{ backgroundColor: "#1A110C" }}
+      data-particle-shape="dispersing-pulse"
+      data-particle-side="center"
+      className="relative z-10 w-full bg-[#080C14] py-12 px-6"
     >
-      <div className="container mx-auto">
-        <div className="max-w-[1052px] mx-auto">
-          {/* Main Heading */}
-          <ScrollReveal>
-            <div className="text-center mb-10 space-y-6">
-              <h2
-                className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2]"
-                style={{ color: "#FFE8D9" }}
-              >
-                কথা বলুন, প্রশ্ন করুন, বা পরবর্তী গাইডলাইন নিন, আমরা আছি আপনার
-                পাশে।
-              </h2>
-              <p
-                className="text-lg md:text-xl leading-relaxed max-w-[826px] mx-auto"
-                style={{ color: "#CBCCCC" }}
-              >
-                ডিজাইন বা AI শেখার যাত্রায় কেউ একা এগোতে পারে না। আপনার যেকোনো
-                প্রশ্ন, পরামর্শ বা কোর্স সংক্রান্ত সহায়তার জন্য আমাদের সাথে
-                যোগাযোগ করুন।
+      <div className="container mx-auto max-w-6xl">
+        <ScrollReveal>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 py-4 border-t border-[#1C2740]">
+            <div>
+              <p className={`text-lg font-bold ${GRADIENT_TEXT}`}>
+                Design & Ship with AI
               </p>
+              <p className="text-[#475569] text-sm mt-1">Batch 4 · 2026</p>
             </div>
-          </ScrollReveal>
 
-          {/* Social Icons */}
-          <ScrollReveal delay={100}>
-            <div className="flex justify-center gap-4">
-              {socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="relative w-12 h-12 rounded-full flex items-center justify-center transition-transform hover:scale-110 cursor-pointer"
-                  aria-label={social.label}
-                >
-                  <div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #FF9600 0%, #BE0064 100%)",
-                      boxShadow: "0 12px 30px rgba(77, 43, 23, 0.28)",
-                    }}
-                  />
-                  <social.icon
-                    className="relative z-10 w-6 h-6 text-white"
-                    strokeWidth={2}
-                  />
-                </a>
-              ))}
-            </div>
-          </ScrollReveal>
-
-          {/* Copyright */}
-          <ScrollReveal delay={200}>
-            <div className="text-center mt-10">
-              <p
-                className="text-base"
-                style={{ color: "#949494" }}
+            <nav className="flex items-center gap-6 text-sm">
+              <button
+                type="button"
+                onClick={() => scrollTo("curriculum")}
+                className="text-[#94A3B8] hover:text-[#F1F5F9] transition-colors cursor-pointer"
               >
-                © {new Date().getFullYear()} Shahriar Sultan. All rights reserved.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
+                Curriculum
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollTo("pricing")}
+                className="text-[#94A3B8] hover:text-[#F1F5F9] transition-colors cursor-pointer"
+              >
+                Pricing
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push("/register")}
+                className="text-[#94A3B8] hover:text-[#F1F5F9] transition-colors cursor-pointer"
+              >
+                Apply
+              </button>
+            </nav>
+          </div>
+        </ScrollReveal>
+
+        <p className="text-center text-[#475569] text-sm pt-4 border-t border-[#1C2740]">
+          © 2026 Shahriar Sultan · The Design Workbench
+        </p>
       </div>
     </footer>
   );

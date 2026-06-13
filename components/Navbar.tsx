@@ -9,6 +9,12 @@ interface NavbarProps {
   className?: string;
 }
 
+const navBarStyle = {
+  backgroundColor: "rgba(8, 12, 20, 0.9)",
+  backdropFilter: "blur(20px)",
+  borderBottom: "1px solid #1C2740",
+} as const;
+
 export function Navbar({ className = "" }: NavbarProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -22,31 +28,19 @@ export function Navbar({ className = "" }: NavbarProps) {
 
   return (
     <>
-      {/* Mobile navbar - Figma style, no language/flag */}
       <nav
-        className={`fixed z-50 inset-x-4 left-[10px] top-6 md:hidden ${
-          isOpen
-            ? "min-h-[170px] rounded-[20px] flex flex-col justify-between"
-            : "rounded-[100px]"
-        } ${className}`}
-        style={{
-          maxWidth: "350px",
-          width: "calc(100vw - 20px)",
-          backgroundColor: "rgba(0, 0, 0, 0.04)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(151, 114, 89, 0.3)",
-          boxShadow: "0px 10px 39px rgba(166, 125, 102, 0.1)",
-        }}
+        className={`fixed top-0 inset-x-0 z-50 md:hidden ${className}`}
+        style={navBarStyle}
       >
-        <div className="flex items-center justify-between px-5 py-3">
-          <span className="text-[#FFFDFB] text-base font-semibold">
+        <div className="flex items-center justify-between h-14 px-4">
+          <span className="text-[#F1F5F9] text-base font-semibold">
             Shahriar Sultan
           </span>
 
           <button
             type="button"
             onClick={toggleMenu}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#FFFDFB]"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#F1F5F9]"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -54,44 +48,32 @@ export function Navbar({ className = "" }: NavbarProps) {
         </div>
 
         {isOpen && (
-          <div className="px-5 pb-4 pt-0">
+          <div className="px-4 pb-4 border-t border-[#1C2740]">
             <Button
               onClick={handleRegisterClick}
-              className="w-full rounded-full bg-[#362012] hover:bg-[#452A1A] text-white text-sm font-semibold py-2.5"
+              className="w-full rounded-full bg-white-gradient hover:opacity-90 text-[#15120D] text-sm font-semibold py-2.5"
             >
-              রেজিস্ট্রেশন করুন!
+              Apply for Batch 4
             </Button>
           </div>
         )}
       </nav>
 
-      {/* Desktop/Tablet navbar - original pill style */}
       <nav
-        className={`hidden md:block fixed top-12 left-1/2 transform -translate-x-1/2 z-50 ${className}`}
-        style={{
-          maxWidth: "1200px",
-          width: "calc(100% - 2rem)",
-          height: "80px",
-          backgroundColor: "#1a110c2e",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(151, 114, 89, 0.3)",
-          borderRadius: "100px",
-          boxShadow: "0px 8px 29px rgba(151, 114, 89, 0.15)",
-        }}
+        className={`hidden md:block fixed top-0 inset-x-0 z-50 ${className}`}
+        style={navBarStyle}
       >
-        <div className="flex items-center justify-between h-full px-6 md:px-8">
-          <div className="text-white text-lg md:text-xl font-semibold">
+        <div className="flex items-center justify-between h-14 max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-[#F1F5F9] text-lg font-semibold">
             Shahriar Sultan
           </div>
 
-          <div className="flex items-center gap-3 md:gap-4">
-            <Button
-              onClick={handleRegisterClick}
-              className="bg-white-gradient hover:opacity-90 text-[#15120D] px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-semibold transition-colors shadow-lg"
-            >
-              রেজিস্ট্রেশন করুন!
-            </Button>
-          </div>
+          <Button
+            onClick={handleRegisterClick}
+            className="bg-white-gradient hover:opacity-90 text-[#15120D] px-6 py-2 rounded-full text-sm font-semibold transition-colors shadow-lg"
+          >
+            Apply for Batch 4
+          </Button>
         </div>
       </nav>
     </>

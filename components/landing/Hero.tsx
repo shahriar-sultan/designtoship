@@ -1,97 +1,89 @@
 "use client";
 
-import { CTAButton } from "./CTAButton";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { DecorativeCard } from "@/components/DecorativeCard";
+import { LandingButton } from "./LandingButton";
+import { EYEBROW } from "./constants";
+
+const stats = [
+  { value: "78+", label: "Hours Live" },
+  { value: "2", label: "Projects Shipped" },
+  { value: "1", label: "Senior Designer" },
+];
 
 export function Hero() {
+  const scrollToWhatYouShip = () => {
+    document.getElementById("what-you-ship")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
-      className="relative overflow-hidden min-h-[832px]"
-      style={{
-        backgroundImage: "url('/svgs/heroBg.svg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
-        backgroundRepeat: "no-repeat",
-      }}
+      data-particle-shape="scattered-cloud"
+      data-particle-side="center"
+      className="relative z-10 min-h-screen"
+      style={{ background: "transparent" }}
     >
-      {/* Hero Content */}
-      <div className="relative z-10 container mx-auto pt-32 md:pt-40 pb-20 md:pb-24 md:px-30 px-4">
-        <div className=" mx-auto">
-          {/* max-w-[1209px] */}
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-8 items-center">
-            {/* Left Column - Content */}
-            <ScrollReveal direction="right">
-              <div className="space-y-8 max-w-[593px]">
-                {/* Badge */}
-                <div className="inline-flex">
-                  <div
-                    className="rounded-full px-6 py-1.5 inline-flex items-center"
-                    style={{
-                      backgroundColor: "rgba(25, 23, 21, 0.5)",
-                      border: "1px solid rgba(151, 114, 93, 0.59)",
-                    }}
-                  >
-                    <span className="text-[#FFFBF9] text-sm md:text-base font-medium">
-                      FREE live webinar with Shahriar Sultan
-                    </span>
-                  </div>
-                </div>
+      <div className="flex flex-col items-center justify-center text-center min-h-screen px-6 pt-16 pb-16">
+        <div
+          className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl py-12 px-6"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(8,12,20,0.75) 0%, rgba(8,12,20,0.4) 60%, transparent 100%)",
+          }}
+        >
+          <div className="space-y-8 w-full">
+            <ScrollReveal>
+              <p className={EYEBROW}>BATCH 4 · ENROLLMENT OPEN</p>
+            </ScrollReveal>
 
-                {/* Heading + Description (Frame 1000003277: vertical, 16px spacing) */}
-                <div className="flex flex-col gap-4 max-w-[593px]">
-                  <h1
-                    className="text-[32px] sm:text-5xl md:text-[48px] font-medium leading-[41px] md:leading-
-                  [62px] tracking-[-3%] md:tracking-[3%] max-w-[525px] text-center md:text-left"
-                    style={{
-                      filter:
-                        "drop-shadow(0 -1px 40px rgba(135, 82, 52, 0.61))",
-                    }}
-                  >
-                    <span className="text-[#D7540D] font-bold">AI-</span>
-                    <span className="text-white">
-                      পাড় কহে ছাড়িয়া নিঃশ্বাস, এই{" "}
-                    </span>
-                    <span className="text-gradient-custom font-bold">
-                      Webiner
-                    </span>
-                    <span className="text-white">
-                      {" "}
-                      আপনার লাগি, আমার বিশ্বাস
-                    </span>
-                  </h1>
-                  <p
-                    className="text-[#CCCCCC] text-base md:text-[26px] leading-normal md:leading-[39px] 
-                  w-full font-hindSiliguri md:tracking-tight tracking-[-1%] text-center md:text-left"
-                  >
-                    UI/UX ডিজাইন এখন আর শুধু টুলস এর খেলা নেই। Artificial
-                    Intelligence has entered the game! তাহলে কি আপনার ছিটকে পড়া
-                    নিশ্চিত? না! সময়ের এক ফোঁড়, অসময়ের দশ ফোঁড়! আর এই Webiner-ই
-                    হবে আপনার সেই ফোঁড়ের প্রথম সুচ!
-                  </p>
-                </div>
+            <ScrollReveal delay={100}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05]">
+                Learn Design.
+                <br />
+                Build Real Products.
+              </h1>
+            </ScrollReveal>
 
-                {/* CTA Button */}
-                <div className="pt-2">
-                  <CTAButton
-                    title="ওয়েবিনারে আপনার সিট বুক করুন!"
-                    subtitle="আপনার ক্যারিয়ারের টার্নিং পয়েন্ট শুরু হোক এখন"
-                    href="/register"
-                    className="min-h-[82px] py-3 px-6 text-[#FFFEFE] text-base md:text-xl font-siliguri leading-[150%]"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgb(255, 150, 0) 0%, rgb(190, 0, 100) 100%)",
-                      boxShadow: "0 -1px 40px rgba(135, 82, 52, 0.61)",
-                    }}
-                  />
-                </div>
+            <ScrollReveal delay={200}>
+              <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto">
+                A 3-month live program where you start from zero and finish with
+                two real products live on the internet. Products you designed.
+                Products you built.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={300}>
+              <p className="text-base text-[#475569]">
+                13 weeks · 2 live classes per week · 78+ hours with a senior
+                designer
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={400}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <LandingButton>Apply for Batch 4</LandingButton>
+                <button
+                  type="button"
+                  onClick={scrollToWhatYouShip}
+                  className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer"
+                >
+                  See what you will build →
+                </button>
               </div>
             </ScrollReveal>
 
-            {/* Right Column - Decorative Card */}
-            <ScrollReveal delay={200} direction="left">
-              <div className="flex justify-center lg:justify-end">
-                <DecorativeCard />
+            <ScrollReveal delay={500}>
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 pt-4 max-w-3xl mx-auto">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-[#1C2740] bg-[#0F1520]/80 p-5 md:p-6"
+                  >
+                    <p className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] bg-clip-text text-transparent">
+                      {stat.value}
+                    </p>
+                    <p className="text-[#94A3B8] mt-1 text-base">{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </ScrollReveal>
           </div>
