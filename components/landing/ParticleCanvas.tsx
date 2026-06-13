@@ -2,10 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { buildAllShapes } from "./shapeGenerators";
+import { buildShape, getShapeNames } from "./shapeGenerators";
 
-const DESKTOP_COUNT = 10000;
-const MOBILE_COUNT = 4000;
+const DESKTOP_COUNT = 8000;
+const MOBILE_COUNT = 3000;
+const INITIAL_SHAPE = "scattered-cloud";
 const LERP_FACTOR = 0.04;
 const OFFSET_LERP = 0.05;
 
@@ -26,6 +27,16 @@ const ANIMATED_SHAPES = new Set([
   "heartbeat",
   "dispersing-pulse",
 ]);
+
+function scheduleIdleWork(work: () => void): () => void {
+  if (typeof requestIdleCallback !== "undefined") {
+    const id = requestIdleCallback(work, { timeout: 500 });
+    return () => cancelIdleCallback(id);
+  }
+
+  const id = window.setTimeout(work, 100);
+  return () => window.clearTimeout(id);
+}
 
 function applyAnimatedShape(
   shape: ShapeName,
@@ -87,11 +98,7 @@ function applyAnimatedShape(
     for (let i = 0; i < targets.length; i++) {
       const t = ((i / targets.length) + travel) % 1;
       const brightness = 1 - Math.abs(t - 0.5) * 2;
-      targets[i].set(
-        -1.6 + t * 3.2,
-        -1.0 + t * 2.0,
-        brightness * 0.1,
-      );
+      targets[i].set(-1.6 + t * 3.2, -1.0 + t * 2.0, brightness * 0.1);
     }
     return;
   }
@@ -138,233 +145,291 @@ export function ParticleCanvas() {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      console.error("ParticleCanvas: container ref not available");
+      return;
+    }
+
+    console.log("ParticleCanvas mounted");
+    console.log(
+      "WebGL supported:",
+      !!document.createElement("canvas").getContext("webgl2"),
+    );
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let isMobile = window.innerWidth < 768;
     const particleCount = isMobile ? MOBILE_COUNT : DESKTOP_COUNT;
-    const mobileScale = 0.4;
-    const mobileYOffset = 1.5;
+    console.log("Particle count:", particleCount);
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.z = 4.5;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let geometry: THREE.BufferGeometry | null = null;
+    let material: THREE.PointsMaterial | null = null;
+    let animationId = 0;
+    let isReady = false;
+    const cancelIdleTasks: Array<() => void> = [];
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-    container.appendChild(renderer.domElement);
-
-    const shapeData = buildAllShapes(particleCount);
     const shapeTargets: Record<string, THREE.Vector3[]> = {};
+    const animatedTargets: Record<string, THREE.Vector3[]> = {};
 
-    for (const [key, data] of Object.entries(shapeData)) {
-      shapeTargets[key] = data.positions.map((v) => v.clone());
-    }
+    const registerShape = (name: string) => {
+      const data = buildShape(name, particleCount);
+      shapeTargets[name] = data.positions.map((v) => v.clone());
+      animatedTargets[name] = shapeTargets[name].map((v) => v.clone());
+    };
 
-    const animatedTargets = Object.fromEntries(
-      Object.entries(shapeTargets).map(([key, vecs]) => [key, vecs.map((v) => v.clone())]),
-    ) as Record<ShapeName, THREE.Vector3[]>;
+    try {
+      registerShape(INITIAL_SHAPE);
 
-    const burstDirections = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      burstDirections[i * 3] = Math.sin(phi) * Math.cos(theta);
-      burstDirections[i * 3 + 1] = Math.sin(phi) * Math.sin(theta);
-      burstDirections[i * 3 + 2] = Math.cos(phi);
-    }
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100,
+      );
+      camera.position.z = 4.5;
 
-    const perRing = Math.floor(particleCount / 3);
-    const ringMeta = Array.from({ length: particleCount }, (_, i) => ({
-      ring: Math.floor(i / Math.max(1, perRing)) % 3,
-      angle: ((i % Math.max(1, perRing)) / Math.max(1, perRing)) * Math.PI * 2,
-    }));
+      renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
 
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const currentPositions = shapeTargets["scattered-cloud"].map((v) => v.clone());
+      const pendingShapes = getShapeNames().filter((name) => name !== INITIAL_SHAPE);
+      let pendingIndex = 0;
 
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = currentPositions[i].x;
-      positions[i * 3 + 1] = currentPositions[i].y;
-      positions[i * 3 + 2] = currentPositions[i].z;
-    }
+      const loadNextShape = () => {
+        if (pendingIndex >= pendingShapes.length) return;
 
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+        const name = pendingShapes[pendingIndex++];
+        try {
+          registerShape(name);
+        } catch (error) {
+          console.error(`ParticleCanvas: failed to build shape "${name}"`, error);
+        }
 
-    const colorIndigo = new THREE.Color("#4F46E5");
-    const colorPurple = new THREE.Color("#A855F7");
-    const colorCyan = new THREE.Color("#22D3EE");
+        cancelIdleTasks.push(scheduleIdleWork(loadNextShape));
+      };
 
-    for (let i = 0; i < particleCount; i++) {
-      const roll = Math.random();
-      const c = roll < 0.6 ? colorIndigo : roll < 0.9 ? colorPurple : colorCyan;
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
-    }
-    geometry.attributes.color.needsUpdate = true;
+      cancelIdleTasks.push(scheduleIdleWork(loadNextShape));
 
-    const material = new THREE.PointsMaterial({
-      size: 0.012,
-      vertexColors: true,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
-      opacity: 0.35,
-      depthWrite: false,
-      sizeAttenuation: true,
-    });
+      const burstDirections = new Float32Array(particleCount * 3);
+      for (let i = 0; i < particleCount; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        burstDirections[i * 3] = Math.sin(phi) * Math.cos(theta);
+        burstDirections[i * 3 + 1] = Math.sin(phi) * Math.sin(theta);
+        burstDirections[i * 3 + 2] = Math.cos(phi);
+      }
 
-    scene.add(new THREE.Points(geometry, material));
+      const perRing = Math.floor(particleCount / 3);
+      const ringMeta = Array.from({ length: particleCount }, (_, i) => ({
+        ring: Math.floor(i / Math.max(1, perRing)) % 3,
+        angle: ((i % Math.max(1, perRing)) / Math.max(1, perRing)) * Math.PI * 2,
+      }));
 
-    let activeShape: ShapeName = "scattered-cloud";
-    let activeSide: ParticleSide = "center";
-    let isActiveHero = true;
-    let isActiveInterstitial = false;
-    let currentOffset = 0;
-    let targetOffset = 0;
-    let animTime = 0;
-    const clock = new THREE.Clock();
+      const positions = new Float32Array(particleCount * 3);
+      const colors = new Float32Array(particleCount * 3);
+      const currentPositions = shapeTargets[INITIAL_SHAPE].map((v) => v.clone());
 
-    const visibilityMap = new Map<Element, number>();
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = currentPositions[i].x;
+        positions[i * 3 + 1] = currentPositions[i].y;
+        positions[i * 3 + 2] = currentPositions[i].z;
+      }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          visibilityMap.set(entry.target, entry.intersectionRatio);
-        });
+      geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-        let bestEl: Element | null = null;
-        let bestRatio = 0;
+      const colorIndigo = new THREE.Color("#4F46E5");
+      const colorPurple = new THREE.Color("#A855F7");
+      const colorCyan = new THREE.Color("#22D3EE");
 
-        for (const [el, ratio] of visibilityMap.entries()) {
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            bestEl = el;
+      for (let i = 0; i < particleCount; i++) {
+        const roll = Math.random();
+        const c = roll < 0.6 ? colorIndigo : roll < 0.9 ? colorPurple : colorCyan;
+        colors[i * 3] = c.r;
+        colors[i * 3 + 1] = c.g;
+        colors[i * 3 + 2] = c.b;
+      }
+      geometry.attributes.color.needsUpdate = true;
+
+      material = new THREE.PointsMaterial({
+        size: 0.012,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        opacity: 0.35,
+        depthWrite: false,
+        sizeAttenuation: true,
+      });
+
+      scene.add(new THREE.Points(geometry, material));
+
+      let activeShape: ShapeName = INITIAL_SHAPE;
+      let activeSide: ParticleSide = "center";
+      let isActiveHero = true;
+      let isActiveInterstitial = false;
+      let currentOffset = 0;
+      let targetOffset = 0;
+      let animTime = 0;
+      const clock = new THREE.Clock();
+
+      const visibilityMap = new Map<Element, number>();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            visibilityMap.set(entry.target, entry.intersectionRatio);
+          });
+
+          let bestEl: Element | null = null;
+          let bestRatio = 0;
+
+          for (const [el, ratio] of visibilityMap.entries()) {
+            if (ratio > bestRatio) {
+              bestRatio = ratio;
+              bestEl = el;
+            }
+          }
+
+          if (bestEl !== null && bestRatio >= 0.3) {
+            const shape = bestEl.getAttribute("data-particle-shape");
+            const side = bestEl.getAttribute("data-particle-side") as ParticleSide | null;
+            if (shape) activeShape = shape;
+            if (side && side in SIDE_OFFSET) activeSide = side;
+            isActiveHero = shape === INITIAL_SHAPE;
+            isActiveInterstitial = bestEl.getAttribute("data-interstitial") === "true";
+          }
+        },
+        { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] },
+      );
+
+      const observeElements = () => {
+        document.querySelectorAll("[data-particle-shape]").forEach((el) => observer.observe(el));
+      };
+
+      observeElements();
+      const mutationObserver = new MutationObserver(observeElements);
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+      const handleResize = () => {
+        if (!renderer) return;
+        isMobile = window.innerWidth < 768;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener("resize", handleResize);
+
+      const targetVec = new THREE.Vector3();
+
+      const animate = () => {
+        animationId = requestAnimationFrame(animate);
+        if (!isReady || !renderer || !geometry || !material) return;
+
+        animTime += reducedMotion ? 0 : 16;
+        const elapsed = clock.getElapsedTime();
+
+        const effectiveShape =
+          isMobile && isActiveInterstitial ? INITIAL_SHAPE : activeShape;
+
+        if (isMobile || isActiveHero) {
+          targetOffset = 0;
+        } else {
+          targetOffset = SIDE_OFFSET[activeSide];
+        }
+        currentOffset += (targetOffset - currentOffset) * OFFSET_LERP;
+
+        const fallbackTargets = shapeTargets[INITIAL_SHAPE];
+        const baseTargets = shapeTargets[effectiveShape] ?? fallbackTargets;
+        const animTargetList = animatedTargets[effectiveShape] ?? animatedTargets[INITIAL_SHAPE];
+
+        if (!baseTargets || !animTargetList) return;
+
+        if (!reducedMotion && ANIMATED_SHAPES.has(effectiveShape)) {
+          applyAnimatedShape(
+            effectiveShape,
+            animTargetList,
+            baseTargets,
+            elapsed,
+            burstDirections,
+            ringMeta,
+          );
+        } else {
+          for (let i = 0; i < particleCount; i++) {
+            animTargetList[i].copy(baseTargets[i]);
           }
         }
 
-        if (bestEl !== null && bestRatio >= 0.3) {
-          const shape = bestEl.getAttribute("data-particle-shape");
-          const side = bestEl.getAttribute("data-particle-side") as ParticleSide | null;
-          if (shape) activeShape = shape;
-          if (side && side in SIDE_OFFSET) activeSide = side;
-          isActiveHero = shape === "scattered-cloud";
-          isActiveInterstitial = bestEl.getAttribute("data-interstitial") === "true";
+        if (effectiveShape === "dispersing-pulse") {
+          material.opacity = 0.15;
+        } else if (activeShape === "galaxy" && isActiveInterstitial) {
+          material.opacity = 0.85;
+        } else if (activeShape === "galaxy") {
+          material.opacity = 0.45;
+        } else if (isActiveInterstitial) {
+          material.opacity = 0.5;
+        } else if (isActiveHero) {
+          material.opacity = 0.75;
+        } else {
+          material.opacity = 0.35;
         }
-      },
-      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] },
-    );
 
-    const observeElements = () => {
-      document.querySelectorAll("[data-particle-shape]").forEach((el) => observer.observe(el));
-    };
+        const positionAttr = geometry.attributes.position as THREE.BufferAttribute;
 
-    observeElements();
-    const mutationObserver = new MutationObserver(observeElements);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    const handleResize = () => {
-      isMobile = window.innerWidth < 768;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener("resize", handleResize);
-
-    const targetVec = new THREE.Vector3();
-    let animationId = 0;
-
-    const animate = () => {
-      animationId = requestAnimationFrame(animate);
-      animTime += reducedMotion ? 0 : 16;
-      const elapsed = clock.getElapsedTime();
-
-      const effectiveShape =
-        isMobile && isActiveInterstitial ? "scattered-cloud" : activeShape;
-
-      if (isMobile || isActiveHero) {
-        targetOffset = 0;
-      } else {
-        targetOffset = SIDE_OFFSET[activeSide];
-      }
-      currentOffset += (targetOffset - currentOffset) * OFFSET_LERP;
-
-      const baseTargets = shapeTargets[effectiveShape] ?? shapeTargets["scattered-cloud"];
-      const animTargets = animatedTargets[effectiveShape] ?? animatedTargets["scattered-cloud"];
-
-      if (!reducedMotion && ANIMATED_SHAPES.has(effectiveShape)) {
-        applyAnimatedShape(
-          effectiveShape,
-          animTargets,
-          baseTargets,
-          elapsed,
-          burstDirections,
-          ringMeta,
-        );
-      } else if (!reducedMotion) {
         for (let i = 0; i < particleCount; i++) {
-          animTargets[i].copy(baseTargets[i]);
-        }
-      } else {
-        for (let i = 0; i < particleCount; i++) {
-          animTargets[i].copy(baseTargets[i]);
-        }
-      }
+          targetVec.copy(animTargetList[i]);
+          transformPosition(targetVec, isMobile, 1.5, 0.4);
+          targetVec.x += currentOffset;
 
-      if (effectiveShape === "dispersing-pulse") {
-        material.opacity = 0.15;
-      } else if (activeShape === "galaxy" && isActiveInterstitial) {
-        material.opacity = 0.85;
-      } else if (activeShape === "galaxy") {
-        material.opacity = 0.45;
-      } else if (isActiveInterstitial) {
-        material.opacity = 0.5;
-      } else if (isActiveHero) {
-        material.opacity = 0.75;
-      } else {
-        material.opacity = 0.35;
-      }
+          if (
+            (effectiveShape === INITIAL_SHAPE || effectiveShape === "galaxy") &&
+            !reducedMotion
+          ) {
+            const drift = Math.sin(animTime * 0.001 + i * 0.01) * 0.02;
+            targetVec.x += drift;
+            targetVec.y += drift * 0.5;
+          }
 
-      const positionAttr = geometry.attributes.position as THREE.BufferAttribute;
-
-      for (let i = 0; i < particleCount; i++) {
-        targetVec.copy(animTargets[i]);
-        transformPosition(targetVec, isMobile, mobileYOffset, mobileScale);
-        targetVec.x += currentOffset;
-
-        if ((effectiveShape === "scattered-cloud" || effectiveShape === "galaxy") && !reducedMotion) {
-          const drift = Math.sin(animTime * 0.001 + i * 0.01) * 0.02;
-          targetVec.x += drift;
-          targetVec.y += drift * 0.5;
+          currentPositions[i].lerp(targetVec, reducedMotion ? 0.02 : LERP_FACTOR);
+          positionAttr.setXYZ(
+            i,
+            currentPositions[i].x,
+            currentPositions[i].y,
+            currentPositions[i].z,
+          );
         }
 
-        currentPositions[i].lerp(targetVec, reducedMotion ? 0.02 : LERP_FACTOR);
-        positionAttr.setXYZ(i, currentPositions[i].x, currentPositions[i].y, currentPositions[i].z);
-      }
+        positionAttr.needsUpdate = true;
+        renderer.render(scene, camera);
+      };
 
-      positionAttr.needsUpdate = true;
-      renderer.render(scene, camera);
-    };
+      isReady = true;
+      animate();
 
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      observer.disconnect();
-      mutationObserver.disconnect();
-      window.removeEventListener("resize", handleResize);
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-      if (renderer.domElement.parentNode === container) {
-        container.removeChild(renderer.domElement);
-      }
-    };
+      return () => {
+        isReady = false;
+        cancelAnimationFrame(animationId);
+        cancelIdleTasks.forEach((cancel) => cancel());
+        observer.disconnect();
+        mutationObserver.disconnect();
+        window.removeEventListener("resize", handleResize);
+        geometry?.dispose();
+        material?.dispose();
+        renderer?.dispose();
+        if (renderer?.domElement.parentNode === container) {
+          container.removeChild(renderer.domElement);
+        }
+      };
+    } catch (error) {
+      console.error("ParticleCanvas WebGL init failed:", error);
+    }
   }, []);
 
   return (

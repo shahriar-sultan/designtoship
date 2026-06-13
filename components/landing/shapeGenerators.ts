@@ -48,6 +48,8 @@ export function distributeAlongPath(
     total += len;
   }
 
+  if (!count || count <= 0) return [];
+
   const result: THREE.Vector3[] = [];
   for (let c = 0; c < count; c++) {
     let d = (c / count) * total;
@@ -72,6 +74,7 @@ function fillBox(
   maxY: number,
   count: number,
 ): THREE.Vector3[] {
+  if (!count || count <= 0) return [];
   return Array.from({ length: count }, () =>
     toVec(minX + Math.random() * (maxX - minX), minY + Math.random() * (maxY - minY), 0.03),
   );
@@ -578,25 +581,58 @@ export function generateDispersingPulse(count: number): ShapeResult {
   return generateScatteredCloud(count, 1.5);
 }
 
-export function buildAllShapes(count: number): Record<string, ShapeResult> {
+function sanitizeShapeResult(result: ShapeResult, count: number): ShapeResult {
+  for (const p of result.positions) {
+    if (!Number.isFinite(p.x)) p.x = 0;
+    if (!Number.isFinite(p.y)) p.y = 0;
+    if (!Number.isFinite(p.z)) p.z = 0;
+  }
+
+  while (result.positions.length < count) {
+    result.positions.push(new THREE.Vector3(0, 0, 0));
+    result.colors.push(COLOR_DEEP_INDIGO.clone());
+  }
+
   return {
-    "scattered-cloud": generateScatteredCloud(count, 3.0),
-    galaxy: generateGalaxy(count),
-    "broken-cursor": generateBrokenCursor(count),
-    "figma-logo": generateFigmaLogo(count),
-    "open-laptop": generateOpenLaptop(count),
-    "cursor-hand": generateCursorHand(count),
-    "app-grid": generateAppGrid(count),
-    "human-silhouette": generateHumanSilhouette(count),
-    "portrait-silhouette": generatePortraitSilhouette(count),
-    "rocket-detailed": generateRocketDetailed(count),
-    "speech-bubble": generateSpeechBubble(count),
-    "fragmented-scatter": generateFragmentedScatter(count),
-    burst: generateBurstBase(count),
-    "timeline-dots": generateTimelineDotsBase(count),
-    "ripple-rings": generateRippleRingsBase(count),
-    "rising-diagonal": generateRisingDiagonalBase(count),
-    heartbeat: generateHeartbeatBase(count),
-    "dispersing-pulse": generateDispersingPulse(count),
+    positions: result.positions.slice(0, count),
+    colors: result.colors.slice(0, count),
   };
+}
+
+export const SHAPE_BUILDERS: Record<string, (count: number) => ShapeResult> = {
+  "scattered-cloud": (count) => generateScatteredCloud(count, 3.0),
+  galaxy: generateGalaxy,
+  "broken-cursor": generateBrokenCursor,
+  "figma-logo": generateFigmaLogo,
+  "open-laptop": generateOpenLaptop,
+  "cursor-hand": generateCursorHand,
+  "app-grid": generateAppGrid,
+  "human-silhouette": generateHumanSilhouette,
+  "portrait-silhouette": generatePortraitSilhouette,
+  "rocket-detailed": generateRocketDetailed,
+  "speech-bubble": generateSpeechBubble,
+  "fragmented-scatter": generateFragmentedScatter,
+  burst: generateBurstBase,
+  "timeline-dots": generateTimelineDotsBase,
+  "ripple-rings": generateRippleRingsBase,
+  "rising-diagonal": generateRisingDiagonalBase,
+  heartbeat: generateHeartbeatBase,
+  "dispersing-pulse": generateDispersingPulse,
+};
+
+export function getShapeNames(): string[] {
+  return Object.keys(SHAPE_BUILDERS);
+}
+
+export function buildShape(name: string, count: number): ShapeResult {
+  if (!count || count <= 0) {
+    return { positions: [], colors: [] };
+  }
+
+  const builder = SHAPE_BUILDERS[name] ?? SHAPE_BUILDERS["scattered-cloud"];
+  return sanitizeShapeResult(builder(count), count);
+}
+
+export function buildAllShapes(count: number): Record<string, ShapeResult> {
+  return Object.fromEntries(getShapeNames().map((name) => [name, buildShape(name, count)]));
 }
