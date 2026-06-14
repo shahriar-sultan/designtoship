@@ -7,6 +7,7 @@ import {
   Problem,
   SectionCTA,
   WhatYouShip,
+  WhatYouLearn,
   Curriculum,
   HowItWorks,
   ToolStack,
@@ -30,8 +31,7 @@ export default async function HomePage() {
         <Hero />
 
         <Interstitial
-          shape="burst"
-          copy="Design is changing."
+          copy="The Design Industry Is Changing"
           subCopy="The question is whether you are changing with it."
         />
 
@@ -39,7 +39,6 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="fragmented-scatter"
           copy="The ones who ship will win."
           subCopy="Everyone else will have Figma files."
         />
@@ -48,7 +47,14 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="galaxy"
+          copy="Design is a skill."
+          subCopy="And every skill can be learned."
+        />
+
+        <WhatYouLearn />
+        <SectionCTA />
+
+        <Interstitial
           copy="Week 8. Your website goes live."
           subCopy="A real URL. Anyone in the world can open it."
         />
@@ -57,7 +63,6 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="timeline-dots"
           copy="13 weeks. Every one counts."
           subCopy="Each week ends with something real you made."
         />
@@ -66,7 +71,6 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="cursor-hand"
           copy="Show up. Build. Ship. Repeat."
           subCopy="That is the whole system."
         />
@@ -74,7 +78,6 @@ export default async function HomePage() {
         <ToolStack />
 
         <Interstitial
-          shape="app-grid"
           copy="Every tool. Completely free."
           subCopy="You will not pay for a single subscription to complete this course."
         />
@@ -82,7 +85,6 @@ export default async function HomePage() {
         <WhoIsThisFor />
 
         <Interstitial
-          shape="ripple-rings"
           copy="You don't need experience."
           subCopy="You need to show up."
           subCopyGradient
@@ -92,8 +94,7 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="rising-diagonal"
-          copy="6 years. Dozens of shipped products."
+          copy="8 years in Design. Dozens of shipped products."
           subCopy="Now teaching you."
           subCopyGradient
         />
@@ -102,7 +103,6 @@ export default async function HomePage() {
         <SectionCTA />
 
         <Interstitial
-          shape="rocket-detailed"
           copy="Seats are limited."
           subCopy="The batch fills and closes."
           subCopyGradient
@@ -110,11 +110,7 @@ export default async function HomePage() {
 
         <FAQ />
 
-        <Interstitial
-          shape="heartbeat"
-          copy="Ready to become a great designer?"
-          showCta
-        />
+        <Interstitial copy="Ready to become a great designer?" showCta />
 
         <Footer />
       </main>

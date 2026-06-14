@@ -1,16 +1,25 @@
 "use client";
 
 import { LandingButton } from "./LandingButton";
+import { CENTERED_SECTION_VIGNETTE } from "./constants";
 
 export function SectionCTA() {
   return (
-    <div className="relative z-10 w-full bg-[#080C14] flex flex-col items-center gap-4 py-16">
-      <LandingButton className="text-base md:text-lg px-10 py-4">
-        Apply for Batch 4
-      </LandingButton>
-      <p className="text-slate-400 text-sm">
-        Batch 4 · Limited seats · Enrollment closes when full
-      </p>
+    <div
+      className="relative z-10 w-full flex flex-col items-center gap-4 py-16 px-8"
+      style={{ background: "transparent" }}
+    >
+      <div
+        className="relative z-10 max-w-2xl mx-auto px-8 py-8 text-center w-full"
+        style={{ background: CENTERED_SECTION_VIGNETTE }}
+      >
+        <LandingButton className="text-base md:text-lg px-10 py-4">
+          Apply for Batch 4
+        </LandingButton>
+        <p className="text-slate-400 text-sm mt-4">
+          Batch 4 · Limited seats · Enrollment closes when full
+        </p>
+      </div>
     </div>
   );
 }

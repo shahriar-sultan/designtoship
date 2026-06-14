@@ -14,20 +14,14 @@ export const GRADIENT_TEXT =
 export const EYEBROW =
   "text-sm uppercase tracking-widest font-semibold bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] bg-clip-text text-transparent";
 
-export const ZIGZAG_SECTION_ROOT =
-  "relative z-10 min-h-screen flex items-center";
+export const CENTERED_SECTION_ROOT =
+  "relative min-h-screen flex items-center justify-center";
 
-export const CONTENT_COLUMN_BASE =
-  "w-full relative z-10 px-6 py-16 pt-52 md:py-24 md:px-12 bg-[#080C14]/95 md:bg-transparent";
+export const CENTERED_SECTION_CONTENT =
+  "relative z-10 max-w-2xl mx-auto px-8 py-24 text-center w-full";
 
-export const CONTENT_COLUMN_LEFT = `${CONTENT_COLUMN_BASE} md:w-1/2 md:ml-0 md:pt-24 md:[background:linear-gradient(to_right,#080C14_85%,transparent)]`;
+export const CENTERED_SECTION_VIGNETTE =
+  "radial-gradient(ellipse 110% 90% at 50% 50%, rgba(8,12,20,0.88) 0%, rgba(8,12,20,0.55) 60%, transparent 100%)";
 
-export const CONTENT_COLUMN_RIGHT = `${CONTENT_COLUMN_BASE} md:w-1/2 md:ml-auto md:pt-24 md:[background:linear-gradient(to_left,#080C14_85%,transparent)]`;
-
-export const PARTICLE_COLUMN_LEFT =
-  "hidden md:block w-1/2 absolute top-0 bottom-0 left-0 pointer-events-none";
-
-export const PARTICLE_COLUMN_RIGHT =
-  "hidden md:block w-1/2 absolute top-0 bottom-0 right-0 pointer-events-none";
-
-export const SECTION_INNER = "w-full max-w-3xl";
+export const HERO_FULLSCREEN_VIGNETTE =
+  "radial-gradient(ellipse 100% 85% at 50% 50%, rgba(8,12,20,0.65) 0%, rgba(8,12,20,0.38) 50%, rgba(8,12,20,0.12) 80%, transparent 100%)";

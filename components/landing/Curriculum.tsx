@@ -6,10 +6,9 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { cn } from "@/lib/utils";
 import {
   EYEBROW,
-  ZIGZAG_SECTION_ROOT,
-  SECTION_INNER,
-  CONTENT_COLUMN_RIGHT,
-  PARTICLE_COLUMN_LEFT,
+  CENTERED_SECTION_ROOT,
+  CENTERED_SECTION_CONTENT,
+  CENTERED_SECTION_VIGNETTE,
 } from "./constants";
 
 const phases = [
@@ -70,86 +69,97 @@ const phases = [
   },
 ];
 
+function renderCurriculumItem(item: string) {
+  const match = item.match(/^Week (\d+) — (.+)$/);
+  if (!match) return item;
+
+  return (
+    <>
+      <span className="font-bold text-[#F1F5F9]">Week {match[1]}:</span>{" "}
+      {match[2]}
+    </>
+  );
+}
+
 export function Curriculum() {
   return (
     <section
       id="curriculum"
-      data-particle-shape="open-laptop"
-      data-particle-side="left"
-      className={ZIGZAG_SECTION_ROOT}
+      data-particle-shape="galaxy-spiral"
+      className={CENTERED_SECTION_ROOT}
       style={{ background: "transparent" }}
     >
-      <div className={PARTICLE_COLUMN_LEFT} aria-hidden="true" />
-      <div className={CONTENT_COLUMN_RIGHT}>
-        <div className={SECTION_INNER}>
-          <ScrollReveal>
-            <p className={`${EYEBROW} mb-4`}>THE CURRICULUM</p>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9]">
-              13 weeks.
-              <br />
-              6 phases.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={150}>
-            <p className="text-[#94A3B8] text-xl md:text-2xl mt-4 mb-10 md:mb-14">
-              Everything is taught through your own real product. No fake exercises.
-            </p>
-          </ScrollReveal>
+      <div
+        className={CENTERED_SECTION_CONTENT}
+        style={{ background: CENTERED_SECTION_VIGNETTE }}
+      >
+        <ScrollReveal>
+          <p className={`${EYEBROW} mb-4`}>THE CURRICULUM</p>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9]">
+            13 weeks.
+            <br />
+            6 phases.
+          </h2>
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <p className="text-[#94A3B8] text-xl md:text-2xl mt-4 mb-10 md:mb-14">
+            Everything is taught through your own real product. No fake exercises.
+          </p>
+        </ScrollReveal>
 
-          <ScrollReveal delay={200}>
-            <Accordion.Root
-              type="single"
-              collapsible
-              defaultValue="phase-1"
-              className="space-y-3"
-            >
-              {phases.map((phase) => (
-                <Accordion.Item
-                  key={phase.id}
-                  value={phase.id}
-                  className="rounded-2xl border border-[#1C2740] bg-[#0F1520] overflow-hidden"
-                >
-                  <Accordion.Header>
-                    <Accordion.Trigger
-                      className={cn(
-                        "flex w-full items-center justify-between gap-4 px-6 py-5 text-left",
-                        "text-[#F1F5F9] hover:bg-[#0F1520]/80 transition-colors",
-                        "group cursor-pointer",
-                      )}
-                    >
-                      <div>
-                        <span className="block text-lg font-semibold">
-                          {phase.title}
-                        </span>
-                        <span className="block text-base text-[#475569] font-normal mt-1">
-                          {phase.weeks}
-                        </span>
-                      </div>
-                      <ChevronDown
-                        className="w-5 h-5 text-[#94A3B8] shrink-0 transition-transform group-data-[state=open]:rotate-180"
-                        strokeWidth={1.5}
-                      />
-                    </Accordion.Trigger>
-                  </Accordion.Header>
-                  <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                    <ul className="px-6 pb-6 space-y-3 border-t border-[#1C2740] pt-4">
-                      {phase.items.map((item) => (
-                        <li
-                          key={item}
-                          className="text-[#94A3B8] text-base leading-relaxed pl-4 border-l-2 border-[#6C3EFF]/40"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </Accordion.Content>
-                </Accordion.Item>
-              ))}
-            </Accordion.Root>
-          </ScrollReveal>
-        </div>
+        <ScrollReveal delay={200}>
+          <Accordion.Root
+            type="single"
+            collapsible
+            defaultValue="phase-1"
+            className="space-y-3 text-left"
+          >
+            {phases.map((phase) => (
+              <Accordion.Item
+                key={phase.id}
+                value={phase.id}
+                className="rounded-2xl border border-[#1C2740] bg-[#0F1520] overflow-hidden"
+              >
+                <Accordion.Header>
+                  <Accordion.Trigger
+                    className={cn(
+                      "flex w-full items-center justify-between gap-4 px-6 py-5 text-left",
+                      "text-[#F1F5F9] hover:bg-[#0F1520]/80 transition-colors",
+                      "group cursor-pointer",
+                    )}
+                  >
+                    <div>
+                      <span className="block text-lg font-semibold">
+                        {phase.title}
+                      </span>
+                      <span className="block text-base text-[#475569] font-normal mt-1">
+                        {phase.weeks}
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className="w-5 h-5 text-[#94A3B8] shrink-0 transition-transform group-data-[state=open]:rotate-180"
+                      strokeWidth={1.5}
+                    />
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                  <ul className="px-6 pb-6 space-y-3 border-t border-[#1C2740] pt-4">
+                    {phase.items.map((item) => (
+                      <li
+                        key={item}
+                        className="text-[#94A3B8] text-base leading-relaxed pl-4 border-l-2 border-[#6C3EFF]/40"
+                      >
+                        {renderCurriculumItem(item)}
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion.Content>
+              </Accordion.Item>
+            ))}
+          </Accordion.Root>
+        </ScrollReveal>
       </div>
     </section>
   );

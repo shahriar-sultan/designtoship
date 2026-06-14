@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LandingButton } from "./LandingButton";
-import { GRADIENT_TEXT } from "./constants";
+import { GRADIENT_TEXT, CENTERED_SECTION_VIGNETTE } from "./constants";
 
 interface InterstitialProps {
-  shape: string;
   copy: string;
   subCopy?: string;
   subCopyGradient?: boolean;
@@ -13,7 +12,6 @@ interface InterstitialProps {
 }
 
 export function Interstitial({
-  shape,
   copy,
   subCopy,
   subCopyGradient = false,
@@ -42,15 +40,15 @@ export function Interstitial({
   return (
     <div
       ref={ref}
-      data-particle-shape={shape}
-      data-particle-side="center"
-      data-interstitial="true"
-      className="relative flex flex-col items-center justify-center min-h-screen px-6"
+      className="relative min-h-screen flex items-center justify-center"
       style={{ background: "transparent" }}
     >
       <div
-        className="relative z-10 text-center px-8 max-w-4xl transition-opacity duration-[400ms]"
-        style={{ opacity: visible ? 1 : 0 }}
+        className="relative z-10 max-w-2xl mx-auto px-8 py-24 text-center transition-opacity duration-[400ms]"
+        style={{
+          opacity: visible ? 1 : 0,
+          background: CENTERED_SECTION_VIGNETTE,
+        }}
       >
         <h2
           className={`text-3xl md:text-5xl lg:text-7xl font-bold leading-tight ${GRADIENT_TEXT}`}

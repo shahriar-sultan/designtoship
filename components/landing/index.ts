@@ -4,6 +4,7 @@ export { Interstitial } from "./Interstitial";
 export { SectionCTA } from "./SectionCTA";
 export { Problem } from "./Problem";
 export { WhatYouShip } from "./WhatYouShip";
+export { WhatYouLearn } from "./WhatYouLearn";
 export { Curriculum } from "./Curriculum";
 export { HowItWorks } from "./HowItWorks";
 export { ToolStack } from "./ToolStack";
