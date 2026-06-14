@@ -5,6 +5,8 @@ import {
   Noto_Sans_Bengali,
   Hind_Siliguri,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import { SessionProvider } from "@/components/providers/SessionProvider";
@@ -60,6 +62,8 @@ export default function RootLayout({
           <ConditionalNavbar />
           {children}
         </SessionProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
