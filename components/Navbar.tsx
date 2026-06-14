@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { BrandIcon } from "@/components/BrandIcon";
 import { Button } from "@/components/ui/button";
 import { BATCH_4_APPLY_URL } from "@/components/landing/constants";
 import { Menu, X } from "lucide-react";
@@ -14,6 +16,17 @@ const navBarStyle = {
   backdropFilter: "blur(20px)",
   borderBottom: "1px solid #1C2740",
 } as const;
+
+function NavbarLogo() {
+  return (
+    <Link href="/" className="flex items-center gap-2.5 min-w-0">
+      <BrandIcon className="h-8 w-8 shrink-0 rounded-lg" />
+      <span className="text-[#F1F5F9] text-base md:text-lg font-semibold truncate">
+        Design To Ship
+      </span>
+    </Link>
+  );
+}
 
 export function Navbar({ className = "" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +45,7 @@ export function Navbar({ className = "" }: NavbarProps) {
         style={navBarStyle}
       >
         <div className="flex items-center justify-between h-20 px-4">
-          <span className="text-[#F1F5F9] text-base font-semibold">
-            Design To Ship
-          </span>
+          <NavbarLogo />
 
           <button
             type="button"
@@ -63,9 +74,7 @@ export function Navbar({ className = "" }: NavbarProps) {
         style={navBarStyle}
       >
         <div className="flex items-center justify-between h-20 max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-[#F1F5F9] text-lg font-semibold">
-            Design To Ship
-          </div>
+          <NavbarLogo />
 
           <Button
             onClick={handleRegisterClick}
