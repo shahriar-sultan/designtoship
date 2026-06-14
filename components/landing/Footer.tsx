@@ -1,15 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import {
-  GRADIENT_TEXT,
+  BATCH_4_APPLY_URL,
   CENTERED_SECTION_VIGNETTE,
+  GRADIENT_TEXT,
 } from "./constants";
 
 export function Footer() {
-  const router = useRouter();
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -50,7 +48,9 @@ export function Footer() {
               </button>
               <button
                 type="button"
-                onClick={() => router.push("/register")}
+                onClick={() =>
+                  window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer")
+                }
                 className="text-[#94A3B8] hover:text-[#F1F5F9] transition-colors cursor-pointer"
               >
                 Apply

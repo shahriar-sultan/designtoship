@@ -25,3 +25,5 @@ export const CENTERED_SECTION_VIGNETTE =
 
 export const HERO_FULLSCREEN_VIGNETTE =
   "radial-gradient(ellipse 100% 85% at 50% 50%, rgba(8,12,20,0.65) 0%, rgba(8,12,20,0.38) 50%, rgba(8,12,20,0.12) 80%, transparent 100%)";
+
+export const BATCH_4_APPLY_URL = "https://forms.gle/gorAbpXY1AoekTrU7";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { BATCH_4_APPLY_URL } from "@/components/landing/constants";
 import { Menu, X } from "lucide-react";
 
 interface NavbarProps {
@@ -16,11 +16,10 @@ const navBarStyle = {
 } as const;
 
 export function Navbar({ className = "" }: NavbarProps) {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRegisterClick = () => {
-    router.push("/register");
+    window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 

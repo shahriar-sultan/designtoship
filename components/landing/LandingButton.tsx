@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { BATCH_4_APPLY_URL } from "./constants";
 
 interface LandingButtonProps {
   children: React.ReactNode;
@@ -11,9 +12,17 @@ interface LandingButtonProps {
   onClick?: () => void;
 }
 
+function navigateToHref(href: string, router: ReturnType<typeof useRouter>) {
+  if (href.startsWith("http")) {
+    window.open(href, "_blank", "noopener,noreferrer");
+    return;
+  }
+  router.push(href);
+}
+
 export function LandingButton({
   children,
-  href = "/register",
+  href = BATCH_4_APPLY_URL,
   variant = "primary",
   className,
   onClick,
@@ -23,9 +32,9 @@ export function LandingButton({
   const handleClick = () => {
     if (onClick) {
       onClick();
-    } else {
-      router.push(href);
+      return;
     }
+    navigateToHref(href, router);
   };
 
   if (variant === "outline") {
