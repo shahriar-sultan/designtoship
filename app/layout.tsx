@@ -36,11 +36,25 @@ const hindSiliguri = Hind_Siliguri({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "AI-Augmented UI/UX Design Free Webinar | Shahriar Sultan",
+  title: "Design To Ship | Learn Design. Build Real Products.",
   description:
-    "আপনার ডিজাইন ক্যারিয়ারের নতুন শুরু! AI দিয়ে UI/UX ডিজাইনে স্মার্ট কাজের একটি স্পষ্ট রোডম্যাপ শিখুন।",
+    "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "Design To Ship | Learn Design. Build Real Products.",
+    description:
+      "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
+    siteName: "Design To Ship",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Design To Ship | Learn Design. Build Real Products.",
+    description:
+      "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
   },
 };
 
