@@ -11,8 +11,12 @@ const stats = [
 ];
 
 export function Hero() {
-  const scrollToWhatYouShip = () => {
-    document.getElementById("what-you-ship")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToWhatYouLearn = () => {
+    document.getElementById("what-you-learn")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToCurriculum = () => {
+    document.getElementById("curriculum")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -60,10 +64,10 @@ export function Hero() {
             <LandingButton>Apply for Batch 4</LandingButton>
             <button
               type="button"
-              onClick={scrollToWhatYouShip}
+              onClick={scrollToWhatYouLearn}
               className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer"
             >
-              See what you will build →
+              See what you will learn →
             </button>
           </div>
         </ScrollReveal>
@@ -82,6 +86,13 @@ export function Hero() {
               </div>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={scrollToCurriculum}
+            className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer mt-6"
+          >
+            See curriculum →
+          </button>
         </ScrollReveal>
       </div>
     </section>
