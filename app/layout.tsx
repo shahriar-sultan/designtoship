@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import { SessionProvider } from "@/components/providers/SessionProvider";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +33,13 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "AI-Augmented UI/UX Design Free Webinar | Shahriar Sultan",
   description:
     "আপনার ডিজাইন ক্যারিয়ারের নতুন শুরু! AI দিয়ে UI/UX ডিজাইনে স্মার্ট কাজের একটি স্পষ্ট রোডম্যাপ শিখুন।",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
