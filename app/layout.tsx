@@ -69,7 +69,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} ${hindSiliguri.variable} antialiased font-sans`}
         style={{
           fontFamily:
-            "var(--font-hind-siliguri), var(--font-bengali), var(--font-geist-sans), sans-serif",
+            "var(--font-bengali), var(--font-hind-siliguri), var(--font-geist-sans), sans-serif",
         }}
       >
         <SessionProvider>

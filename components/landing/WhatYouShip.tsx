@@ -7,27 +7,38 @@ import {
   CENTERED_SECTION_CONTENT,
   CENTERED_SECTION_VIGNETTE,
 } from "./constants";
+import { useLanguage } from "./LanguageProvider";
 
-const ships = [
-  {
-    badge: "SHIP 01 · WEEK 8",
-    title: "Your Website",
-    description:
-      "A complete 5 to 7 page website for a real product. Designed by you in Figma. Built with AI. Live on the internet with a real URL.",
-    tags: ["Figma", "Next.js", "Vercel"],
-    glow: "shadow-[0_0_40px_rgba(249,115,22,0.25)] border-[#F97316]/40",
-  },
-  {
-    badge: "SHIP 02 · WEEK 12",
-    title: "Your Booking Tool",
-    description:
-      "A working web app where real users can make bookings. It has a real backend. Users can install it on their phone.",
-    tags: ["Figma", "AI Build", "Google Sheets"],
-    glow: "shadow-[0_0_40px_rgba(108,62,255,0.25)] border-[#A855F7]/40",
-  },
+const shipTags = [
+  ["Figma", "Next.js", "Vercel"],
+  ["Figma", "AI Build", "Google Sheets"],
+];
+
+const shipGlows = [
+  "shadow-[0_0_40px_rgba(249,115,22,0.25)] border-[#F97316]/40",
+  "shadow-[0_0_40px_rgba(108,62,255,0.25)] border-[#A855F7]/40",
 ];
 
 export function WhatYouShip() {
+  const { t } = useLanguage();
+
+  const ships = [
+    {
+      badge: t.whatYouShip.ship1Badge,
+      title: t.whatYouShip.ship1Title,
+      description: t.whatYouShip.ship1Body,
+      tags: shipTags[0],
+      glow: shipGlows[0],
+    },
+    {
+      badge: t.whatYouShip.ship2Badge,
+      title: t.whatYouShip.ship2Title,
+      description: t.whatYouShip.ship2Body,
+      tags: shipTags[1],
+      glow: shipGlows[1],
+    },
+  ];
+
   return (
     <section
       id="what-you-ship"
@@ -40,13 +51,11 @@ export function WhatYouShip() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>WHAT YOU WILL SHIP</p>
+          <p className={`${EYEBROW} mb-4`}>{t.whatYouShip.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
-            Two real products.
-            <br />
-            Both live on the internet.
+            {t.whatYouShip.headline}
           </h2>
         </ScrollReveal>
 
@@ -82,8 +91,7 @@ export function WhatYouShip() {
 
         <ScrollReveal delay={300}>
           <p className="text-center text-[#475569] text-base mt-10">
-            Every tool used to build these is free. You will not pay for any
-            subscription.
+            {t.whatYouShip.footnote}
           </p>
         </ScrollReveal>
       </div>

@@ -15,7 +15,7 @@ body {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-geist-sans), var(--font-hind-siliguri), var(--font-bengali), sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-siliguri: var(--font-hind-siliguri);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -157,6 +157,14 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .font-bn {
+    font-family: var(--font-bengali), var(--font-hind-siliguri), var(--font-geist-sans), sans-serif;
+  }
+
+  .font-en {
+    font-family: var(--font-geist-sans), sans-serif;
   }
 }
 

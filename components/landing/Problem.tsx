@@ -8,29 +8,29 @@ import {
   CENTERED_SECTION_CONTENT,
   CENTERED_SECTION_VIGNETTE,
 } from "./constants";
-
-const cards = [
-  {
-    icon: Layers,
-    title: "You finish the course. You have Figma files.",
-    description:
-      "Most design courses teach you tools. You graduate with screens that sit on your hard drive and go nowhere.",
-  },
-  {
-    icon: AlertTriangle,
-    title: "The market has changed.",
-    description:
-      "AI can make screens now. What it cannot do is think about the user, make good decisions, and actually ship a product to the internet. That is what employers and clients pay for.",
-  },
-  {
-    icon: Rocket,
-    title: "This course is different.",
-    description:
-      "You leave with two real, live products. Not mockups. Not Figma files. Real URLs anyone can open.",
-  },
-];
+import { useLanguage } from "./LanguageProvider";
 
 export function Problem() {
+  const { t } = useLanguage();
+
+  const cards = [
+    {
+      icon: Layers,
+      title: t.problem.card1Title,
+      description: t.problem.card1Body,
+    },
+    {
+      icon: AlertTriangle,
+      title: t.problem.card2Title,
+      description: t.problem.card2Body,
+    },
+    {
+      icon: Rocket,
+      title: t.problem.card3Title,
+      description: t.problem.card3Body,
+    },
+  ];
+
   return (
     <section
       id="problem"
@@ -43,13 +43,11 @@ export function Problem() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>THE PROBLEM</p>
+          <p className={`${EYEBROW} mb-4`}>{t.problem.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
-            Everyone learns design.
-            <br />
-            Almost nobody ships anything.
+            {t.problem.headline}
           </h2>
         </ScrollReveal>
 

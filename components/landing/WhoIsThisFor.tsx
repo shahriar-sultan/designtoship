@@ -8,21 +8,11 @@ import {
   CENTERED_SECTION_CONTENT,
   CENTERED_SECTION_VIGNETTE,
 } from "./constants";
-
-const forYou = [
-  "You want to learn design but do not know where to start",
-  "You are tired of watching tutorials and not finishing anything",
-  "You want a job or freelance work in product design",
-  "You want to actually build things, not just make Figma files",
-];
-
-const notForYou = [
-  "You are looking for a recorded course you can watch later",
-  "You already work as a designer",
-  "You want to learn development, not design",
-];
+import { useLanguage } from "./LanguageProvider";
 
 export function WhoIsThisFor() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="who-is-this-for"
@@ -35,11 +25,11 @@ export function WhoIsThisFor() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>WHO THIS IS FOR</p>
+          <p className={`${EYEBROW} mb-4`}>{t.whoIsThisFor.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
-            You do not need to know anything yet.
+            {t.whoIsThisFor.headline}
           </h2>
         </ScrollReveal>
 
@@ -47,10 +37,10 @@ export function WhoIsThisFor() {
           <ScrollReveal delay={150}>
             <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8">
               <h3 className="text-lg font-semibold text-[#F1F5F9] mb-4">
-                This is for you if:
+                {t.whoIsThisFor.forTitle}
               </h3>
               <ul className="space-y-3">
-                {forYou.map((item) => (
+                {t.whoIsThisFor.forItems.map((item) => (
                   <li
                     key={item}
                     className="text-[#94A3B8] text-base leading-relaxed flex gap-3"
@@ -66,10 +56,10 @@ export function WhoIsThisFor() {
           <ScrollReveal delay={200}>
             <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8">
               <h3 className="text-lg font-semibold text-[#F1F5F9] mb-4">
-                This is not for you if:
+                {t.whoIsThisFor.notForTitle}
               </h3>
               <ul className="space-y-3">
-                {notForYou.map((item) => (
+                {t.whoIsThisFor.notForItems.map((item) => (
                   <li
                     key={item}
                     className="text-[#94A3B8] text-base leading-relaxed flex gap-3"
@@ -86,9 +76,11 @@ export function WhoIsThisFor() {
         <ScrollReveal delay={300}>
           <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-left">
             <p className="text-[#94A3B8] text-base max-w-xl">
-              Admission is limited and screened. We review every application.
+              {t.whoIsThisFor.ctaNote}
             </p>
-            <LandingButton className="shrink-0">Apply for Batch 4</LandingButton>
+            <LandingButton className="shrink-0">
+              {t.whoIsThisFor.ctaButton}
+            </LandingButton>
           </div>
         </ScrollReveal>
       </div>

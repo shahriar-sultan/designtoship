@@ -3,14 +3,31 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { LandingButton } from "./LandingButton";
 import { EYEBROW, HERO_FULLSCREEN_VIGNETTE } from "./constants";
+import { useLanguage } from "./LanguageProvider";
 
-const stats = [
-  { value: "78+", label: "Hours Live" },
-  { value: "2", label: "Projects Shipped" },
-  { value: "2", label: "Figma projects" },
-];
+function renderBengaliNumerals(text: string) {
+  const parts = text.split(/([\u09E6-\u09EF]+)/g).filter(Boolean);
+
+  return parts.map((part, index) =>
+    /^[\u09E6-\u09EF]+$/.test(part) ? (
+      <span key={`${part}-${index}`} className="font-bold">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
 
 export function Hero() {
+  const { t, lang } = useLanguage();
+
+  const stats = [
+    { value: "78+", label: t.hero.stat1 },
+    { value: "2", label: t.hero.stat2 },
+    { value: "2", label: t.hero.stat3 },
+  ];
+
   const scrollToWhatYouLearn = () => {
     document.getElementById("what-you-learn")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -22,7 +39,7 @@ export function Hero() {
   return (
     <section
       data-particle-shape="stellar-nebula"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center"
       style={{ background: "transparent" }}
     >
       <div
@@ -31,43 +48,52 @@ export function Hero() {
         style={{ background: HERO_FULLSCREEN_VIGNETTE }}
       />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-24 text-center min-h-screen flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-24 text-center min-h-screen flex flex-col items-stretch justify-center">
         <ScrollReveal>
-          <p className={EYEBROW}>BATCH 4 · ENROLLMENT OPEN</p>
+          <p className={EYEBROW}>{t.hero.eyebrow}</p>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05] mt-8">
-            Learn Design.
+            {t.hero.headline1}
             <br />
-            Build Real Products.
+            {t.hero.headline2}
           </h1>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
           <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto mt-6">
-            A 3-month live program where you start from zero and finish with two
-            real products live on the internet. Products you designed. Products
-            you built.
+            {t.hero.subhead}
           </p>
         </ScrollReveal>
 
-        <ScrollReveal delay={300}>
-          <p className="text-base text-[#F1F5F9] font-medium mt-4">
-            13 weeks · 2 live classes per week · 78+ hours with a senior
-            designer
+        <ScrollReveal delay={300} className="w-full">
+          <p
+            className="w-full text-base text-[#F1F5F9] font-normal mt-4 tracking-normal text-center px-4 [font-synthesis:none]"
+            style={
+              lang === "bn"
+                ? {
+                    fontFamily:
+                      "var(--font-bengali), var(--font-hind-siliguri), sans-serif",
+                    WebkitFontSmoothing: "subpixel-antialiased",
+                    MozOsxFontSmoothing: "auto",
+                  }
+                : undefined
+            }
+          >
+            {lang === "bn" ? renderBengaliNumerals(t.hero.supporting) : t.hero.supporting}
           </p>
         </ScrollReveal>
 
         <ScrollReveal delay={400}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-            <LandingButton>Apply for Batch 4</LandingButton>
+            <LandingButton>{t.hero.ctaPrimary}</LandingButton>
             <button
               type="button"
               onClick={scrollToWhatYouLearn}
               className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer"
             >
-              See what you will learn →
+              {t.hero.ctaSecondary}
             </button>
           </div>
         </ScrollReveal>
@@ -91,7 +117,7 @@ export function Hero() {
             onClick={scrollToCurriculum}
             className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer mt-6"
           >
-            See curriculum →
+            {t.hero.seeCurriculum}
           </button>
         </ScrollReveal>
       </div>

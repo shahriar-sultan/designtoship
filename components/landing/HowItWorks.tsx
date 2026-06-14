@@ -7,31 +7,18 @@ import {
   CENTERED_SECTION_CONTENT,
   CENTERED_SECTION_VIGNETTE,
 } from "./constants";
-
-const steps = [
-  {
-    title: "Lecture",
-    description:
-      "New material. The senior designer teaches live and shows every decision in real time.",
-  },
-  {
-    title: "Assignment",
-    description:
-      "You apply what you learned to your own product before the next class.",
-  },
-  {
-    title: "Build Lab",
-    description:
-      "You work live. The senior designer reviews your work publicly. You unblock each other.",
-  },
-  {
-    title: "Weekly Artifact",
-    description:
-      "Every week ends with one named deliverable. A brand board. A landing page. A live URL.",
-  },
-];
+import { useLanguage } from "./LanguageProvider";
 
 export function HowItWorks() {
+  const { t } = useLanguage();
+
+  const steps = [
+    { title: t.howItWorks.step1Title, description: t.howItWorks.step1Body },
+    { title: t.howItWorks.step2Title, description: t.howItWorks.step2Body },
+    { title: t.howItWorks.step3Title, description: t.howItWorks.step3Body },
+    { title: t.howItWorks.step4Title, description: t.howItWorks.step4Body },
+  ];
+
   return (
     <section
       id="how-it-works"
@@ -44,11 +31,11 @@ export function HowItWorks() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>HOW EACH WEEK WORKS</p>
+          <p className={`${EYEBROW} mb-4`}>{t.howItWorks.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
-            The same rhythm, every week.
+            {t.howItWorks.headline}
           </h2>
         </ScrollReveal>
 
@@ -72,7 +59,7 @@ export function HowItWorks() {
 
         <ScrollReveal delay={400}>
           <p className="text-center text-[#475569] text-base mt-10">
-            You always know exactly where you are and what comes next.
+            {t.howItWorks.footnote}
           </p>
         </ScrollReveal>
       </div>

@@ -15,3 +15,7 @@ export { Pricing } from "./Pricing";
 export { FAQ } from "./FAQ";
 export { Footer } from "./Footer";
 export { LandingButton } from "./LandingButton";
+export { LanguageProvider, useLanguage } from "./LanguageProvider";
+export { LanguageToggle } from "./LanguageToggle";
+export { LandingNavbar } from "./LandingNavbar";
+export { LandingPage } from "./LandingPage";

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LandingButton } from "./LandingButton";
 import { GRADIENT_TEXT, CENTERED_SECTION_VIGNETTE } from "./constants";
+import { useLanguage } from "./LanguageProvider";
 
 interface InterstitialProps {
   copy: string;
@@ -17,6 +18,7 @@ export function Interstitial({
   subCopyGradient = false,
   showCta = false,
 }: InterstitialProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -69,7 +71,7 @@ export function Interstitial({
         {showCta && (
           <div className="mt-6 md:mt-8">
             <LandingButton className="text-base md:text-lg px-10 py-4">
-              Apply for Batch 4
+              {t.sectionCta.button}
             </LandingButton>
           </div>
         )}

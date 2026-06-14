@@ -5,23 +5,15 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { LandingButton } from "./LandingButton";
 import {
   EYEBROW,
-  GRADIENT_TEXT,
   CENTERED_SECTION_ROOT,
   CENTERED_SECTION_CONTENT,
   CENTERED_SECTION_VIGNETTE,
 } from "./constants";
-
-const features = [
-  "Full 13-week program",
-  "78+ hours of live instruction",
-  "Two shipped products",
-  "Lifetime recording access",
-  "Direct access to your mentor — Shahriar Sultan",
-  "Career consultation and support",
-  "Private batch community",
-];
+import { useLanguage } from "./LanguageProvider";
 
 export function Pricing() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="pricing"
@@ -34,41 +26,36 @@ export function Pricing() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>PRICING</p>
+          <p className={`${EYEBROW} mb-4`}>{t.pricing.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
-            Batch 4 Pricing
+            {t.pricing.headline}
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={150}>
           <div className="w-full rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8 text-left">
             <p className="text-3xl md:text-4xl font-bold tracking-tight text-slate-500 line-through">
-              ৳18,990
+              {t.pricing.originalPrice}
             </p>
             <p className="text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mt-2">
-              ৳13,900
+              {t.pricing.currentPrice}
             </p>
 
             <div className="mt-6 rounded-2xl p-[2px] bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] shadow-[0_0_40px_rgba(249,115,22,0.2)]">
               <div className="rounded-2xl bg-[#0F1520] p-5 md:p-6 border border-[#F97316]/20 bg-gradient-to-br from-[#F97316]/10 via-[#0F1520] to-[#0F1520]">
                 <p className="text-base md:text-lg font-semibold text-[#F1F5F9]">
-                  ⚡ Early Bird Price:{" "}
-                  <span className={`font-bold ${GRADIENT_TEXT}`}>৳9,900</span>
+                  {t.pricing.earlyBirdLabel}
                 </p>
                 <p className="text-[#94A3B8] text-base leading-relaxed mt-2">
-                  Apply before{" "}
-                  <span className="font-bold text-[#F97316]">June 22nd</span>{" "}
-                  and pay{" "}
-                  <span className={`font-bold ${GRADIENT_TEXT}`}>৳9,900</span>{" "}
-                  only.
+                  {t.pricing.earlyBirdBody}
                 </p>
               </div>
             </div>
 
             <ul className="space-y-3 my-8">
-              {features.map((feature) => (
+              {t.pricing.features.map((feature) => (
                 <li
                   key={feature}
                   className="flex items-start gap-3 text-[#94A3B8] text-base"
@@ -83,15 +70,24 @@ export function Pricing() {
             </ul>
 
             <LandingButton className="w-full text-base md:text-lg py-4">
-              Apply for Early Bird — ৳9,900
+              {t.pricing.ctaPrimary}
             </LandingButton>
 
+            {t.pricing.ctaSecondary && (
+              <LandingButton
+                variant="outline"
+                className="w-full text-base md:text-lg py-4 mt-3"
+              >
+                {t.pricing.ctaSecondary}
+              </LandingButton>
+            )}
+
             <p className="text-center text-[#F1F5F9] text-sm md:text-base font-medium mt-6">
-              Regular price of ৳13,900 applies after June 22nd.
+              {t.pricing.footnote}
             </p>
 
             <p className="text-center text-[#F1F5F9] text-sm md:text-base font-semibold mt-4 pt-4 border-t border-[#1C2740]">
-              Batch 4 has a hard cap. Once seats are full, enrollment closes.
+              {t.pricing.capNote}
             </p>
           </div>
         </ScrollReveal>

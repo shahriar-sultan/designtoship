@@ -2,8 +2,11 @@
 
 import { LandingButton } from "./LandingButton";
 import { CENTERED_SECTION_VIGNETTE } from "./constants";
+import { useLanguage } from "./LanguageProvider";
 
 export function SectionCTA() {
+  const { t } = useLanguage();
+
   return (
     <div
       className="relative z-10 w-full flex flex-col items-center gap-4 py-16 px-8"
@@ -14,11 +17,9 @@ export function SectionCTA() {
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <LandingButton className="text-base md:text-lg px-10 py-4">
-          Apply for Batch 4
+          {t.sectionCta.button}
         </LandingButton>
-        <p className="text-slate-400 text-sm mt-4">
-          Batch 4 · Limited seats · Enrollment closes when full
-        </p>
+        <p className="text-slate-400 text-sm mt-4">{t.sectionCta.note}</p>
       </div>
     </div>
   );
