@@ -31,9 +31,9 @@ export function Navbar({ className = "" }: NavbarProps) {
         className={`fixed top-0 inset-x-0 z-50 md:hidden ${className}`}
         style={navBarStyle}
       >
-        <div className="flex items-center justify-between h-14 px-4">
+        <div className="flex items-center justify-between h-20 px-4">
           <span className="text-[#F1F5F9] text-base font-semibold">
-            Shahriar Sultan
+            Design To Ship
           </span>
 
           <button
@@ -62,9 +62,9 @@ export function Navbar({ className = "" }: NavbarProps) {
         className={`hidden md:block fixed top-0 inset-x-0 z-50 ${className}`}
         style={navBarStyle}
       >
-        <div className="flex items-center justify-between h-14 max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-[#F1F5F9] text-lg font-semibold">
-            Shahriar Sultan
+            Design To Ship
           </div>
 
           <Button

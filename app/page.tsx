@@ -1,5 +1,5 @@
+import { AuthenticatedRedirect } from "@/components/landing/AuthenticatedRedirect";
 import {
-  AuthenticatedRedirect,
   ParticleCanvas,
   Hero,
   Interstitial,
@@ -22,7 +22,7 @@ export default function HomePage() {
     <div className="relative min-h-screen" style={{ background: "#080C14" }}>
       <AuthenticatedRedirect />
       <ParticleCanvas />
-      <main className="relative">
+      <main className="relative z-10">
         <Hero />
 
         <Interstitial

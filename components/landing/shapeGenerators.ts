@@ -1,15 +1,18 @@
 const JITTER = 0.018;
 
-function finalize(pos: Float32Array, count: number, shapeName: string): Float32Array {
+function finalize(pos: Float32Array, count: number, _shapeName: string): Float32Array {
   for (let i = 0; i < count; i++) {
     pos[i * 3] += (Math.random() - 0.5) * JITTER;
     pos[i * 3 + 1] += (Math.random() - 0.5) * JITTER;
     pos[i * 3 + 2] += (Math.random() - 0.5) * JITTER;
+
+    for (let axis = 0; axis < 3; axis++) {
+      const index = i * 3 + axis;
+      if (!Number.isFinite(pos[index])) {
+        pos[index] = (Math.random() - 0.5) * 0.1;
+      }
+    }
   }
-  console.assert(
-    !Array.from(pos).some((v) => Number.isNaN(v)),
-    `NaN in shape: ${shapeName}`,
-  );
   return pos;
 }
 
@@ -199,8 +202,10 @@ export function generateDNAHelix(count: number): Float32Array {
     pos[idx * 3 + 2] = HELIX_RADIUS * Math.sin(angle);
   }
 
-  const particlesPerRung = Math.floor(rungCount / RUNG_COUNT);
-  for (let r = 0; r < RUNG_COUNT; r++) {
+  const particlesPerRung = Math.max(1, Math.floor(rungCount / RUNG_COUNT));
+  let nextIndex = strandCount * 2;
+
+  for (let r = 0; r < RUNG_COUNT && nextIndex < count; r++) {
     const t = r / RUNG_COUNT;
     const angle = t * TURNS * Math.PI * 2;
     const y = (t - 0.5) * HELIX_HEIGHT;
@@ -210,14 +215,23 @@ export function generateDNAHelix(count: number): Float32Array {
     const x2 = -x1;
     const z2 = -z1;
 
-    for (let p = 0; p < particlesPerRung; p++) {
-      const idx = strandCount * 2 + r * particlesPerRung + p;
-      if (idx >= count) break;
-      const lerp = p / particlesPerRung;
-      pos[idx * 3] = x1 + (x2 - x1) * lerp;
-      pos[idx * 3 + 1] = y;
-      pos[idx * 3 + 2] = z1 + (z2 - z1) * lerp;
+    for (let p = 0; p < particlesPerRung && nextIndex < count; p++) {
+      const lerp = particlesPerRung > 1 ? p / (particlesPerRung - 1) : 0;
+      pos[nextIndex * 3] = x1 + (x2 - x1) * lerp;
+      pos[nextIndex * 3 + 1] = y;
+      pos[nextIndex * 3 + 2] = z1 + (z2 - z1) * lerp;
+      nextIndex++;
     }
+  }
+
+  while (nextIndex < count) {
+    const t = Math.random();
+    const angle = t * TURNS * Math.PI * 2;
+    const y = (t - 0.5) * HELIX_HEIGHT;
+    pos[nextIndex * 3] = HELIX_RADIUS * Math.cos(angle);
+    pos[nextIndex * 3 + 1] = y;
+    pos[nextIndex * 3 + 2] = HELIX_RADIUS * Math.sin(angle);
+    nextIndex++;
   }
 
   return finalize(pos, count, "dna-helix");

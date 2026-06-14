@@ -18,28 +18,43 @@ export function ScrollReveal({
   direction = "up",
   distance = 50,
 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const reveal = () => {
+      window.setTimeout(() => {
+        setIsVisible(true);
+      }, delay);
+    };
+
+    const rect = element.getBoundingClientRect();
+    const isBelowFold = rect.top >= window.innerHeight * 0.9;
+
+    if (!isBelowFold) {
+      reveal();
+      return;
+    }
+
+    setIsVisible(false);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
+          reveal();
           observer.disconnect();
         }
       },
       {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px",
-      }
+      },
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
     return () => {
       observer.disconnect();
@@ -60,7 +75,7 @@ export function ScrollReveal({
       className={cn(
         "transition-all duration-700 ease-out",
         isVisible ? "opacity-100" : "opacity-0",
-        className
+        className,
       )}
       style={{
         transform: isVisible ? "translateX(0) translateY(0)" : getTransform(),
