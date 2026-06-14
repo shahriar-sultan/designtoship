@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import {
+  AuthenticatedRedirect,
   ParticleCanvas,
   Hero,
   Interstitial,
@@ -18,14 +17,10 @@ import {
   Footer,
 } from "@/components/landing";
 
-export default async function HomePage() {
-  const session = await auth();
-  if (session?.user) {
-    redirect("/dashboard");
-  }
-
+export default function HomePage() {
   return (
     <div className="relative min-h-screen" style={{ background: "#080C14" }}>
+      <AuthenticatedRedirect />
       <ParticleCanvas />
       <main className="relative">
         <Hero />

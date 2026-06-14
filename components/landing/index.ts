@@ -1,3 +1,4 @@
+export { AuthenticatedRedirect } from "./AuthenticatedRedirect";
 export { ParticleCanvas } from "./ParticleCanvas";
 export { Hero } from "./Hero";
 export { Interstitial } from "./Interstitial";
