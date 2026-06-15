@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LandingButton } from "./LandingButton";
-import { GRADIENT_TEXT, CENTERED_SECTION_VIGNETTE } from "./constants";
+import {
+  CENTERED_SECTION_CONTENT,
+  CENTERED_SECTION_ROOT,
+  CENTERED_SECTION_VIGNETTE,
+  GRADIENT_TEXT,
+} from "./constants";
 import { useLanguage } from "./LanguageProvider";
 
 interface InterstitialProps {
@@ -42,11 +47,11 @@ export function Interstitial({
   return (
     <div
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center"
+      className={CENTERED_SECTION_ROOT}
       style={{ background: "transparent" }}
     >
       <div
-        className="relative z-10 max-w-2xl mx-auto px-8 py-24 text-center transition-opacity duration-[400ms]"
+        className={`${CENTERED_SECTION_CONTENT} transition-opacity duration-[400ms]`}
         style={{
           opacity: visible ? 1 : 0,
           background: CENTERED_SECTION_VIGNETTE,
@@ -61,15 +66,15 @@ export function Interstitial({
           <p
             className={
               subCopyGradient
-                ? `mt-4 text-3xl md:text-5xl lg:text-7xl font-bold leading-tight ${GRADIENT_TEXT}`
-                : "mt-4 text-base md:text-lg text-slate-400"
+                ? `mt-2 md:mt-4 text-3xl md:text-5xl lg:text-7xl font-bold leading-tight ${GRADIENT_TEXT}`
+                : "mt-2 md:mt-4 text-base md:text-lg text-slate-400"
             }
           >
             {subCopy}
           </p>
         )}
         {showCta && (
-          <div className="mt-6 md:mt-8">
+          <div className="mt-3 md:mt-8">
             <LandingButton className="text-base md:text-lg px-10 py-4">
               {t.sectionCta.button}
             </LandingButton>

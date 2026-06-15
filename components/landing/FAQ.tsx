@@ -30,7 +30,7 @@ export function FAQ() {
           <p className={`${EYEBROW} mb-4`}>{t.faq.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-10 md:mb-14">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-5 md:mb-14">
             {t.faq.headline}
           </h2>
         </ScrollReveal>

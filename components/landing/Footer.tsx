@@ -18,11 +18,11 @@ export function Footer() {
   return (
     <footer
       data-particle-shape="stellar-nebula"
-      className="relative z-10 w-full py-12 px-6"
+      className="relative z-10 w-full py-8 md:py-12 px-6"
       style={{ background: "transparent" }}
     >
       <div
-        className="relative z-10 max-w-2xl mx-auto px-8 py-12 text-center"
+        className="relative z-10 max-w-2xl mx-auto px-6 md:px-8 py-8 md:py-12 text-center"
         style={{ background: CENTERED_SECTION_VIGNETTE }}
       >
         <ScrollReveal>

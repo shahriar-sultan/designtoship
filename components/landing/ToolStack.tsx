@@ -32,7 +32,7 @@ export function ToolStack() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={150}>
-          <p className="text-[#94A3B8] text-xl md:text-2xl mt-4 mb-10 md:mb-14">
+          <p className="text-[#94A3B8] text-xl md:text-2xl mt-4 mb-5 md:mb-14">
             {t.toolStack.subhead}
           </p>
         </ScrollReveal>

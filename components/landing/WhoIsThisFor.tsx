@@ -28,12 +28,12 @@ export function WhoIsThisFor() {
           <p className={`${EYEBROW} mb-4`}>{t.whoIsThisFor.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-6 md:mb-16">
             {t.whoIsThisFor.headline}
           </h2>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-12 text-left">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-6 md:mb-12 text-left">
           <ScrollReveal delay={150}>
             <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8">
               <h3 className="text-lg font-semibold text-[#F1F5F9] mb-4">

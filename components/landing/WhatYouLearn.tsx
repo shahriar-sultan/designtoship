@@ -40,10 +40,10 @@ export function WhatYouLearn() {
       style={{ background: "transparent" }}
     >
       <div
-        className="relative z-10 max-w-5xl mx-auto px-8 py-24 w-full"
+        className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 py-10 md:py-24 w-full"
         style={{ background: WIDE_SECTION_VIGNETTE }}
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <ScrollReveal>
             <p className={`${EYEBROW} mb-4`}>{t.whatYouLearn.eyebrow}</p>
           </ScrollReveal>

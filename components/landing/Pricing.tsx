@@ -29,7 +29,7 @@ export function Pricing() {
           <p className={`${EYEBROW} mb-4`}>{t.pricing.eyebrow}</p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-6 md:mb-16">
             {t.pricing.headline}
           </h2>
         </ScrollReveal>

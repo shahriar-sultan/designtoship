@@ -15,10 +15,10 @@ export const EYEBROW =
   "text-sm uppercase tracking-widest font-semibold bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] bg-clip-text text-transparent";
 
 export const CENTERED_SECTION_ROOT =
-  "relative min-h-screen flex items-center justify-center";
+  "relative flex items-center justify-center py-12 md:py-0 md:min-h-screen";
 
 export const CENTERED_SECTION_CONTENT =
-  "relative z-10 max-w-2xl mx-auto px-8 py-24 text-center w-full";
+  "relative z-10 max-w-2xl mx-auto px-6 md:px-8 py-10 md:py-24 text-center w-full";
 
 export const CENTERED_SECTION_VIGNETTE =
   "radial-gradient(ellipse 110% 90% at 50% 50%, rgba(8,12,20,0.88) 0%, rgba(8,12,20,0.55) 60%, transparent 100%)";

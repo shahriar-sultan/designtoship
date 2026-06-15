@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { cn } from "@/lib/utils";
 import { LandingButton } from "./LandingButton";
 import { EYEBROW, HERO_FULLSCREEN_VIGNETTE } from "./constants";
 import { useLanguage } from "./LanguageProvider";
@@ -39,7 +40,7 @@ export function Hero() {
   return (
     <section
       data-particle-shape="stellar-nebula"
-      className="relative min-h-screen flex items-center justify-center"
+      className="relative min-h-0 pt-20 pb-12 md:min-h-screen md:py-0 flex items-center justify-center overflow-hidden"
       style={{ background: "transparent" }}
     >
       <div
@@ -48,13 +49,13 @@ export function Hero() {
         style={{ background: HERO_FULLSCREEN_VIGNETTE }}
       />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-24 text-center min-h-screen flex flex-col items-stretch justify-center">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-8 md:py-24 text-center md:min-h-screen flex flex-col items-center justify-center">
         <ScrollReveal>
           <p className={EYEBROW}>{t.hero.eyebrow}</p>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05] mt-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05] mt-4 md:mt-8">
             {t.hero.headline1}
             <br />
             {t.hero.headline2}
@@ -86,7 +87,7 @@ export function Hero() {
         </ScrollReveal>
 
         <ScrollReveal delay={400}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3 md:pt-6">
             <LandingButton>{t.hero.ctaPrimary}</LandingButton>
             <button
               type="button"
@@ -99,11 +100,14 @@ export function Hero() {
         </ScrollReveal>
 
         <ScrollReveal delay={500}>
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 pt-8 max-w-3xl mx-auto w-full">
-            {stats.map((stat) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 pt-3 md:pt-8 max-w-3xl mx-auto w-full">
+            {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-[#1C2740] bg-[#0F1520]/80 p-5 md:p-6 text-left"
+                className={cn(
+                  "rounded-2xl border border-[#1C2740] bg-[#0F1520]/80 p-5 md:p-6 text-left",
+                  index === 2 && "col-span-2 sm:col-span-1 text-center sm:text-left",
+                )}
               >
                 <p className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] bg-clip-text text-transparent">
                   {stat.value}
