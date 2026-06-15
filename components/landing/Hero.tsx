@@ -3,6 +3,7 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { cn } from "@/lib/utils";
 import { LandingButton } from "./LandingButton";
+import { HeroVideoPreview } from "./HeroVideoPreview";
 import { EYEBROW, HERO_FULLSCREEN_VIGNETTE } from "./constants";
 import { useLanguage } from "./LanguageProvider";
 
@@ -99,8 +100,15 @@ export function Hero() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={500}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 pt-3 md:pt-8 max-w-3xl mx-auto w-full">
+        <ScrollReveal delay={500} className="w-full">
+          <HeroVideoPreview
+            label={t.hero.videoPreview}
+            className="pt-3 md:pt-8"
+          />
+        </ScrollReveal>
+
+        <ScrollReveal delay={600} className="w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6 max-w-3xl mx-auto w-full">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
