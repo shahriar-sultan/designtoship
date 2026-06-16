@@ -3,7 +3,8 @@
 import {
   createContext,
   useContext,
-  useSyncExternalStore,
+  useEffect,
+  useState,
   type ReactNode,
 } from "react";
 import { translations, type Language, type Translations } from "@/lib/translations";
@@ -18,48 +19,46 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 const COOKIE_NAME = "lang";
-let listeners: Array<() => void> = [];
 
 function getCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? match[2] : null;
+  const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : null;
 }
 
 function setCookie(name: string, value: string) {
   if (typeof document === "undefined") return;
-  document.cookie = `${name}=${value}; path=/; max-age=31536000`;
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=31536000; SameSite=Lax`;
 }
 
-function getLangSnapshot(): Language {
-  const saved = getCookie(COOKIE_NAME) as Language | null;
+function readPersistedLang(): Language {
+  const saved = getCookie(COOKIE_NAME);
   return saved === "en" ? "en" : "bn";
 }
 
-function subscribe(listener: () => void) {
-  listeners.push(listener);
-  return () => {
-    listeners = listeners.filter((l) => l !== listener);
-  };
-}
-
-function notifyListeners() {
-  listeners.forEach((listener) => listener());
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const lang = useSyncExternalStore(
-    subscribe,
-    getLangSnapshot,
-    (): Language => "bn",
-  );
+  const [lang, setLangState] = useState<Language>("bn");
+
+  useEffect(() => {
+    setLangState(readPersistedLang());
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const setLang = (l: Language) => {
+    setLangState(l);
     setCookie(COOKIE_NAME, l);
-    notifyListeners();
   };
 
-  const toggle = () => setLang(lang === "bn" ? "en" : "bn");
+  const toggle = () => {
+    setLangState((current) => {
+      const next = current === "bn" ? "en" : "bn";
+      setCookie(COOKIE_NAME, next);
+      return next;
+    });
+  };
 
   const t = translations[lang];
 

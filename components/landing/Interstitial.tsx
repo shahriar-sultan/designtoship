@@ -11,6 +11,7 @@ import {
 import { useLanguage } from "./LanguageProvider";
 
 interface InterstitialProps {
+  shape?: string;
   copy: string;
   subCopy?: string;
   subCopyGradient?: boolean;
@@ -18,6 +19,7 @@ interface InterstitialProps {
 }
 
 export function Interstitial({
+  shape,
   copy,
   subCopy,
   subCopyGradient = false,
@@ -49,6 +51,9 @@ export function Interstitial({
       ref={ref}
       className={CENTERED_SECTION_ROOT}
       style={{ background: "transparent" }}
+      data-particle-shape={shape}
+      data-particle-side={shape ? "center" : undefined}
+      data-interstitial={shape ? "true" : undefined}
     >
       <div
         className={`${CENTERED_SECTION_CONTENT} transition-opacity duration-[400ms]`}

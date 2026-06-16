@@ -84,7 +84,12 @@ export function ParticleCanvas() {
       );
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setClearColor(0x000000, 0);
-      container.appendChild(renderer.domElement);
+      const canvas = renderer.domElement;
+      canvas.style.display = "block";
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.pointerEvents = "none";
+      container.appendChild(canvas);
 
       const positions = new Float32Array(PARTICLE_COUNT * 3);
       const colors = new Float32Array(PARTICLE_COUNT * 3);
@@ -242,7 +247,7 @@ export function ParticleCanvas() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-0 pointer-events-none"
+      className="fixed inset-0 z-[1] pointer-events-none"
       aria-hidden="true"
     />
   );

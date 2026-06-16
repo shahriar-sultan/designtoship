@@ -23,8 +23,17 @@ const securityHeaders = [
   },
 ];
 
+const devAllowedOrigins =
+  process.env.NODE_ENV === "development"
+    ? [
+        "192.168.68.57",
+        ...(process.env.DEV_ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ??
+          []),
+      ].filter(Boolean)
+    : [];
+
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1", "localhost"],
+  allowedDevOrigins: ["127.0.0.1", "localhost", ...devAllowedOrigins],
   async headers() {
     if (process.env.NODE_ENV !== "production") {
       return [];

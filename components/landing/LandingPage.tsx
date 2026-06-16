@@ -6,7 +6,8 @@ import { LanguageProvider } from "./LanguageProvider";
 import { LandingNavbar } from "./LandingNavbar";
 import { Hero } from "./Hero";
 import { Interstitial } from "./Interstitial";
-import { Problem } from "./Problem";
+import { TheShift } from "./TheShift";
+import { WhatCourseTeaches } from "./WhatCourseTeaches";
 import { SectionCTA } from "./SectionCTA";
 import { WhatYouShip } from "./WhatYouShip";
 import { WhatYouLearn } from "./WhatYouLearn";
@@ -31,36 +32,56 @@ function LandingContent() {
       <main className="relative z-10">
         <Hero />
 
-        <Interstitial copy={t.interstitials.i1.main} subCopy={t.interstitials.i1.sub} />
-
-        <Problem />
+        <TheShift />
+        <WhatCourseTeaches />
         <SectionCTA />
 
-        <Interstitial copy={t.interstitials.i2.main} subCopy={t.interstitials.i2.sub} />
+        <Interstitial
+          shape="torus"
+          copy={t.interstitials.i2.main}
+          subCopy={t.interstitials.i2.sub}
+        />
 
         <WhatYouShip />
         <SectionCTA />
 
-        <Interstitial copy={t.interstitials.i3.main} subCopy={t.interstitials.i3.sub} />
+        <Interstitial
+          shape="mobius-strip"
+          copy={t.interstitials.i3.main}
+          subCopy={t.interstitials.i3.sub}
+        />
 
         <WhatYouLearn />
         <SectionCTA />
 
-        <Interstitial copy={t.interstitials.i4.main} subCopy={t.interstitials.i4.sub} />
+        <Interstitial
+          shape="galaxy-spiral"
+          copy={t.interstitials.i4.main}
+          subCopy={t.interstitials.i4.sub}
+        />
 
         <Curriculum />
         <SectionCTA />
 
-        <Interstitial copy={t.interstitials.i5.main} subCopy={t.interstitials.i5.sub} />
+        <Interstitial
+          shape="dna-helix"
+          copy={t.interstitials.i5.main}
+          subCopy={t.interstitials.i5.sub}
+        />
 
         <HowItWorks />
         <SectionCTA />
 
-        <Interstitial copy={t.interstitials.i6.main} subCopy={t.interstitials.i6.sub} />
+        <Interstitial
+          shape="milky-way"
+          copy={t.interstitials.i6.main}
+          subCopy={t.interstitials.i6.sub}
+        />
 
         <ToolStack />
 
         <Interstitial
+          shape="hyperboloid"
           copy={t.interstitials.toolFree.main}
           subCopy={t.interstitials.toolFree.sub}
         />
@@ -68,6 +89,7 @@ function LandingContent() {
         <WhoIsThisFor />
 
         <Interstitial
+          shape="torus-knot"
           copy={t.interstitials.i7.main}
           subCopy={t.interstitials.i7.sub}
           subCopyGradient
@@ -77,6 +99,7 @@ function LandingContent() {
         <SectionCTA />
 
         <Interstitial
+          shape="supernova-shell"
           copy={t.interstitials.i8.main}
           subCopy={t.interstitials.i8.sub}
           subCopyGradient
@@ -86,6 +109,7 @@ function LandingContent() {
         <SectionCTA />
 
         <Interstitial
+          shape="stellar-nebula"
           copy={t.interstitials.i9.main}
           subCopy={t.interstitials.i9.sub}
           subCopyGradient
@@ -93,7 +117,7 @@ function LandingContent() {
 
         <FAQ />
 
-        <Interstitial copy={t.interstitials.i10.main} showCta />
+        <Interstitial shape="sphere" copy={t.interstitials.i10.main} showCta />
 
         <Footer />
       </main>

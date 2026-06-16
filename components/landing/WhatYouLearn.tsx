@@ -19,14 +19,14 @@ const WIDE_SECTION_VIGNETTE =
   "radial-gradient(ellipse 110% 95% at 50% 50%, rgba(8,12,20,0.9) 0%, rgba(8,12,20,0.6) 60%, transparent 100%)";
 
 const skillIcons: LucideIcon[] = [
-  Layout,
-  Type,
-  Palette,
-  Component,
   Route,
-  MousePointerClick,
+  Layout,
   Boxes,
+  Palette,
+  Type,
+  MousePointerClick,
   Smartphone,
+  Component,
 ];
 
 export function WhatYouLearn() {

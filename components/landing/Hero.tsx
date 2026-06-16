@@ -51,11 +51,11 @@ export function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-8 md:py-24 text-center md:min-h-screen flex flex-col items-center justify-center">
-        <ScrollReveal>
+        <ScrollReveal className="order-2 md:order-1">
           <p className={EYEBROW}>{t.hero.eyebrow}</p>
         </ScrollReveal>
 
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={100} className="order-3 md:order-2">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05] mt-4 md:mt-8">
             {t.hero.headline1}
             <br />
@@ -63,13 +63,19 @@ export function Hero() {
           </h1>
         </ScrollReveal>
 
-        <ScrollReveal delay={200}>
+        <ScrollReveal delay={200} className="order-4 md:order-3">
           <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto mt-6">
-            {t.hero.subhead}
+            {t.hero.subhead1}
           </p>
         </ScrollReveal>
 
-        <ScrollReveal delay={300} className="w-full">
+        <ScrollReveal delay={250} className="order-5 md:order-4">
+          <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto mt-4">
+            {t.hero.subhead2}
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal delay={300} className="w-full order-6 md:order-5">
           <p
             className="w-full text-base text-[#F1F5F9] font-normal mt-4 tracking-normal text-center px-4 [font-synthesis:none]"
             style={
@@ -87,7 +93,7 @@ export function Hero() {
           </p>
         </ScrollReveal>
 
-        <ScrollReveal delay={400}>
+        <ScrollReveal delay={400} className="order-7 md:order-6">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3 md:pt-6">
             <LandingButton>{t.hero.ctaPrimary}</LandingButton>
             <button
@@ -100,14 +106,14 @@ export function Hero() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={500} className="w-full">
+        <ScrollReveal delay={500} className="w-full order-1 md:order-7">
           <HeroVideoPreview
             label={t.hero.videoPreview}
-            className="pt-3 md:pt-8"
+            className="pt-0 pb-3 md:pt-8 md:pb-0"
           />
         </ScrollReveal>
 
-        <ScrollReveal delay={600} className="w-full">
+        <ScrollReveal delay={600} className="w-full order-8 md:order-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6 max-w-3xl mx-auto w-full">
             {stats.map((stat, index) => (
               <div

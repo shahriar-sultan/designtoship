@@ -22,7 +22,7 @@ interface CheckFailure {
 const SECTIONS: SectionDef[] = [
   { name: "hero", selector: '[data-particle-shape="scattered-cloud"]' },
   { name: "interstitial-burst", selector: '[data-particle-shape="burst"]' },
-  { name: "problem", selector: "#problem" },
+  { name: "the-shift", selector: "#the-shift" },
   { name: "interstitial-fragmented", selector: '[data-particle-shape="fragmented-scatter"]' },
   { name: "what-you-ship", selector: "#what-you-ship" },
   { name: "interstitial-galaxy", selector: '[data-particle-shape="galaxy"]' },

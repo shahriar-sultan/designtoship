@@ -10,9 +10,11 @@ export const translations = {
     hero: {
       eyebrow: "BATCH 4 · ENROLLMENT চলছে",
       headline1: "ডিজাইন শিখুন।",
-      headline2: "Real Product বানান।",
-      subhead:
-        "৩ মাসের একটা live program, যেখানে আপনি zero থেকে শুরু করে দুইটা real product internet-এ live করবেন। যে product আপনি নিজে ডিজাইন করেছেন। যে product আপনি নিজে বানিয়েছেন।",
+      headline2: "নিজের হাতে product বানান।",
+      subhead1:
+        "AI এখন কয়েক মিনিটে screen বানিয়ে দেয়। কিন্তু কোন screen-টা আসলে কাজ করবে, কেন করবে — এটা বোঝার কাজটা এখনো আমাদেরই। আর ঠিক এই বোঝাপড়াটাই একজন designer-এর আসল দাম।",
+      subhead2:
+        "৩ মাসে, zero থেকে শুরু করে আপনি দুইটা real product internet-এ live করবেন — নিজে ডিজাইন করা, নিজে বানানো।",
       supporting:
         "১৩ সপ্তাহ · সপ্তাহে ২টা live class · একজন senior designer-এর সাথে ৭৮+ ঘণ্টা",
       ctaPrimary: "Batch 4 তে Apply করুন",
@@ -24,18 +26,29 @@ export const translations = {
       stat3: "Figma projects",
     },
 
-    problem: {
-      eyebrow: "সমস্যাটা কোথায়",
-      headline: "সবাই ডিজাইন শেখে। কিন্তু কেউ কিছু ship করে না।",
-      card1Title: "কোর্স শেষ। হাতে শুধু Figma file।",
-      card1Body:
-        "বেশিরভাগ ডিজাইন কোর্স শুধু tool শেখায়। কোর্স শেষে আপনার হাতে কিছু screen থাকে, যেগুলো hard drive-এ পড়ে থাকে — কোথাও যায় না।",
-      card2Title: "Market বদলে গেছে।",
-      card2Body:
-        "AI এখন screen বানাতে পারে। কিন্তু AI যেটা পারে না — user নিয়ে চিন্তা করা, ভালো সিদ্ধান্ত নেওয়া, আর একটা product সত্যিকারের internet-এ ship করা। ঠিক এই জিনিসটার জন্যই client আর company টাকা দেয়।",
-      card3Title: "এই কোর্সটা আলাদা।",
-      card3Body:
-        "এখান থেকে আপনি দুইটা real, live product নিয়ে বের হবেন। কোনো mockup না। কোনো Figma file না। সত্যিকারের URL, যেটা যে কেউ open করতে পারবে।",
+    theShift: {
+      eyebrow: "Industry টা চুপচাপ বদলে যাচ্ছে",
+      headline: "কয়েক বছর আগেও একটা সুন্দর Figma file যথেষ্ট ছিল।",
+      paragraphs: [
+        "Client screen দেখত, ভালো লাগলে কাজ দিত। ব্যাস।",
+        "এখন AI নিজেই screen বানিয়ে দিচ্ছে — code সহ, live। যে কাজে আগে কয়েক দিন লাগত, এখন একটা ভালো prompt-এ হয়ে যায়।",
+        "তাহলে একজন designer-এর দরকারটা কোথায়?",
+        "আমি যেটা দেখি — client এখন আর শুধু সুন্দর screen চায় না। তারা দেখতে চায় আপনার চিন্তাটা: কেন এই design এভাবে, কোন reasoning-এ এই সিদ্ধান্ত, আর এটা আসলে কাজ করবে কিনা। screen AI বানাতে পারে, কিন্তু এই judgment-টা AI-এর নেই।",
+        "আর শেষমেশ তারা একটা live জিনিস দেখতে চায় — Figma file না, এমন একটা product যেটা সত্যি কাজ করে।",
+      ],
+    },
+
+    whatCourseTeaches: {
+      eyebrow: "এই কোর্স আসলে কী শেখায়",
+      headline: "Tool শেখা এখন সহজ। আসল জিনিসটা আলাদা।",
+      paragraphs: [
+        "Figma YouTube-এ আছে, AI দিয়ে screen বানানোও শেখা যায়। ওটা এই কোর্সের মূল জিনিস না।",
+        "মূল জিনিসটা হলো — নিজের design দেখে বুঝতে পারা, ভালো হলো নাকি হলো না, আর কেন।",
+        "ক্যারিয়ারের শুরুতে আমরা প্রায় সবাই এই জায়গায় আটকাই। নিজের design post করলে কমেন্ট আসে \"nice\" বা \"আরেকটু improve করেন\" — কিন্তু ঠিক কোথায়, কীভাবে improve করব কেউ বলে না। অন্যের কাজ দেখে মনে হয় আমারটা ওই level-এর হয়নি, কিন্তু gap-টা কোথায় সেটাই ধরতে পারি না।",
+        "এই gap-টা আসলে design taste-এ — সহজ বাংলায়, ডিজাইনের রুচিতে। আর এটা তৈরি করা যায়। ভালো design কীভাবে কাজ করছে, কোন element কেন বসানো হয়েছে — এগুলো observe করতে করতে এক সময় design দেখামাত্র আপনি বুঝবেন এটা ভালো নাকি খারাপ, আর কেন।",
+        "তারপর আসে reasoning — আমি কী করলাম, কেন করলাম, এর পেছনে যুক্তি আছে কিনা। এই যুক্তিটা না থাকলে নিজের কাজ client-এর কাছে validate করা কঠিন।",
+        "এই দুইটা জিনিসই — taste আর reasoning — কোর্সের আসল target। আর শেখা যে হয়েছে, সেটা আমরা প্রমাণ করি কাজ করে দেখিয়ে: প্রতি সপ্তাহে আপনি নিজের product-এ হাত দেবেন, আর কোর্স শেষে হাতে থাকবে দুইটা live product — যার URL আপনি যে কাউকে পাঠাতে পারবেন।",
+      ],
     },
 
     whatYouShip: {
@@ -55,39 +68,19 @@ export const translations = {
 
     whatYouLearn: {
       eyebrow: "আপনি কী কী শিখবেন",
-      headline: "আসল ডিজাইন skill। শুধু tool না।",
+      headline: "যে skill গুলো AI ধরতে পারে না।",
       subhead:
-        "আপনি একদম শুরু থেকে UI আর UX ডিজাইন শিখবেন — ঠিক যে skill গুলো একজন working product designer real product বানাতে ব্যবহার করে।",
+        "নিচের প্রতিটা skill ওই judgment-এরই অংশ — যে চিন্তা একটা screen-কে \"দেখতে ঠিক আছে\" থেকে \"আসলেই কাজ করে\"-তে নিয়ে যায়।",
       skills: [
-        {
-          title: "Visual Hierarchy ও Layout",
-          description:
-            "একটা screen দেখতে কেন সুন্দর লাগে, সেটা শিখুন। Spacing, alignment, balance — ভালো ডিজাইনের ভিত্তি।",
-        },
-        {
-          title: "Typography",
-          description:
-            "Type scale, font pairing, weight আর rhythm। এমন text বানান যা সুন্দর এবং পড়তে সহজ।",
-        },
-        {
-          title: "Color ও Theory",
-          description:
-            "নিজে color palette বানান। Contrast, mood, আর color কীভাবে একটা brand-এর অনুভূতি তৈরি করে — বুঝুন।",
-        },
-        {
-          title: "Figma Mastery",
-          description:
-            "Component, variant, auto layout। যে Figma skill গুলো professional product designer প্রতিদিন ব্যবহার করে।",
-        },
         {
           title: "UX Thinking",
           description:
             "User flow, sitemap, information architecture, wireframe। একটা screen আঁকার আগে user নিয়ে ভাবতে শিখুন।",
         },
         {
-          title: "Interface ও Interaction",
+          title: "Visual Hierarchy ও Layout",
           description:
-            "Real screen ডিজাইন করুন — landing page, form, empty state, loading আর error state। যে detail গুলো amateur আর professional কাজের পার্থক্য গড়ে দেয়।",
+            "একটা screen দেখতে কেন সুন্দর লাগে, সেটা শিখুন। Spacing, alignment, balance — ভালো ডিজাইনের ভিত্তি।",
         },
         {
           title: "Design System",
@@ -95,9 +88,29 @@ export const translations = {
             "একটা একটা করে screen বানানো বন্ধ করুন। Reusable component বানান আর senior designer-দের মতো system-এ চিন্তা করুন।",
         },
         {
+          title: "Color ও Theory",
+          description:
+            "নিজে color palette বানান। Contrast, mood, আর color কীভাবে একটা brand-এর অনুভূতি তৈরি করে — বুঝুন।",
+        },
+        {
+          title: "Typography",
+          description:
+            "Type scale, font pairing, weight আর rhythm। এমন text বানান যা সুন্দর এবং পড়তে সহজ।",
+        },
+        {
+          title: "Interface ও Interaction",
+          description:
+            "Real screen ডিজাইন করুন — landing page, form, empty state, loading আর error state। যে detail গুলো amateur আর professional কাজের পার্থক্য গড়ে দেয়।",
+        },
+        {
           title: "Responsive ও Mobile-First",
           description:
             "সব screen size-এর জন্য ডিজাইন করুন। Mobile-first শুরু করুন — ঠিক যেভাবে industry আজ real product বানায়।",
+        },
+        {
+          title: "Figma Mastery",
+          description:
+            "Component, variant, auto layout। যে Figma skill গুলো professional product designer প্রতিদিন ব্যবহার করে।",
         },
       ],
     },
@@ -290,10 +303,6 @@ export const translations = {
     },
 
     interstitials: {
-      i1: {
-        main: "ডিজাইন বদলে যাচ্ছে।",
-        sub: "প্রশ্ন হলো, আপনি বদলাচ্ছেন কিনা।",
-      },
       i2: {
         main: "যারা ship করবে, তারাই জিতবে।",
         sub: "বাকিদের হাতে থাকবে শুধু Figma file।",
@@ -354,10 +363,12 @@ export const translations = {
 
     hero: {
       eyebrow: "BATCH 4 · ENROLLMENT OPEN",
-      headline1: "Learn Design.",
-      headline2: "Build Real Products.",
-      subhead:
-        "A 3-month live program where you start from zero and finish with two real products live on the internet. Products you designed. Products you built.",
+      headline1: "Learn design.",
+      headline2: "Build real products with your own hands.",
+      subhead1:
+        "AI can spin up a screen in minutes now. But knowing which screen will actually work, and why — that's still on us. And that understanding is what a designer is really worth.",
+      subhead2:
+        "In 3 months, starting from zero, you'll put two real products live on the internet — designed by you, built by you.",
       supporting:
         "13 weeks · 2 live classes per week · 78+ hours with a senior designer",
       ctaPrimary: "Apply for Batch 4",
@@ -369,18 +380,29 @@ export const translations = {
       stat3: "Figma projects",
     },
 
-    problem: {
-      eyebrow: "THE PROBLEM",
-      headline: "Everyone learns design. Almost nobody ships anything.",
-      card1Title: "You finish the course. You have Figma files.",
-      card1Body:
-        "Most design courses teach you tools. You graduate with screens that sit on your hard drive and go nowhere.",
-      card2Title: "The market has changed.",
-      card2Body:
-        "AI can make screens now. What it cannot do is think about the user, make good decisions, and actually ship a product to the internet. That is what employers and clients pay for.",
-      card3Title: "This course is different.",
-      card3Body:
-        "You leave with two real, live products. Not mockups. Not Figma files. Real URLs anyone can open.",
+    theShift: {
+      eyebrow: "The industry is quietly shifting",
+      headline: "A few years ago, a good Figma file was enough.",
+      paragraphs: [
+        "The client looked at the screens, liked them, gave you the work. That was it.",
+        "Now AI builds the screens itself — with code, live. Work that used to take days now happens in one good prompt.",
+        "So where does a designer fit in?",
+        "Here's what I see: clients don't just want pretty screens anymore. They want to see your thinking — why this design, what reasoning led to this decision, and whether it'll actually work. AI can make the screen. It doesn't have that judgment.",
+        "And in the end, they want something live — not a Figma file, but a product that actually works.",
+      ],
+    },
+
+    whatCourseTeaches: {
+      eyebrow: "What this course actually teaches",
+      headline: "Learning the tools is easy now. The real thing is something else.",
+      paragraphs: [
+        "Figma is on YouTube; building screens with AI can be learned too. That's not the core of this course.",
+        "The core is this — being able to look at your own design and know whether it's good or not, and why.",
+        "Early in our careers, almost all of us get stuck right here. You post your design and the comments say \"nice\" or \"improve it a bit\" — but nobody tells you where, or how. You look at others' work and feel yours isn't at that level, but you can't pin down where the gap is.",
+        "That gap is really in your design taste. And taste can be built. By observing how good design works, why each element sits where it does — over time you'll look at a design and know instantly whether it's good or bad, and why.",
+        "Then comes the reasoning — what did I make, why did I make it, is there logic behind it. Without that logic, validating your work to a client gets hard.",
+        "These two things — taste and reasoning — are what this course is really aiming at. And we prove the learning happened by making things: every week you'll work on your own product, and by the end you'll have two live products whose URL you can send to anyone.",
+      ],
     },
 
     whatYouShip: {
@@ -400,19 +422,24 @@ export const translations = {
 
     whatYouLearn: {
       eyebrow: "What You Will Learn",
-      headline: "Real design skills. Not just tools.",
+      headline: "The skills AI can't grasp.",
       subhead:
-        "You will learn UI and UX design from the ground up — the same skills that working product designers use to build real products.",
+        "Each skill below is part of that judgment — the thinking that takes a screen from \"looks fine\" to \"actually works.\"",
       skills: [
+        {
+          title: "UX Thinking",
+          description:
+            "User flows, sitemaps, information architecture, and wireframing. Learn to think about the user before you draw a single screen.",
+        },
         {
           title: "Visual Hierarchy & Layout",
           description:
             "Learn what makes a screen feel right. Spacing, alignment, balance, and composition — the foundation every good design stands on.",
         },
         {
-          title: "Typography",
+          title: "Design System",
           description:
-            "Type scales, pairing fonts, weight, and rhythm. Make text that is both beautiful and easy to read.",
+            "Stop designing one screen at a time. Build reusable components and think in systems, the way senior designers do.",
         },
         {
           title: "Color & Theory",
@@ -420,14 +447,9 @@ export const translations = {
             "Build color palettes with intention. Understand contrast, mood, and how color creates a brand feeling.",
         },
         {
-          title: "Figma Mastery",
+          title: "Typography",
           description:
-            "Components, variants, and auto layout. The exact Figma skills professional product designers use every single day.",
-        },
-        {
-          title: "UX Thinking",
-          description:
-            "User flows, sitemaps, information architecture, and wireframing. Learn to think about the user before you draw a single screen.",
+            "Type scales, pairing fonts, weight, and rhythm. Make text that is both beautiful and easy to read.",
         },
         {
           title: "Interface & Interaction",
@@ -435,14 +457,14 @@ export const translations = {
             "Design real screens — landing pages, forms, empty states, loading and error states. The details that separate amateur work from professional work.",
         },
         {
-          title: "Design Systems",
-          description:
-            "Stop designing one screen at a time. Build reusable components and think in systems, the way senior designers do.",
-        },
-        {
           title: "Responsive & Mobile-First",
           description:
             "Design across every screen size. Start mobile-first — the same way the industry builds real products today.",
+        },
+        {
+          title: "Figma Mastery",
+          description:
+            "Components, variants, and auto layout. The exact Figma skills professional product designers use every single day.",
         },
       ],
     },
@@ -635,10 +657,6 @@ export const translations = {
     },
 
     interstitials: {
-      i1: {
-        main: "The Design Industry Is Changing",
-        sub: "The question is whether you are changing with it.",
-      },
       i2: {
         main: "The ones who ship will win.",
         sub: "Everyone else will have Figma files.",
