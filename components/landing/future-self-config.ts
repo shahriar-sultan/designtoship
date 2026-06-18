@@ -30,16 +30,16 @@ export const FUTURE_SELF_SECTION: Record<Language, FutureSelfCopy> = {
       "৩ মাস আগে যেটা শুধু স্বপ্ন ছিল — সেটাই এখন আপনার পরিচয়: **একজন UI/UX ডিজাইনার**",
     images: [
       {
-        src: "/images/future-self-1.png",
-        alt: "একজন ডিজাইনার আত্মবিশ্বাসের সাথে ল্যাপটপে কাজ করছেন",
+        src: "/images/future-self-3.png",
+        alt: "কেউ নিজের কাজ নিয়ে গর্বিত ও উৎসাহিত",
       },
       {
         src: "/images/future-self-2.png",
         alt: "একটি পরিষ্কার পোর্টফোলিও বা লাইভ প্রজেক্ট স্ক্রিনে",
       },
       {
-        src: "/images/future-self-3.png",
-        alt: "কেউ নিজের কাজ নিয়ে গর্বিত ও উৎসাহিত",
+        src: "/images/future-self-1.png",
+        alt: "একজন ডিজাইনার আত্মবিশ্বাসের সাথে ল্যাপটপে কাজ করছেন",
       },
     ],
   },
@@ -58,16 +58,16 @@ export const FUTURE_SELF_SECTION: Record<Language, FutureSelfCopy> = {
       "What was only a dream three months ago is now your identity: **a UI/UX designer.**",
     images: [
       {
-        src: "/images/future-self-1.png",
-        alt: "A designer working confidently on a laptop",
+        src: "/images/future-self-3.png",
+        alt: "Someone proud and celebrating their work",
       },
       {
         src: "/images/future-self-2.png",
         alt: "A clean portfolio or live project on screen",
       },
       {
-        src: "/images/future-self-3.png",
-        alt: "Someone proud and celebrating their work",
+        src: "/images/future-self-1.png",
+        alt: "A designer working confidently on a laptop",
       },
     ],
   },

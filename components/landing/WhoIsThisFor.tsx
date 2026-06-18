@@ -8,7 +8,7 @@ import { Section } from "./Section";
 import { useLanguage } from "./LanguageProvider";
 
 const GRAPHIC = {
-  src: "/images/who-is-this-for-graphic.jpg",
+  src: "/images/who-is-this-for-graphic.png",
   alt: "",
 } as const;
 
@@ -71,8 +71,13 @@ export function WhoIsThisFor() {
           </ScrollReveal>
         </div>
 
-        <ScrollReveal delay={120} className="lg:col-start-1 lg:row-start-1">
-          <EditorialGraphicPlaceholder src={GRAPHIC.src} alt={GRAPHIC.alt} />
+        <ScrollReveal delay={120} className="w-full lg:col-start-1 lg:row-start-1">
+          <EditorialGraphicPlaceholder
+            src={GRAPHIC.src}
+            alt={GRAPHIC.alt}
+            blend
+            className="lg:scale-[1.05] lg:origin-center"
+          />
         </ScrollReveal>
       </div>
     </Section>

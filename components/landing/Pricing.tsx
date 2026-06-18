@@ -7,6 +7,11 @@ import { EYEBROW } from "./constants";
 import { Section } from "./Section";
 import { useLanguage } from "./LanguageProvider";
 
+const PRICING_ICON = {
+  src: "/images/pricing-icon.png",
+  alt: "",
+} as const;
+
 export function Pricing() {
   const { t } = useLanguage();
 
@@ -21,12 +26,28 @@ export function Pricing() {
         </h2>
       </ScrollReveal>
 
-      <ScrollReveal delay={150}>
-        <div className="w-full rounded-2xl border border-landing-border bg-landing-bg-alt p-6 md:p-8 text-left">
-          <p className="text-3xl md:text-4xl font-bold tracking-tight text-landing-muted line-through">
+      <ScrollReveal delay={150} className="relative mt-14 overflow-visible md:mt-16">
+        <div
+          className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2"
+          aria-hidden={PRICING_ICON.alt === ""}
+        >
+          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-4 border-landing-bg bg-landing-bg-alt shadow-landing ring-1 ring-landing-border md:h-28 md:w-28">
+            <img
+              src={PRICING_ICON.src}
+              alt={PRICING_ICON.alt}
+              width={112}
+              height={112}
+              decoding="async"
+              className="h-[88%] w-[88%] object-contain"
+            />
+          </div>
+        </div>
+
+        <div className="relative w-full rounded-2xl border border-landing-border bg-landing-bg-alt px-6 pb-6 pt-14 text-left md:px-8 md:pb-8 md:pt-16">
+          <p className="text-3xl font-bold tracking-tight text-landing-muted line-through md:text-4xl">
             {t.pricing.originalPrice}
           </p>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-landing-fg mt-2">
+          <p className="mt-2 text-4xl font-bold tracking-tight text-landing-fg md:text-5xl">
             {t.pricing.currentPrice}
           </p>
 

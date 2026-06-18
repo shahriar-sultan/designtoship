@@ -7,7 +7,7 @@ import { Section } from "./Section";
 import { useLanguage } from "./LanguageProvider";
 
 const GRAPHIC = {
-  src: "/images/the-shift-graphic.jpg",
+  src: "/images/the-shift-graphic.png",
   alt: "",
 } as const;
 
@@ -16,7 +16,7 @@ export function TheShift() {
 
   return (
     <Section id="the-shift" containerClassName="max-w-6xl">
-      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] lg:gap-12">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,45%)_minmax(0,55%)] lg:gap-12">
         <div className="text-left">
           <ScrollReveal>
             <p className={`${EYEBROW} mb-4`}>{t.theShift.eyebrow}</p>
@@ -38,8 +38,13 @@ export function TheShift() {
           </div>
         </div>
 
-        <ScrollReveal delay={120} className="lg:justify-self-end">
-          <EditorialGraphicPlaceholder src={GRAPHIC.src} alt={GRAPHIC.alt} />
+        <ScrollReveal delay={120} className="w-full lg:justify-self-end">
+          <EditorialGraphicPlaceholder
+            src={GRAPHIC.src}
+            alt={GRAPHIC.alt}
+            blend
+            className="max-w-3xl sm:max-w-4xl lg:scale-[1.12] lg:origin-center"
+          />
         </ScrollReveal>
       </div>
     </Section>

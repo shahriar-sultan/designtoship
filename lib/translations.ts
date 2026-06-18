@@ -152,7 +152,7 @@ export const translations = {
     },
 
     pricing: {
-      eyebrow: "মূল্য",
+      eyebrow: "কোর্স ফি",
       headline: "Batch 4 Pricing",
       originalPrice: "৳১৮,৯৯০",
       currentPrice: "৳১৩,৯০০",

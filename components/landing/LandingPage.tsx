@@ -50,7 +50,6 @@ function LandingContent() {
         <CtaBlock />
 
         <Pricing />
-        <CtaBlock />
 
         <FAQ />
         <Footer />
