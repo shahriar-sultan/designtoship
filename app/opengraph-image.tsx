@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export const alt =
-  "Design To Ship | Learn Design. Build Real Products. Batch 4 enrollment open.";
+  "Design To Ship — From basics to building your AI Augmented UI/UX design career. Batch 4 enrollment open.";
 
 export const size = {
   width: 1200,
@@ -12,18 +12,19 @@ export const size = {
 
 export const contentType = "image/png";
 
-const BG = "#FFFFFF";
-const SURFACE = "#F8FAFC";
-const BORDER = "#E2E8F0";
-const TEXT_PRIMARY = "#0F172A";
+const BG = "#ffffff";
+const BG_ALT = "#f8fafc";
+const BORDER = "#e2e8f0";
+const TEXT_PRIMARY = "#0f172a";
 const TEXT_SECONDARY = "#475569";
-const ACCENT = "#F97316";
-const ACCENT_DARK = "#EA580C";
+const ACCENT = "#f97316";
+const GRADIENT_FROM = "#fb923c";
+const GRADIENT_TO = "#ea580c";
 
 const STATS = [
-  { value: "78+", label: "Hours Live" },
-  { value: "2", label: "Projects Shipped" },
-  { value: "2", label: "Figma projects" },
+  { value: "78+", label: "Hours live class" },
+  { value: "13", label: "Weeks" },
+  { value: "2", label: "Live classes / week" },
 ];
 
 async function loadFont(weight: 600 | 700) {
@@ -62,8 +63,15 @@ export default async function OpenGraphImage() {
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(249,115,22,0.06) 0%, rgba(255,255,255,0) 45%)",
+            background: `linear-gradient(180deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 88% 12%, rgba(251,146,60,0.14) 0%, transparent 34%), radial-gradient(circle at 10% 88%, rgba(234,88,12,0.08) 0%, transparent 38%)`,
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `radial-gradient(ellipse 120% 90% at 50% 50%, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.55) 55%, rgba(255,255,255,0.2) 100%)`,
           }}
         />
 
@@ -75,7 +83,7 @@ export default async function OpenGraphImage() {
             alignItems: "center",
             justifyContent: "center",
             width: "100%",
-            padding: "48px 72px",
+            padding: "52px 72px",
             textAlign: "center",
           }}
         >
@@ -98,6 +106,10 @@ export default async function OpenGraphImage() {
                   <stop offset="50%" stopColor="#F97316" stopOpacity="0.65" />
                   <stop offset="100%" stopColor="#FB923C" stopOpacity="0.9" />
                 </linearGradient>
+                <radialGradient id="og-tipGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#FED7AA" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="#FB923C" stopOpacity="0" />
+                </radialGradient>
               </defs>
               <rect width="512" height="512" rx="112" fill="url(#og-bg)" />
               <polygon
@@ -105,6 +117,7 @@ export default async function OpenGraphImage() {
                 fill="url(#og-glow)"
                 opacity="0.85"
               />
+              <circle cx="256" cy="150" r="60" fill="url(#og-tipGlow)" />
               <circle cx="256" cy="146" r="18" fill="#FFEDD5" />
               <circle cx="256" cy="186" r="13" fill="#FDBA74" />
               <circle cx="222" cy="218" r="13" fill="#FB923C" />
@@ -125,12 +138,19 @@ export default async function OpenGraphImage() {
 
           <div
             style={{
-              fontSize: 18,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "8px 18px",
+              borderRadius: 999,
+              border: `1px solid rgba(249,115,22,0.2)`,
+              background: "rgba(249,115,22,0.1)",
+              fontSize: 16,
               fontWeight: 600,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: ACCENT,
-              marginBottom: 24,
+              marginBottom: 28,
             }}
           >
             BATCH 4 · ENROLLMENT OPEN
@@ -141,40 +161,37 @@ export default async function OpenGraphImage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              fontSize: 68,
+              fontSize: 58,
               fontWeight: 700,
-              lineHeight: 1.05,
+              lineHeight: 1.08,
               color: TEXT_PRIMARY,
               letterSpacing: "-0.03em",
               marginBottom: 24,
+              maxWidth: 980,
             }}
           >
-            <span>Learn Design.</span>
-            <span>Build Real Products.</span>
+            <span>From basics to building your</span>
+            <span
+              style={{
+                background: `linear-gradient(90deg, ${GRADIENT_FROM} 0%, ${GRADIENT_TO} 100%)`,
+                color: GRADIENT_TO,
+              }}
+            >
+              AI Augmented UI/UX design career
+            </span>
           </div>
 
           <div
             style={{
-              fontSize: 26,
+              fontSize: 24,
               lineHeight: 1.45,
               color: TEXT_SECONDARY,
-              maxWidth: 900,
-              marginBottom: 18,
-            }}
-          >
-            A 3-month live program where you start from zero and finish with two
-            real products live on the internet.
-          </div>
-
-          <div
-            style={{
-              fontSize: 20,
-              fontWeight: 600,
-              color: TEXT_PRIMARY,
+              maxWidth: 920,
               marginBottom: 36,
             }}
           >
-            13 weeks · 2 live classes per week · 78+ hours with a senior designer
+            Learn in Bangla from absolute zero, guided by a senior designer, and
+            use AI to design faster and smarter.
           </div>
 
           <div
@@ -197,14 +214,15 @@ export default async function OpenGraphImage() {
                   padding: "18px 22px",
                   borderRadius: 18,
                   border: `1px solid ${BORDER}`,
-                  background: SURFACE,
+                  background: BG_ALT,
                 }}
               >
                 <span
                   style={{
                     fontSize: 34,
                     fontWeight: 700,
-                    color: ACCENT_DARK,
+                    background: `linear-gradient(90deg, ${GRADIENT_FROM} 0%, ${GRADIENT_TO} 100%)`,
+                    color: GRADIENT_TO,
                   }}
                 >
                   {stat.value}

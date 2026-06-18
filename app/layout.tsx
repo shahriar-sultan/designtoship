@@ -49,27 +49,28 @@ const hindSiliguri = Hind_Siliguri({
   weight: ["400", "500", "600", "700"],
 });
 
+const SITE_TITLE = "Design To Ship | AI Augmented UI/UX Design Career";
+const SITE_DESCRIPTION =
+  "Learn in Bangla from absolute zero, guided by a senior designer, and use AI to design faster and smarter. Batch 4 enrollment open.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Design To Ship | Learn Design. Build Real Products.",
-  description:
-    "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Design To Ship | Learn Design. Build Real Products.",
-    description:
-      "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: "Design To Ship",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Design To Ship | Learn Design. Build Real Products.",
-    description:
-      "A 3-month live program where you start from zero and finish with two real products live on the internet. Batch 4 enrollment open.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 
