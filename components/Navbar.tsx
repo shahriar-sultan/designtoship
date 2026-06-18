@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { BrandIcon } from "@/components/BrandIcon";
 import { Button } from "@/components/ui/button";
-import { BATCH_4_APPLY_URL } from "@/components/landing/constants";
+import { BATCH_4_APPLY_URL, CTA_LABEL } from "@/components/landing/constants";
 import { Menu, X } from "lucide-react";
 
 interface NavbarProps {
@@ -63,7 +63,7 @@ export function Navbar({ className = "" }: NavbarProps) {
               onClick={handleRegisterClick}
               className="w-full rounded-full bg-white-gradient hover:opacity-90 text-[#15120D] text-sm font-semibold py-2.5"
             >
-              Apply for Batch 4
+              {CTA_LABEL}
             </Button>
           </div>
         )}
@@ -80,7 +80,7 @@ export function Navbar({ className = "" }: NavbarProps) {
             onClick={handleRegisterClick}
             className="bg-white-gradient hover:opacity-90 text-[#15120D] px-6 py-2 rounded-full text-sm font-semibold transition-colors shadow-lg"
           >
-            Apply for Batch 4
+            {CTA_LABEL}
           </Button>
         </div>
       </nav>

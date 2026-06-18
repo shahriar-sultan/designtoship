@@ -9,10 +9,10 @@ export function LanguageToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="px-3 py-1.5 rounded-full border border-[#1C2740] text-sm font-medium text-slate-300 hover:border-[#6C3EFF]/60 hover:text-white transition-colors"
-      aria-label="Switch language"
+      className="px-3 py-1.5 rounded-full border border-landing-border text-sm font-medium text-landing-muted hover:border-landing-accent/40 hover:text-landing-accent transition-colors"
+      aria-label={lang === "bn" ? "Switch to English" : "বাংলায় দেখুন"}
     >
-      {lang === "bn" ? "English" : "বাংলা"}
+      {lang === "bn" ? "EN" : "বাং"}
     </button>
   );
 }

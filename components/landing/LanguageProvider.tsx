@@ -69,8 +69,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         style={{
           fontFamily:
             lang === "bn"
-              ? "var(--font-bengali), var(--font-hind-siliguri), var(--font-geist-sans), sans-serif"
-              : "var(--font-geist-sans), sans-serif",
+              ? "var(--font-anek-bangla), var(--font-bengali), var(--font-hind-siliguri), var(--font-inter), sans-serif"
+              : "var(--font-inter), var(--font-geist-sans), sans-serif",
           WebkitFontSmoothing: lang === "bn" ? "subpixel-antialiased" : undefined,
           MozOsxFontSmoothing: lang === "bn" ? "auto" : undefined,
         }}

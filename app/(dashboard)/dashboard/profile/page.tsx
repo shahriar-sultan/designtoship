@@ -17,15 +17,15 @@ export default function ProfilePage() {
         <CardContent className="space-y-2 text-sm">
           <p>
             <span className="text-muted-foreground">Name: </span>
-            {session?.user?.name ?? "—"}
+            {session?.user?.name ?? "N/A"}
           </p>
           <p>
             <span className="text-muted-foreground">Email: </span>
-            {session?.user?.email ?? "—"}
+            {session?.user?.email ?? "N/A"}
           </p>
           <p>
             <span className="text-muted-foreground">Role: </span>
-            {session?.user?.role ?? "—"}
+            {session?.user?.role ?? "N/A"}
           </p>
         </CardContent>
       </Card>

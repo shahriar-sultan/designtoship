@@ -43,7 +43,10 @@ export function LandingButton({
         type="button"
         onClick={handleClick}
         className={cn(
-          "rounded-full px-6 py-3 text-sm font-semibold text-[#F1F5F9] border border-[#1C2740] bg-[#0F1520]/80 hover:border-[#6C3EFF]/50 transition-colors cursor-pointer",
+          "rounded-full px-6 py-3 text-sm font-semibold text-landing-fg",
+          "border border-landing-border bg-landing-surface",
+          "hover:border-landing-accent hover:text-landing-accent",
+          "transition-colors cursor-pointer",
           className,
         )}
       >
@@ -57,8 +60,9 @@ export function LandingButton({
       type="button"
       onClick={handleClick}
       className={cn(
-        "rounded-full px-8 py-3.5 text-sm md:text-base font-semibold text-white cursor-pointer transition-opacity hover:opacity-90",
-        "bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE]",
+        "rounded-full px-8 py-3.5 text-sm md:text-base font-semibold text-white cursor-pointer",
+        "bg-landing-accent hover:bg-landing-accent-hover",
+        "transition-colors shadow-landing",
         className,
       )}
     >

@@ -1,89 +1,80 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { LandingButton } from "./LandingButton";
-import {
-  EYEBROW,
-  CENTERED_SECTION_ROOT,
-  CENTERED_SECTION_CONTENT,
-  CENTERED_SECTION_VIGNETTE,
-} from "./constants";
+import { CtaButton } from "./CtaButton";
+import { EditorialGraphicPlaceholder } from "./EditorialGraphicPlaceholder";
+import { EYEBROW } from "./constants";
+import { Section } from "./Section";
 import { useLanguage } from "./LanguageProvider";
+
+const GRAPHIC = {
+  src: "/images/who-is-this-for-graphic.jpg",
+  alt: "",
+} as const;
+
+function splitMixedScript(text: string) {
+  const parts = text.split(/([A-Za-z0-9][A-Za-z0-9\s\-'.·(),+"→—]*)/g).filter(Boolean);
+
+  return parts.map((part, index) =>
+    /^[A-Za-z0-9]/.test(part) ? (
+      <span key={`${part}-${index}`} className="font-latin">
+        {part}
+      </span>
+    ) : (
+      <span key={`${part}-${index}`}>{part}</span>
+    ),
+  );
+}
 
 export function WhoIsThisFor() {
   const { t } = useLanguage();
 
   return (
-    <section
-      id="who-is-this-for"
-      data-particle-shape="hyperboloid"
-      className={CENTERED_SECTION_ROOT}
-      style={{ background: "transparent" }}
-    >
-      <div
-        className={CENTERED_SECTION_CONTENT}
-        style={{ background: CENTERED_SECTION_VIGNETTE }}
-      >
-        <ScrollReveal>
-          <p className={`${EYEBROW} mb-4`}>{t.whoIsThisFor.eyebrow}</p>
-        </ScrollReveal>
-        <ScrollReveal delay={100}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F1F5F9] mb-6 md:mb-16">
-            {t.whoIsThisFor.headline}
-          </h2>
-        </ScrollReveal>
+    <Section id="who-is-this-for" containerClassName="max-w-6xl">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,45%)_minmax(0,55%)] lg:gap-12">
+        <div className="text-left lg:col-start-2 lg:row-start-1">
+          <ScrollReveal>
+            <p className={`${EYEBROW} mb-4`}>{t.whoIsThisFor.eyebrow}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="mb-6 font-bn text-3xl font-bold tracking-tight text-landing-fg sm:text-4xl md:mb-8 md:text-5xl">
+              {t.whoIsThisFor.headline}
+            </h2>
+          </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-6 md:mb-12 text-left">
           <ScrollReveal delay={150}>
-            <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-[#F1F5F9] mb-4">
+            <div className="rounded-2xl border border-landing-border bg-landing-bg-alt p-6 md:p-8">
+              <h3 className="mb-4 font-bn text-lg font-semibold text-landing-fg">
                 {t.whoIsThisFor.forTitle}
               </h3>
               <ul className="space-y-3">
                 {t.whoIsThisFor.forItems.map((item) => (
                   <li
                     key={item}
-                    className="text-[#94A3B8] text-base leading-relaxed flex gap-3"
+                    className="flex gap-3 font-bn text-base leading-bn text-landing-muted"
                   >
-                    <span className="text-[#22D3EE] shrink-0">✓</span>
-                    {item}
+                    <span className="shrink-0 text-landing-accent">✓</span>
+                    <span>{splitMixedScript(item)}</span>
                   </li>
                 ))}
               </ul>
             </div>
+            <p className="mt-4 font-bn text-sm leading-bn text-landing-muted sm:text-[0.9375rem]">
+              {splitMixedScript(t.whoIsThisFor.disqualifier)}
+            </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={200}>
-            <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-[#F1F5F9] mb-4">
-                {t.whoIsThisFor.notForTitle}
-              </h3>
-              <ul className="space-y-3">
-                {t.whoIsThisFor.notForItems.map((item) => (
-                  <li
-                    key={item}
-                    className="text-[#94A3B8] text-base leading-relaxed flex gap-3"
-                  >
-                    <span className="text-[#475569] shrink-0">✕</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          <ScrollReveal delay={250}>
+            <div className="mt-8 md:mt-10">
+              <CtaButton />
             </div>
           </ScrollReveal>
         </div>
 
-        <ScrollReveal delay={300}>
-          <div className="rounded-2xl border border-[#1C2740] bg-[#0F1520] p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-left">
-            <p className="text-[#94A3B8] text-base max-w-xl">
-              {t.whoIsThisFor.ctaNote}
-            </p>
-            <LandingButton className="shrink-0">
-              {t.whoIsThisFor.ctaButton}
-            </LandingButton>
-          </div>
+        <ScrollReveal delay={120} className="lg:col-start-1 lg:row-start-1">
+          <EditorialGraphicPlaceholder src={GRAPHIC.src} alt={GRAPHIC.alt} />
         </ScrollReveal>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -1,38 +1,28 @@
 "use client";
 
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { cn } from "@/lib/utils";
+import { CtaButton } from "./CtaButton";
 import { LandingButton } from "./LandingButton";
-import { HeroVideoPreview } from "./HeroVideoPreview";
-import { EYEBROW, HERO_FULLSCREEN_VIGNETTE } from "./constants";
+import { EYEBROW_PILL, HERO_TOP_TINT } from "./constants";
 import { useLanguage } from "./LanguageProvider";
 
-function renderBengaliNumerals(text: string) {
-  const parts = text.split(/([\u09E6-\u09EF]+)/g).filter(Boolean);
+function splitMixedScript(text: string) {
+  const parts = text.split(/([A-Za-z0-9][A-Za-z0-9\s\-'.·,→]*)/g).filter(Boolean);
 
   return parts.map((part, index) =>
-    /^[\u09E6-\u09EF]+$/.test(part) ? (
-      <span key={`${part}-${index}`} className="font-bold">
+    /^[A-Za-z0-9]/.test(part) ? (
+      <span key={`${part}-${index}`} className="font-latin">
         {part}
       </span>
     ) : (
-      part
+      <span key={`${part}-${index}`}>{part}</span>
     ),
   );
 }
 
 export function Hero() {
-  const { t, lang } = useLanguage();
-
-  const stats = [
-    { value: "78+", label: t.hero.stat1 },
-    { value: "2", label: t.hero.stat2 },
-    { value: "2", label: t.hero.stat3 },
-  ];
-
-  const scrollToWhatYouLearn = () => {
-    document.getElementById("what-you-learn")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const { t } = useLanguage();
 
   const scrollToCurriculum = () => {
     document.getElementById("curriculum")?.scrollIntoView({ behavior: "smooth" });
@@ -40,104 +30,83 @@ export function Hero() {
 
   return (
     <section
-      data-particle-shape="stellar-nebula"
-      className="relative min-h-0 pt-20 pb-12 md:min-h-screen md:py-0 flex items-center justify-center overflow-hidden"
-      style={{ background: "transparent" }}
+      className="relative overflow-hidden bg-landing-bg bg-hero-tint pt-24 pb-0 md:pt-28"
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{ background: HERO_FULLSCREEN_VIGNETTE }}
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ background: HERO_TOP_TINT }}
       />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 py-8 md:py-24 text-center md:min-h-screen flex flex-col items-center justify-center">
-        <ScrollReveal className="order-2 md:order-1">
-          <p className={EYEBROW}>{t.hero.eyebrow}</p>
-        </ScrollReveal>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 xl:gap-16">
+          {/* Left column: copy */}
+          <div className="order-1 text-left">
+            <ScrollReveal>
+              <p className={EYEBROW_PILL}>{t.hero.eyebrow}</p>
+            </ScrollReveal>
 
-        <ScrollReveal delay={100} className="order-3 md:order-2">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1F5F9] leading-[1.05] mt-4 md:mt-8">
-            {t.hero.headline1}
-            <br />
-            {t.hero.headline2}
-          </h1>
-        </ScrollReveal>
+            <ScrollReveal delay={80}>
+              <h1 className="mt-5 font-bn text-[1.65rem] font-bold leading-bn tracking-tight text-landing-fg sm:text-4xl md:text-[2.75rem] md:leading-[1.2] lg:text-5xl lg:leading-[1.15]">
+                {t.hero.headlineBefore}
+                <span className="text-gradient-hero font-latin">{t.hero.headlineGradient}</span>
+                <span className="font-latin">{t.hero.headlineAfter}</span>
+              </h1>
+            </ScrollReveal>
 
-        <ScrollReveal delay={200} className="order-4 md:order-3">
-          <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto mt-6">
-            {t.hero.subhead1}
-          </p>
-        </ScrollReveal>
+            <ScrollReveal delay={160}>
+              <p className="mt-5 max-w-xl font-bn text-base leading-bn text-landing-muted sm:text-lg sm:leading-bn">
+                {splitMixedScript(t.hero.subtitle)}
+              </p>
+            </ScrollReveal>
 
-        <ScrollReveal delay={250} className="order-5 md:order-4">
-          <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed max-w-2xl mx-auto mt-4">
-            {t.hero.subhead2}
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={300} className="w-full order-6 md:order-5">
-          <p
-            className="w-full text-base text-[#F1F5F9] font-normal mt-4 tracking-normal text-center px-4 [font-synthesis:none]"
-            style={
-              lang === "bn"
-                ? {
-                    fontFamily:
-                      "var(--font-bengali), var(--font-hind-siliguri), sans-serif",
-                    WebkitFontSmoothing: "subpixel-antialiased",
-                    MozOsxFontSmoothing: "auto",
-                  }
-                : undefined
-            }
-          >
-            {lang === "bn" ? renderBengaliNumerals(t.hero.supporting) : t.hero.supporting}
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={400} className="order-7 md:order-6">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3 md:pt-6">
-            <LandingButton>{t.hero.ctaPrimary}</LandingButton>
-            <button
-              type="button"
-              onClick={scrollToWhatYouLearn}
-              className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer"
-            >
-              {t.hero.ctaSecondary}
-            </button>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={500} className="w-full order-1 md:order-7">
-          <HeroVideoPreview
-            label={t.hero.videoPreview}
-            className="pt-0 pb-3 md:pt-8 md:pb-0"
-          />
-        </ScrollReveal>
-
-        <ScrollReveal delay={600} className="w-full order-8 md:order-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6 max-w-3xl mx-auto w-full">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  "rounded-2xl border border-[#1C2740] bg-[#0F1520]/80 p-5 md:p-6 text-left",
-                  index === 2 && "col-span-2 sm:col-span-1 text-center sm:text-left",
-                )}
-              >
-                <p className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-[#6C3EFF] via-[#A855F7] to-[#22D3EE] bg-clip-text text-transparent">
-                  {stat.value}
-                </p>
-                <p className="text-[#94A3B8] mt-1 text-base">{stat.label}</p>
+            <ScrollReveal delay={240}>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <CtaButton className="w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-landing-accent" />
+                <LandingButton
+                  variant="outline"
+                  onClick={scrollToCurriculum}
+                  className="w-full border-landing-accent/50 bg-landing-accent/10 px-7 py-3.5 text-sm font-semibold text-landing-fg shadow-landing hover:border-landing-accent hover:bg-landing-accent/15 hover:text-landing-accent sm:w-auto md:text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-landing-accent"
+                >
+                  {t.hero.ctaSecondary}
+                </LandingButton>
               </div>
-            ))}
+            </ScrollReveal>
           </div>
-          <button
-            type="button"
-            onClick={scrollToCurriculum}
-            className="text-[#94A3B8] hover:text-[#F1F5F9] text-base font-medium transition-colors cursor-pointer mt-6"
-          >
-            {t.hero.seeCurriculum}
-          </button>
-        </ScrollReveal>
+
+          {/* Right column: mockup */}
+          <ScrollReveal delay={120} className="order-2 w-full">
+            <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+              <div
+                aria-hidden="true"
+                className="absolute -left-3 top-8 rounded-full border border-landing-border bg-landing-bg px-3 py-1.5 text-xs font-medium text-landing-accent shadow-landing sm:-left-5"
+              >
+                <span className="font-latin">Figma</span>
+                <span className="font-bn"> → Live</span>
+              </div>
+              <div
+                aria-hidden="true"
+                className="absolute -right-2 bottom-10 rounded-full border border-landing-border bg-landing-bg px-3 py-1.5 text-xs font-medium text-landing-muted shadow-landing sm:-right-4"
+              >
+                <span className="font-latin text-gradient-hero font-semibold">AI</span>
+                <span className="font-bn"> Augmented</span>
+              </div>
+
+              <div className="shadow-landing-lg rounded-[20px] border border-landing-border bg-landing-surface p-2 sm:p-3">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-landing-bg-alt">
+                  <Image
+                    src="/hero-mockup-placeholder.svg"
+                    alt="Course UI mockup preview"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );

@@ -27,6 +27,7 @@ const devAllowedOrigins =
   process.env.NODE_ENV === "development"
     ? [
         "192.168.68.57",
+        "192.168.68.56",
         ...(process.env.DEV_ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ??
           []),
       ].filter(Boolean)

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
+  Inter,
+  Anek_Bangla,
   Noto_Sans_Bengali,
   Hind_Siliguri,
 } from "next/font/google";
@@ -11,6 +13,19 @@ import "./globals.css";
 import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import { SessionProvider } from "@/components/providers/SessionProvider";
 import { SITE_URL } from "@/lib/site";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const anekBangla = Anek_Bangla({
+  variable: "--font-anek-bangla",
+  subsets: ["bengali", "latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,10 +81,10 @@ export default function RootLayout({
   return (
     <html lang="bn" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} ${hindSiliguri.variable} antialiased font-sans`}
+        className={`${inter.variable} ${anekBangla.variable} ${geistSans.variable} ${geistMono.variable} ${notoSansBengali.variable} ${hindSiliguri.variable} antialiased font-sans`}
         style={{
           fontFamily:
-            "var(--font-bengali), var(--font-hind-siliguri), var(--font-geist-sans), sans-serif",
+            "var(--font-anek-bangla), var(--font-bengali), var(--font-hind-siliguri), var(--font-inter), sans-serif",
         }}
       >
         <SessionProvider>
