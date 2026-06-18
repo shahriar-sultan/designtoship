@@ -114,6 +114,36 @@ function SparkDoodle({ className }: { className?: string }) {
   );
 }
 
+function CollageFrame({
+  src,
+  alt,
+  rounded = "2xl",
+  shadow = "landing",
+}: {
+  src: string;
+  alt: string;
+  rounded?: "xl" | "2xl";
+  shadow?: "landing" | "landing-lg";
+}) {
+  const roundedClass = rounded === "xl" ? "rounded-xl" : "rounded-2xl";
+  const shadowClass = shadow === "landing-lg" ? "shadow-landing-lg" : "shadow-landing";
+
+  return (
+    <div
+      className={`overflow-hidden border border-landing-border bg-landing-surface ${roundedClass} ${shadowClass}`}
+    >
+      <div className="flex aspect-[4/3] items-center justify-center bg-landing-bg-alt p-3 sm:p-4">
+        <img
+          src={src}
+          alt={alt}
+          decoding="async"
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
 function DreamCollage({
   images,
 }: {
@@ -122,45 +152,26 @@ function DreamCollage({
   return (
     <div className="relative mx-auto aspect-[4/5] w-full max-w-sm sm:max-w-md md:mx-0 md:max-w-none md:aspect-auto md:min-h-[26rem] lg:min-h-[28rem]">
       <div className="absolute left-0 top-0 z-10 w-[74%] rotate-[-1.5deg]">
-        <div className="overflow-hidden rounded-2xl border border-landing-border bg-landing-surface shadow-landing">
-          <img
-            src={images[0].src}
-            alt={images[0].alt}
-            width={560}
-            height={420}
-            decoding="async"
-            className="aspect-[4/3] h-full w-full object-cover"
-          />
-        </div>
+        <CollageFrame src={images[0].src} alt={images[0].alt} />
       </div>
 
       <CollageSquiggle className="absolute left-[58%] top-[34%] z-20 h-8 w-12 text-landing-accent/80" />
       <DottedConnector className="absolute left-[42%] top-[48%] z-20 h-6 w-16 text-landing-accent/55" />
 
       <div className="absolute right-0 top-[10%] z-20 w-[60%] rotate-[2deg]">
-        <div className="overflow-hidden rounded-2xl border border-landing-border bg-landing-surface shadow-landing-lg">
-          <img
-            src={images[1].src}
-            alt={images[1].alt}
-            width={480}
-            height={360}
-            decoding="async"
-            className="aspect-[4/3] h-full w-full object-cover"
-          />
-        </div>
+        <CollageFrame
+          src={images[1].src}
+          alt={images[1].alt}
+          shadow="landing-lg"
+        />
       </div>
 
       <div className="absolute bottom-0 left-[14%] z-30 w-[52%] rotate-[-1deg]">
-        <div className="overflow-hidden rounded-xl border border-landing-border bg-landing-surface shadow-landing">
-          <img
-            src={images[2].src}
-            alt={images[2].alt}
-            width={400}
-            height={300}
-            decoding="async"
-            className="aspect-[4/3] h-full w-full object-cover"
-          />
-        </div>
+        <CollageFrame
+          src={images[2].src}
+          alt={images[2].alt}
+          rounded="xl"
+        />
       </div>
 
       <CursorDoodle className="absolute bottom-[18%] right-[8%] z-20 h-7 w-6 text-landing-accent/70" />

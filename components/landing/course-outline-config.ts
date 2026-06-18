@@ -23,7 +23,7 @@ export const COURSE_OUTLINE: Record<
   bn: {
     headline: "কোর্স আউটলাইন",
     subtitle:
-      "জিরো থেকে শুরু — ৬টি ধাপে একজন স্কিলড UI/UX ডিজাইনার হয়ে ওঠার পুরো পথ।",
+      "জিরো থেকে শুরু — ৬টি ধাপে একজন স্কিলড UI/UX ডিজাইনার হয়ে ওঠার পুরো পথ",
     stats: [
       { value: "১৩", label: "সপ্তাহ" },
       { value: "৭৮+", label: "ঘণ্টা live class" },

@@ -77,32 +77,15 @@ export function Hero() {
           {/* Right column: mockup */}
           <ScrollReveal delay={120} className="order-2 w-full">
             <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-              <div
-                aria-hidden="true"
-                className="absolute -left-3 top-8 rounded-full border border-landing-border bg-landing-bg px-3 py-1.5 text-xs font-medium text-landing-accent shadow-landing sm:-left-5"
-              >
-                <span className="font-latin">Figma</span>
-                <span className="font-bn"> → Live</span>
-              </div>
-              <div
-                aria-hidden="true"
-                className="absolute -right-2 bottom-10 rounded-full border border-landing-border bg-landing-bg px-3 py-1.5 text-xs font-medium text-landing-muted shadow-landing sm:-right-4"
-              >
-                <span className="font-latin text-gradient-hero font-semibold">AI</span>
-                <span className="font-bn"> Augmented</span>
-              </div>
-
-              <div className="shadow-landing-lg rounded-[20px] border border-landing-border bg-landing-surface p-2 sm:p-3">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-landing-bg-alt">
-                  <Image
-                    src="/hero-mockup-placeholder.svg"
-                    alt="Course UI mockup preview"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover object-center"
-                  />
-                </div>
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src="/images/hero-main.png"
+                  alt="UI/UX design course hero preview"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-contain object-center"
+                />
               </div>
             </div>
           </ScrollReveal>

@@ -21,7 +21,7 @@ export const translations = {
 
     theShift: {
       eyebrow: "Industry টা চুপচাপ বদলে যাচ্ছে",
-      headline: "কয়েক বছর আগেও একটা সুন্দর Figma file যথেষ্ট ছিল।",
+      headline: "কয়েক বছর আগেও একটা সুন্দর Figma file যথেষ্ট ছিল",
       paragraphs: [
         "Client screen দেখত, ভালো লাগলে কাজ দিত। ব্যাস।",
         "এখন AI নিজেই screen বানিয়ে দিচ্ছে, code সহ, live। যে কাজে আগে কয়েক দিন লাগত, এখন একটা ভালো prompt-এ হয়ে যায়।",
@@ -33,7 +33,7 @@ export const translations = {
 
     whatCourseTeaches: {
       eyebrow: "এই কোর্স আসলে কী শেখায়",
-      headline: "Tool শেখা এখন সহজ। আসল জিনিসটা আলাদা।",
+      headline: "Tool শেখা এখন সহজ — আসল জিনিসটা আলাদা",
       paragraphs: [
         "Figma YouTube-এ আছে, AI দিয়ে screen বানানোও শেখা যায়। ওটা এই কোর্সের মূল জিনিস না।",
         "মূল জিনিসটা হলো, নিজের design দেখে বুঝতে পারা, ভালো হলো নাকি হলো না, আর কেন।",
@@ -105,7 +105,7 @@ export const translations = {
 
     howItWorks: {
       eyebrow: "প্রতি সপ্তাহ কীভাবে চলবে",
-      headline: "একই rhythm, প্রতি সপ্তাহে।",
+      headline: "একই rhythm, প্রতি সপ্তাহে",
       step1Title: "Lecture",
       step1Body:
         "নতুন বিষয়। Senior designer live শেখাবেন আর প্রতিটা সিদ্ধান্ত real time-এ দেখাবেন।",
@@ -172,7 +172,7 @@ export const translations = {
 
     faq: {
       eyebrow: "সাধারণ প্রশ্ন",
-      headline: "Join করার আগে যা মানুষ জিজ্ঞেস করে।",
+      headline: "Join করার আগে যা মানুষ জিজ্ঞেস করে",
       items: [
         {
           q: "Join করার আগে কি ডিজাইন বা coding জানতে হবে?",

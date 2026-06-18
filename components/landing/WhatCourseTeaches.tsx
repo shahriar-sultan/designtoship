@@ -7,7 +7,7 @@ import { Section } from "./Section";
 import { useLanguage } from "./LanguageProvider";
 
 const GRAPHIC = {
-  src: "/images/what-course-teaches-graphic.jpg",
+  src: "/images/what-course-teaches-graphic.png",
   alt: "",
 } as const;
 
@@ -20,7 +20,7 @@ export function WhatCourseTeaches() {
       variant="alt"
       containerClassName="max-w-6xl"
     >
-      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] lg:gap-12">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:gap-10 xl:gap-12">
         <div className="text-left">
           <ScrollReveal>
             <p className={`${EYEBROW} mb-4`}>{t.whatCourseTeaches.eyebrow}</p>
@@ -42,8 +42,13 @@ export function WhatCourseTeaches() {
           </div>
         </div>
 
-        <ScrollReveal delay={120} className="lg:justify-self-end">
-          <EditorialGraphicPlaceholder src={GRAPHIC.src} alt={GRAPHIC.alt} />
+        <ScrollReveal delay={120} className="w-full">
+          <EditorialGraphicPlaceholder
+            src={GRAPHIC.src}
+            alt={GRAPHIC.alt}
+            blend
+            className="lg:scale-[1.08] lg:origin-center"
+          />
         </ScrollReveal>
       </div>
     </Section>

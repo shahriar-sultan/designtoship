@@ -18,7 +18,7 @@ export const FUTURE_SELF_SECTION: Record<Language, FutureSelfCopy> = {
   bn: {
     headingBefore: "আজ থেকে ",
     headingAccent: "৩ মাস পরের আপনাকে",
-    headingAfter: " একবার কল্পনা করুন।",
+    headingAfter: " একবার কল্পনা করুন",
     paragraphs: [
       "সকালে ঘুম থেকে উঠে আপনি আর confused না। আপনি জানেন আপনি কী করছেন, আর কোথায় যাচ্ছেন।",
       "প্রথমবারের মতো, নিজের বানানো একটা জিনিস আপনি **গর্ব করে** পরিবার আর বন্ধুদের দেখাচ্ছেন।",
@@ -27,18 +27,18 @@ export const FUTURE_SELF_SECTION: Record<Language, FutureSelfCopy> = {
       'আপনি এখন সেই মানুষ, যাকে অন্যরা জিজ্ঞেস করে — "এটা কীভাবে শিখলে?"',
     ],
     closing:
-      "৩ মাস আগে যেটা শুধু স্বপ্ন ছিল — সেটাই এখন আপনার পরিচয়: **একজন UI/UX ডিজাইনার।**",
+      "৩ মাস আগে যেটা শুধু স্বপ্ন ছিল — সেটাই এখন আপনার পরিচয়: **একজন UI/UX ডিজাইনার**",
     images: [
       {
-        src: "/images/dream-1.jpg",
+        src: "/images/future-self-1.png",
         alt: "একজন ডিজাইনার আত্মবিশ্বাসের সাথে ল্যাপটপে কাজ করছেন",
       },
       {
-        src: "/images/dream-2.jpg",
+        src: "/images/future-self-2.png",
         alt: "একটি পরিষ্কার পোর্টফোলিও বা লাইভ প্রজেক্ট স্ক্রিনে",
       },
       {
-        src: "/images/dream-3.jpg",
+        src: "/images/future-self-3.png",
         alt: "কেউ নিজের কাজ নিয়ে গর্বিত ও উৎসাহিত",
       },
     ],
@@ -58,15 +58,15 @@ export const FUTURE_SELF_SECTION: Record<Language, FutureSelfCopy> = {
       "What was only a dream three months ago is now your identity: **a UI/UX designer.**",
     images: [
       {
-        src: "/images/dream-1.jpg",
+        src: "/images/future-self-1.png",
         alt: "A designer working confidently on a laptop",
       },
       {
-        src: "/images/dream-2.jpg",
+        src: "/images/future-self-2.png",
         alt: "A clean portfolio or live project on screen",
       },
       {
-        src: "/images/dream-3.jpg",
+        src: "/images/future-self-3.png",
         alt: "Someone proud and celebrating their work",
       },
     ],
