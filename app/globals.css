@@ -3,11 +3,8 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
   background-color: var(--landing-bg);
-  min-height: 100vh;
+  color-scheme: light;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -294,7 +291,9 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--landing-bg);
+    color: var(--landing-text-primary);
+    min-height: 100vh;
   }
 }
 

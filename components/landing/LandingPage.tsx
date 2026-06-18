@@ -1,6 +1,7 @@
 "use client";
 
 import { AuthenticatedRedirect } from "./AuthenticatedRedirect";
+import { LandingLightTheme } from "./LandingLightTheme";
 import { LanguageProvider } from "./LanguageProvider";
 import { LandingNavbar } from "./LandingNavbar";
 import { Hero } from "./Hero";
@@ -22,7 +23,8 @@ import { Footer } from "./Footer";
 
 function LandingContent() {
   return (
-    <div className="relative min-h-screen bg-landing-bg">
+    <div className="relative min-h-screen bg-landing-bg text-landing-fg">
+      <LandingLightTheme />
       <AuthenticatedRedirect />
       <LandingNavbar />
       <main>
