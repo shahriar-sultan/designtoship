@@ -47,9 +47,9 @@ export function Hero() {
             </ScrollReveal>
 
             <ScrollReveal delay={80}>
-              <h1 className="mt-5 font-bn text-[1.65rem] font-bold leading-bn tracking-tight text-landing-fg sm:text-4xl md:text-[2.75rem] md:leading-[1.2] lg:text-5xl lg:leading-[1.15]">
+              <h1 className="mt-5 font-bn text-[1.65rem] font-bold leading-[1.2] tracking-tight text-landing-fg sm:text-4xl sm:leading-[1.18] md:text-[2.75rem] md:leading-[1.15] lg:text-5xl lg:leading-[1.12]">
                 {t.hero.headlineBefore}
-                <span className="text-gradient-hero font-latin">{t.hero.headlineGradient}</span>
+                <span className="text-gradient-hero font-latin whitespace-nowrap">{t.hero.headlineGradient}</span>
                 <span className="font-latin">{t.hero.headlineAfter}</span>
               </h1>
             </ScrollReveal>
