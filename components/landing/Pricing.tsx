@@ -44,10 +44,7 @@ export function Pricing() {
         </div>
 
         <div className="relative w-full rounded-2xl border border-landing-border bg-landing-bg-alt px-6 pb-6 pt-14 text-left md:px-8 md:pb-8 md:pt-16">
-          <p className="text-3xl font-bold tracking-tight text-landing-muted line-through md:text-4xl">
-            {t.pricing.originalPrice}
-          </p>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-landing-fg md:text-5xl">
+          <p className="text-4xl font-bold tracking-tight text-landing-fg md:text-5xl">
             {t.pricing.currentPrice}
           </p>
 

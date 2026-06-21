@@ -154,7 +154,6 @@ export const translations = {
     pricing: {
       eyebrow: "কোর্স ফি",
       headline: "Batch 4 Pricing",
-      originalPrice: "৳১৮,৯৯০",
       currentPrice: "৳১৩,৯০০",
       earlyBirdLabel: "⚡ Early Bird Price: ৳৯,৯০০",
       earlyBirdBody: "২২ জুনের আগে জয়েন হলে মাত্র ৳৯,৯০০ দিন।",
@@ -358,7 +357,6 @@ export const translations = {
     pricing: {
       eyebrow: "PRICING",
       headline: "Batch 4 Pricing",
-      originalPrice: "৳18,990",
       currentPrice: "৳13,900",
       earlyBirdLabel: "⚡ Early Bird Price: ৳9,900",
       earlyBirdBody:
