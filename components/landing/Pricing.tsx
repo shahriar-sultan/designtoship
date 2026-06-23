@@ -48,17 +48,6 @@ export function Pricing() {
             {t.pricing.currentPrice}
           </p>
 
-          <div className="mt-6 rounded-2xl p-[2px] bg-gradient-to-r from-landing-gradient-from to-landing-gradient-to shadow-[0_0_40px_rgba(249,115,22,0.2)]">
-            <div className="rounded-2xl bg-landing-bg-alt p-5 md:p-6 border border-landing-accent/20 bg-gradient-to-br from-landing-accent/10 via-landing-bg-alt to-landing-bg">
-              <p className="text-base md:text-lg font-semibold text-landing-fg">
-                {t.pricing.earlyBirdLabel}
-              </p>
-              <p className="text-landing-muted text-base leading-relaxed mt-2">
-                {t.pricing.earlyBirdBody}
-              </p>
-            </div>
-          </div>
-
           <ul className="space-y-3 my-8">
             {t.pricing.features.map((feature) => (
               <li
@@ -75,10 +64,6 @@ export function Pricing() {
           </ul>
 
           <CtaButton className="w-full text-base md:text-lg py-4" />
-
-          <p className="text-center text-landing-fg text-sm md:text-base font-medium mt-6">
-            {t.pricing.footnote}
-          </p>
         </div>
       </ScrollReveal>
     </Section>

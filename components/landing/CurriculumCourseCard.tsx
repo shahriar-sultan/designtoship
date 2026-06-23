@@ -7,7 +7,6 @@ import {
   Languages,
   Users,
   Video,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CURRICULUM_COURSE_CARD } from "./course-card-config";
@@ -106,15 +105,8 @@ export function CurriculumCourseCard({ className }: CurriculumCourseCardProps) {
       </ul>
 
       <div className="mt-6 border-t border-landing-border pt-6">
-        <p className="flex items-center gap-2 font-bn text-lg font-bold text-landing-accent">
-          <Zap className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
-          <span className="font-latin">{copy.earlyBirdLabel}</span>
-        </p>
-        <p className="mt-1 font-bn text-sm leading-bn text-landing-muted">
-          {splitMixedScript(copy.earlyBirdNote)}
-        </p>
-        <p className="mt-2 font-bn text-sm leading-bn text-landing-muted">
-          {splitMixedScript(copy.regularPrice)}
+        <p className="font-bn text-lg font-bold text-landing-fg">
+          {splitMixedScript(copy.price)}
         </p>
       </div>
     </aside>

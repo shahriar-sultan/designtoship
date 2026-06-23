@@ -155,8 +155,6 @@ export const translations = {
       eyebrow: "কোর্স ফি",
       headline: "Batch 4 Pricing",
       currentPrice: "৳১৩,৯০০",
-      earlyBirdLabel: "⚡ Early Bird Price: ৳৯,৯০০",
-      earlyBirdBody: "২২ জুনের আগে জয়েন হলে মাত্র ৳৯,৯০০ দিন।",
       features: [
         "পুরো ১৩ সপ্তাহের program",
         "৭৮+ ঘণ্টা live instruction",
@@ -166,15 +164,14 @@ export const translations = {
         "Career consultation and support",
         "Private batch community",
       ],
-      footnote: "২২ জুনের পর regular price ৳১৩,৯০০ প্রযোজ্য।",
     },
 
     faq: {
       eyebrow: "সাধারণ প্রশ্ন",
-      headline: "Join করার আগে যা মানুষ জিজ্ঞেস করে",
+      headline: "জয়েন করার আগে যা মানুষ জিজ্ঞেস করে",
       items: [
         {
-          q: "Join করার আগে কি ডিজাইন বা coding জানতে হবে?",
+          q: "জয়েন করার আগে কি ডিজাইন বা coding জানতে হবে?",
           a: "না। এই কোর্স একদম zero থেকে শুরু হয়। শুধু দরকার একটা computer, internet connection, আর কাজটা করার ইচ্ছা।",
         },
         {
@@ -358,9 +355,6 @@ export const translations = {
       eyebrow: "PRICING",
       headline: "Batch 4 Pricing",
       currentPrice: "৳13,900",
-      earlyBirdLabel: "⚡ Early Bird Price: ৳9,900",
-      earlyBirdBody:
-        "Join before June 22nd and pay ৳9,900 only.",
       features: [
         "Full 13-week program",
         "78+ hours of live instruction",
@@ -370,7 +364,6 @@ export const translations = {
         "Career consultation and support",
         "Private batch community",
       ],
-      footnote: "Regular price of ৳13,900 applies after June 22nd.",
     },
 
     faq: {

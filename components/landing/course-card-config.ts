@@ -14,9 +14,7 @@ export const CURRICULUM_COURSE_CARD = {
     classes: "সপ্তাহে ২টি live class · মোট ৭৮+ ঘণ্টা",
     level: "একদম শুরু থেকে (beginner-friendly)",
     medium: "বাংলা",
-    earlyBirdLabel: "Early Bird: ৳৯,৯০০",
-    earlyBirdNote: "২২ জুনের মধ্যে জয়েন হলে",
-    regularPrice: "এরপর regular ৳১৩,৯০০",
+    price: "৳১৩,৯০০",
   },
   en: {
     courseTitle: "The Design Workbench · Batch 4",
@@ -27,8 +25,6 @@ export const CURRICULUM_COURSE_CARD = {
     classes: "2 live classes per week · 78+ hours total",
     level: "Absolute beginner friendly",
     medium: "Bangla",
-    earlyBirdLabel: "Early Bird: ৳9,900",
-    earlyBirdNote: "Enroll by June 22",
-    regularPrice: "Then regular ৳13,900",
+    price: "৳13,900",
   },
 } as const;
