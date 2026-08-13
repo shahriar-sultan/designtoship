@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { BATCH_4_APPLY_URL, CTA_LABEL, GRADIENT_TEXT } from "./constants";
 import { Section } from "./Section";
@@ -38,15 +39,24 @@ export function Footer() {
             >
               {t.footer.linkPricing}
             </button>
-            <button
-              type="button"
-              onClick={() =>
-                window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer")
-              }
-              className="text-landing-muted hover:text-landing-fg transition-colors cursor-pointer"
-            >
-              {CTA_LABEL}
-            </button>
+            {BATCH_4_APPLY_URL.startsWith("http") ? (
+              <button
+                type="button"
+                onClick={() =>
+                  window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer")
+                }
+                className="text-landing-muted hover:text-landing-fg transition-colors cursor-pointer"
+              >
+                {CTA_LABEL}
+              </button>
+            ) : (
+              <Link
+                href={BATCH_4_APPLY_URL}
+                className="text-landing-muted hover:text-landing-fg transition-colors"
+              >
+                {CTA_LABEL}
+              </Link>
+            )}
           </nav>
         </div>
       </ScrollReveal>

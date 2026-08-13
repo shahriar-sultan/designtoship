@@ -47,5 +47,5 @@ export const CENTERED_SECTION_VIGNETTE =
 export const HERO_TOP_TINT =
   "linear-gradient(180deg, rgba(249,115,22,0.05) 0%, rgba(255,255,255,0) 45%)";
 
-export const BATCH_4_APPLY_URL = "https://forms.gle/gorAbpXY1AoekTrU7";
+export const BATCH_4_APPLY_URL = "/apply/batch-4";
 export const HERO_VIDEO_ID = "9nxOYnLRPDw";

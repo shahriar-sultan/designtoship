@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "LMS — Two-Gate Registration BFF",
+    "description": "Requires `BFF_REGISTRATION_MONGODB_URI` for two-gate + BFF admin routes.\n\n**Flow:** run **BFF admin login** first — the **Tests** script saves `accessToken` to the collection variable `adminJwt`. Then call **Admin — Approve user** (set `registrationUserId`).\n\n**Variables:** `baseUrl`, `bffAdminEmail`, `bffAdminPassword` (match `npm run seed:bff-admin`), `verifyToken`, `registrationUserId`, `adminJwt` (auto-set by login).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "bffAdminEmail", "value": "admin@local.dev" },
+    { "key": "bffAdminPassword", "value": "DevSeed!ChangeMe1" },
+    { "key": "verifyToken", "value": "" },
+    { "key": "registrationUserId", "value": "" },
+    { "key": "adminJwt", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1 — Admin JWT",
+      "item": [
+        {
+          "name": "BFF admin login (saves adminJwt)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  try {",
+                  "    const j = pm.response.json();",
+                  "    if (j && j.accessToken) {",
+                  "      pm.collectionVariables.set('adminJwt', j.accessToken);",
+                  "      console.log('Set collection variable adminJwt from accessToken');",
+                  "    } else {",
+                  "      console.warn('No accessToken in response body');",
+                  "    }",
+                  "  } catch (e) {",
+                  "    console.warn('Could not parse JSON', e);",
+                  "  }",
+                  "} else {",
+                  "  console.warn('Login failed', pm.response.code);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{bffAdminEmail}}\",\n  \"password\": \"{{bffAdminPassword}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/bff-admin/login",
+            "description": "Two-gate BFF only. Uses `bff_admin_users` from `npm run seed:bff-admin`. On 200, Tests tab stores `accessToken` into collection variable `adminJwt` for **Admin — Approve user**."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2 — Batch 4 application",
+      "item": [
+        {
+          "name": "Get batch-4 config",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/applications/batch-4",
+            "description": "Districts, pricing tiers, early-bird deadline, expected payment tier."
+          },
+          "response": []
+        },
+        {
+          "name": "Submit batch-4 application",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"applicant@example.com\",\n  \"fullName\": \"Test Applicant\",\n  \"whatsappNumber\": \"01700000000\",\n  \"facebookProfileLink\": \"https://facebook.com/test.user\",\n  \"emailId\": \"applicant@example.com\",\n  \"district\": \"Dhaka\",\n  \"currentStatus\": \"STUDENT\",\n  \"education\": \"UNDERGRADUATE_COMPLETED\",\n  \"bkashTransactionId\": \"BKASH123456\",\n  \"paymentTier\": \"EARLY_BIRD\",\n  \"figmaExperience\": \"USED_A_LITTLE\",\n  \"websiteExperience\": \"NEVER_TRIED\",\n  \"englishComfort\": \"CAN_MANAGE\",\n  \"laptopAvailability\": \"OWN\",\n  \"whyLearnUiUx\": \"I want to learn UI/UX design.\",\n  \"goalAfterSixMonths\": \"Working on client projects.\",\n  \"onlineLearningExperience\": \"Tried a few courses before.\",\n  \"scheduleCommitment\": \"I will dedicate evenings and weekends to complete all assignments on time.\",\n  \"stuckBehavior\": \"I search documentation, ask in communities, and keep trying until I understand.\",\n  \"whyGiveSeat\": \"I am committed to finishing the course and building real projects.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/applications/batch-4",
+            "description": "Full 5-page application. Creates PENDING_EMAIL user with application subdocument."
+          },
+          "response": []
+        },
+        {
+          "name": "List applications (uses adminJwt)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminJwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/applications?status=PENDING_ADMIN",
+            "description": "Lists batch applications. Run BFF admin login first."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3 — Registration (email-only)",
+      "item": [
+        {
+          "name": "Register (two-gate)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register",
+            "description": "Creates `PENDING_EMAIL` user; raw token only in email / dev logs."
+          },
+          "response": []
+        },
+        {
+          "name": "Verify email (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/auth/verify-email?token={{verifyToken}}",
+            "description": "Set `verifyToken` from email or server log."
+          },
+          "response": []
+        },
+        {
+          "name": "Verify email (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{verifyToken}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/verify-email",
+            "description": "Same as GET; matches the app verify page."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4 — Admin approval",
+      "item": [
+        {
+          "name": "Approve user (uses adminJwt)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminJwt}}"
+              },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{baseUrl}}/api/admin/users/{{registrationUserId}}/approve",
+            "description": "Run **BFF admin login** first so `adminJwt` is set. Set `registrationUserId` to `_id` from `bff_two_gate_users` (status `PENDING_ADMIN`)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "99 — LMS backend proxy (no Mongo URI)",
+      "item": [
+        {
+          "name": "Register (backend proxy)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"YourSecurePassword1!\",\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register",
+            "description": "When `BFF_REGISTRATION_MONGODB_URI` is unset — proxies to main LMS backend."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BrandIcon } from "@/components/BrandIcon";
 import { Button } from "@/components/ui/button";
 import { BATCH_4_APPLY_URL, CTA_LABEL } from "@/components/landing/constants";
@@ -17,10 +18,15 @@ const navBarStyle = {
 
 export function LandingNavbar() {
   const { t } = useLanguage();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRegisterClick = () => {
-    window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer");
+    if (BATCH_4_APPLY_URL.startsWith("http")) {
+      window.open(BATCH_4_APPLY_URL, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(BATCH_4_APPLY_URL);
+    }
     setIsOpen(false);
   };
 

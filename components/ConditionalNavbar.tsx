@@ -10,6 +10,7 @@ export function ConditionalNavbar() {
   const hideNavbar =
     pathname === "/" ||
     pathname.startsWith("/auth/") ||
+    pathname.startsWith("/apply/") ||
     pathname.startsWith("/dashboard") ||
     pathname === "/login" ||
     pathname === "/register" ||
